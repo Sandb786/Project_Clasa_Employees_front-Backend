@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="https://www.thymeleaf.org">
+
+
+<head>
+    <title>Registretion form</title>
+</head>
+
+<link rel="stylesheet" th:href="@{/CSS/form.css}">
+<script th:src="@{/JS/form.js}" defer></script>
+
+<body>
+    <header>
+        <nav>
+            <img th:src="@{/Images/logo1.png}" class="logo1">
+
+            <div class="box1">
+                <a href="/index.html">home </a>
+                <a href="#">form</a>
+                <a href="#">admin</a>
+                <a href="#">about</a>
+                <span class="line"></span>
+            </div>
+
+
+            <img th:src="@{/Images/logo2.png}" class="logo2">
+
+        </nav>
+    </header>
+
+    <main>
+
+        <h1>registretion form</h1>
+        <p>Please give right informetion.Unfortunatly you are beging not selected or it effect your profile.
+            <br><br>
+            <span>*All feilds Are requred to fill mandatry. </span>
+        </p>
+        <hr>
+
+        <!-- MAIN FORM  -->
+        <form th:action= "@{/submit}" method="post" th:object="${obj}">
+            <div id="btn">
+            <div class="form">
+                <section class="perinfo">
+
+                    <h3>Personal Info</h3>
+
+                    <label>Full-Name</label><br>
+                    <input type="text" placeholder="Name" th:field="*{name}">
+                    <input type="text" placeholder="Surname" th:field="*{surname}"><br>
+
+                    <label>Father's Name(Optional)</label><br>
+                    <input type="text" placeholder="Name">
+                    <input type="text" placeholder="Surname"><br>
+
+                    <div class="photo">
+                        <label for="">Upload Your Photograph:</label>
+                        <input type="file" class="in" name="img" >
+                    </div>
+
+                </section>
+
+                <section class="addres">
+
+                    <h3>Address Info</h3>
+
+                    <label>Landmark/Street/Village</label><br>
+                    <input type="text" th:field="*{landmark}"><br>
+
+                    <label>City</label><br>
+                    <input type="text" th:field="*{city}"><br>
+
+                    <label>State</label><br>
+                    <input type="text" th:field="*{state}"><br>
+
+                    <label>Pincode</label><br>
+                    <input type="text" th:field="*{pincode}"><br>
+
+
+
+                </section>
+
+                <section class="techinfo">
+                    <h3>Select Technology</h3>
+
+                    <label for="cat">Select</label><br>
+
+                    <select name="cat" id="cat" onchange="chck()" th:field="*{tech_type}">
+                        <option value=""></option>
+                        <option value="Frontend">Front end</option>
+                        <option value="Backend">Back end</option>
+                    </select>
+
+                    <label for="tech" id="lab">Technology</label>
+                    <select name="technology" id="frontend" th:field="*{technology}" >
+                        <option value=""></option>
+                        <option value="react">React</option>
+                        <option value="vue js">Vue JS</option>
+                        <option value="css_fremwork">tailwent/Bootstrap</option>
+                        <option value="angular">Angular</option>
+                    </select>
+
+                    <select name="technology" id="backend" th:field="*{technology}">
+                        <option value="">Select</option>
+                        <option value="spring boot">Spring-Boot</option>
+                        <option value="mern">MERN/MEAN Stack</option>
+                        <option value="django">Django</option>
+                        <option value=".net">.NET</option>
+                    </select><br><br>
+
+
+                    <div class="contect">
+                        <h3>Contect Info</h3>
+
+                        <label>Mobile No.</label><br>
+                        <input type="number" maxlength="10" th:field="*{Mobile}"><br>
+
+                        <label>E-mail</label><br>
+                        <input type="email" th:field="*{email}"><br>
+                    </div>
+                </section>
+
+            </div>
+
+            
+                <section class="buttons">
+                    <button type="reset" style="background-color: rgb(235, 57, 57);">Reset</button>
+                    <button type="submit" onclick="otp()">Submit</button>
+                </section>
+            </div>
+
+        </form>
+
+
+        <div class="act" id="otp">
+            <!-- OTP Form -->
+            <form action="" class="otp">
+                <h1 style="color: rgb(5, 104, 68);">OTP Velidation</h3>
+                    <p style=" text-transform:uppercase;">An otp is send to your E-mail.</p>
+
+                    <input type="text" id="input">
+                    <button type="submit" id="btn">Verify</button>
+            </form>
+        </div>
+
+        <span>.</span>
+    </main>
+
+</body>
+
+</html>

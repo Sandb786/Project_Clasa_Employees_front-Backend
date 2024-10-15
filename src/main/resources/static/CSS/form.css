@@ -1,0 +1,272 @@
+@import url(https://fonts.googleapis.com/css?family=Audiowide);
+@import url(https://fonts.googleapis.com/css?family=poppins);
+
+body {
+    margin: 0%;
+
+}
+
+header {
+    width: 100%;
+    background-image: linear-gradient(319deg, #1c83b7 0%, #3a7bc5 37%, #2b6393 100%);
+
+    nav {
+
+        display: flex;
+        justify-content: space-between;
+
+        img {
+            margin: 0.5% 1.5rem;
+            width: 8%;
+        }
+
+        .logo2 {
+            margin-top: -1%;
+            margin-right: 1%;
+            width: 11%;
+        }
+
+        .box1 {
+            margin-top: 1.5%;
+
+            a {
+                text-decoration: none !important;
+                margin: 1rem;
+                color: rgb(245, 248, 247);
+                font-size: xx-large;
+                text-transform: capitalize;
+                font-family: "poppins", sans-serif;
+                transition: 0.5s;
+
+
+            }
+
+            a:hover {
+                border-radius: 0.2rem;
+                font-size: 3cap;
+                color: rgb(246, 247, 247);
+                font-weight: bold;
+                padding: 0.5rem;
+                background-color: rgba(34, 28, 118, 0.164);
+                box-shadow: 2px 1px 3px black;
+            }
+        }
+
+
+    }
+
+
+}
+
+main {
+    width: 98%;
+
+    h1 {
+        color: rgb(8, 8, 8);
+        font-size: xx-large;
+        text-transform: uppercase;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular';
+        text-align: center;
+    }
+
+    p {
+        font-size: large;
+        font-family: "poppins", sans-serif;
+        font-weight: bold;
+        text-align: center;
+        text-transform: lowercase;
+
+        span {
+            color: red;
+            text-transform: capitalize;
+
+        }
+    }
+
+    .form 
+    {
+        display: flex;
+        justify-content: space-around;
+        margin: 2%;
+        border-radius: 10px;
+
+
+
+        h3
+
+        /* Hading tag css */
+            {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular';
+            font-weight: bolder;
+            font-size: 190%;
+            color: #028b82;
+
+        }
+
+        .addres {
+            input {
+                width: 18rem;
+            }
+        }
+
+        label {
+            font-family: "Audiowide", sans-serif;
+        }
+
+        input,
+        #cat,
+        #frontend,
+        #backend {
+
+            width: 15rem;
+            height: 2rem;
+            margin-bottom: 10%;
+            font-size: medium;
+            font-family: "poppins", sans-serif;
+            text-transform: capitalize;
+            border: none;
+            border-bottom: 3px solid #0392cf;
+            border-radius: 3px;
+            background-color: #fafcfabe;
+            outline: none;
+        }
+
+        .photo 
+        {
+            .in
+            {
+               margin-left: 1rem;
+            }
+
+        }
+
+        .techinfo {
+
+            #frontend,
+            #backend,
+            #lab {
+                display: none;
+
+                &.active {
+                    display: block;
+                }
+            }
+
+            .contect {
+                margin-top: -1.2rem;
+            }
+        }
+
+    }
+
+    .buttons
+    {
+        display: flex;
+        justify-content: center;
+
+        .otpinput {
+            width: 3rem;
+            height: 7rem;
+        }
+
+        button {
+            width: 10rem;
+            height: 3rem;
+            margin: 1%;
+
+            border-radius: 5px;
+            border: none;
+            background-color: #1d999e;
+            font-family: "poppins", sans-serif;
+            font-weight: bolder;
+            color: white;
+            cursor: pointer;
+            font-size: larger;
+            transition: 0.5s;
+        }
+
+        button:hover {
+            background-color: rgb(24, 161, 24);
+            color: rgb(247, 247, 247);
+            font-size: large;
+            transform: scale(90%);
+        }
+
+    }
+.otp
+{
+
+  
+    input
+    {
+        margin-left: 38%;
+        margin-right: 1%;
+        margin-top: 2rem;
+        padding: 1rem 0rem;
+        text-align: center;
+        font-weight: bolder;
+        font-size: large;
+        border-radius: 12px;
+        border:2px solid rgb(6, 119, 80);
+    }
+    button
+    {
+        padding: .7rem 2rem;
+        border:none;
+        border-radius: 10px;
+        background-color: #0651d2;
+        color: aliceblue;
+        font-weight: bolder;
+        font-size: large;
+        cursor: pointer;
+        transition: 0.5s;
+    }
+    button:hover{
+        background-color: #07255a;
+        transform: scale(90%);
+    }
+  
+}
+
+.act
+{
+    display: none;
+}
+
+}
+
+
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: rgb(83, 82, 82);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(241, 241, 244);
+    border: 1px solid rgb(47, 47, 47);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background-color: black;
+}
+
+
+
+/* @media only screen and (max-width: 800px) {
+    body 
+    {
+      background-color: rgb(4, 185, 245);
+    }
+  } */

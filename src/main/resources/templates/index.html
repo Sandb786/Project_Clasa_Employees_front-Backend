@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title>Index</title>
+</head>
+<link rel="stylesheet" th:href="@{/CSS/index.css}">
+<link href='https://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=poppins' rel='stylesheet'>
+
+<body>
+
+    <nav>
+
+        <div class="logobox">
+
+            <img th:src="@{/Images/logo1.png}">
+
+
+            <div class="links">
+
+                <a href="#">HOME </a>
+                <a href="/form">FORM </a>
+                <a href="/Admin/admin.html">ADMIN</a>
+                <a href="#about">ABOUT</a>
+
+
+            </div>
+
+            <div class="login">
+                <button type="submit">Log In</button>
+            </div>
+
+        </div>
+    </nav>
+
+    <main>
+
+        <section class="page1">
+
+            <div class="box1">
+                <img th:src="@{/Images/manlaptp.png}">
+            </div>
+
+            <div class="box2">
+                <p>We are Hiring Web devlopers<br>
+                    For Our Project 'CLASA'</p>
+                <p class="subline"> space-around creates equal space around items,
+                    while space-between places equal space between items. <br>
+                    controlling the alignment and spacing within a flex container.</p>
+
+               <a href="/form"> <button class="b1">Apply now ✓</button></a>
+               <a href="#about"> <button class="b2">Read more →</button></a>
+            </div>
+
+        </section>
+
+        <section class="page2">
+
+            <text><br>
+                <p>Our frontend technologies →</p>
+            </text><br>
+
+            <div class="box3">
+
+                <div class="card">
+                    <img th:src="@{/Images/anguler.png}">
+                    <p>Anguler JS</p>
+                </div>
+
+
+                <div class="card">
+                    <img th:src="@{/Images/taiwent.png}">
+                    <p>Tailwent CSS</p>
+                </div>
+
+                <div class="card">
+                    <img th:src="@{/Images/react.png}">
+                    <p>react JS</p>
+                </div>
+
+                <div class="card">
+                    <img th:src="@{/Images/view.png}">
+                    <p>vieu JS</p>
+                </div>
+            </div>
+
+            <br><br><br>
+
+            <text>
+                <p>Our backend technologies</p>
+            </text><br>
+
+            <div class="box3">
+
+                <div class="card">
+                    <img th:src="@{/Images/MERN.webp}">
+                    <p>Mern JS</p>
+                </div>
+
+
+                <div class="card">
+                    <img th:src="@{/Images/spring-boot.png}">
+                    <p>Spring Boot</p>
+                </div>
+
+                <div class="card">
+                    <img th:src="@{/Images/django.png}">
+                    <p>Django</p>
+                </div>
+
+                <div class="card">
+                    <img th:src="@{/Images/NET.webp}">
+                    <p>.NET Microsoft</p>
+                </div>
+            </div><br><br><br><br>
+
+        </section>
+    </main>
+
+
+
+    <footer>
+        <div class="imgcon">
+
+            <img th:src="@{/Images/logo2.png}">
+            <p style="margin-top: -5rem;">Presented by ©</p>
+
+            <hr style="margin-top: 3.5rem;">
+
+            <p>Below are the footer HTML designs that are availableb <br>
+                for free, some of which come with five
+                different layouts. <br>
+                Below are the footer HTML designs that are available for free</p>
+
+                <img th:src="@{/Images/logo1.png}">
+                <img th:src="@{/Images/logo2.png}" alt=""><br><br>
+
+
+        </div>
+
+        <div class="about" id="about">
+            <h1>about</h1>
+
+            <p>
+                According to my profile, my brand‘s story started with my sister’s Sailor
+                Moon VHS tapes. Those tapes eventually led me to
+                create content centered '2008' anime and different “nerdy”
+                entertainment aspects. <br><br>My brand's story is unlike any other, and the same goes for yours.
+                No two companies have the same founding story or reason for existing.
+            </p>
+        </div>
+
+        <div class="contect">
+            <h1>contect</h1>
+            <h3>MObile no & Email</h3>
+            <hr>
+            <p>Support📱: +91 7892431652</p>
+            <p>📧 info@domain.co.in/.com</p>
+            <hr>
+            <h3>Address →</h3>
+            <hr>
+            <p>INDORE📍:2nd Wing,C21 Bussness Park</p>
+            <hr>
+
+
+        </div>
+
+        <div class="social">
+
+            <h1>social</h1>
+
+            <div class="yt">
+                <a href="#">
+                    <img th:src="@{/Images/social.png}">
+                    <p>youtube.com/democom</p>
+                </a>
+            </div>
+
+            <div class="fb">
+                <a href="#">
+                    <img th:src="@{/Images/linkedin.png}">
+                    <p>Linkedin.com/democom</p>
+                </a>
+
+            </div>
+
+            <div class="twit">
+                <a href="#">
+                    <img th:src="@{/Images/instagram.png}">
+                    <p>Instagram.com/@democom</p>
+                </a>
+            </div>
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>
