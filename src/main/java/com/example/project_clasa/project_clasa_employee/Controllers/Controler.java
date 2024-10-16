@@ -31,15 +31,7 @@ public class Controler
         return "/Regis_form/form";
     }
 
-   /*  'multipart/form-data:'' This encoding type allows you to send files as well as text data in
-    a single request. It divides the data into different parts, each with its own content type,
-    and sends it in a way that the server can parse correctly. 
 
-     File destination=new File(path+"\\"+mulfile.getOriginalFilename());
-    
-            mulfile.transferTo(destination);
-
-       <form th:action="@{/upload}" method="post" enctype="multipart/form-data">         */
 
     @PostMapping("/submit")
     public String postMethodName(@ModelAttribute("obj") Person person,@RequestParam("img") MultipartFile file) 

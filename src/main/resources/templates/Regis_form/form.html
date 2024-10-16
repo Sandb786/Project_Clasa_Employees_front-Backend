@@ -37,8 +37,14 @@
         </p>
         <hr>
 
+        <!-- 'multipart/form-data:'' This encoding type allows you to send files as well as text data in
+    a single request. It divides the data into different parts, each with its own content type,
+    and sends it in a way that the server can parse correctly. 
+
+       <form th:action="@{/upload}" method="post" enctype="multipart/form-data"> -->
+
         <!-- MAIN FORM  -->
-        <form th:action= "@{/submit}" method="post" th:object="${obj}">
+        <form th:action= "@{/submit}" method="post" th:object="${obj}"  enctype="multipart/form-data">
             <div id="btn">
             <div class="form">
                 <section class="perinfo">
@@ -92,21 +98,26 @@
                     </select>
 
                     <label for="tech" id="lab">Technology</label>
-                    <select name="technology" id="frontend" th:field="*{technology}" >
-                        <option value=""></option>
+                    <select name="technology" id="tech" th:field="*{technology}">
+
+                    <optgroup id="tech_part1" class="act">
+                        <option value="">Select</option>
                         <option value="react">React</option>
                         <option value="vue js">Vue JS</option>
                         <option value="css_fremwork">tailwent/Bootstrap</option>
                         <option value="angular">Angular</option>
-                    </select>
+                    </optgroup>
 
-                    <select name="technology" id="backend" th:field="*{technology}">
+                    <optgroup id="tech_part2" class="act">
                         <option value="">Select</option>
                         <option value="spring boot">Spring-Boot</option>
                         <option value="mern">MERN/MEAN Stack</option>
                         <option value="django">Django</option>
                         <option value=".net">.NET</option>
+                    </optgroup>
+
                     </select><br><br>
+
 
 
                     <div class="contect">

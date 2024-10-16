@@ -115,8 +115,8 @@ main {
 
         input,
         #cat,
-        #frontend,
-        #backend {
+        #tech
+         {
 
             width: 15rem;
             height: 2rem;
@@ -142,9 +142,9 @@ main {
 
         .techinfo {
 
-            #frontend,
-            #backend,
-            #lab {
+            #tech,
+            #lab 
+            {
                 display: none;
 
                 &.active {
