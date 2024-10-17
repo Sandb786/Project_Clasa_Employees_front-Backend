@@ -2,10 +2,14 @@ package com.example.project_clasa.project_clasa_employee.Controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.example.project_clasa.project_clasa_employee.Modal_classes.Person;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,23 +38,16 @@ public class Controler
 
 
     @PostMapping("/submit")
-    public String postMethodName(@ModelAttribute("obj") Person person,@RequestParam("img") MultipartFile file) 
+    public String postMethodName(@Valid @ModelAttribute("obj") Person person,BindingResult result,@RequestParam("img") MultipartFile file) 
     {
        
+        System.out.println("\n\n"+result);
         System.out.println("\n\nData: "+person); 
 
-        try {
-            
-            System.out.println(file.getOriginalFilename());
-            System.out.println(file.getSize());
-            System.out.println(file.getName());
-        } catch (Exception e) 
-        {
-           System.out.println("\n\nFile error");
-        }
+       
        
         return "index";
-    }
+    }   
     
     /**************************************************************/
     @GetMapping("/go-file")

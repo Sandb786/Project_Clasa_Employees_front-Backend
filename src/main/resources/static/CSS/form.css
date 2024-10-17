@@ -115,7 +115,7 @@ main {
 
         input,
         #cat,
-        #tech
+        #tech,#stateSelect
          {
 
             width: 15rem;
@@ -129,6 +129,7 @@ main {
             border-radius: 3px;
             background-color: #fafcfabe;
             outline: none;
+            
         }
 
         .photo 

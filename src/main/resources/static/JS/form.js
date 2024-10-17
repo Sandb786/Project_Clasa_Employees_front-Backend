@@ -26,6 +26,7 @@ function chck()
     }
 }
 
+
 function otp()
 {
    document.getElementById("otp").classList.remove("act");
@@ -33,4 +34,19 @@ function otp()
    document.getElementById("footer").classList.add("act")
    
 }
+
+const indianStates = [
+    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", 
+    "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", 
+    "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", 
+    "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", 
+    "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", 
+    "Uttar Pradesh", "Uttarakhand", "West Bengal", 
+    "Andaman and Nicobar Islands", "Chandigarh", "Delhi", 
+    "Jammu and Kashmir", "Ladakh", "Lakshadweep", "Puducherry"
+];
+
+indianStates.forEach(state => {
+    document.getElementById('stateSelect').innerHTML += `<option value="${state}">${state}</option>`;
+});
 
