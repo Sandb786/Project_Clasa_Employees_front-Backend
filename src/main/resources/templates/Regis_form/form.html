@@ -15,7 +15,7 @@
             <img th:src="@{/Images/logo1.png}" class="logo1">
 
             <div class="box1">
-                <a href="/index.html">home </a>
+                <a href="/">home </a>
                 <a href="#">form</a>
                 <a href="#">admin</a>
                 <a href="#">about</a>
@@ -51,17 +51,21 @@
 
                     <h3>Personal Info</h3>
 
-                    <label>Full-Name</label><br>
-                    <input type="text" placeholder="Name" th:field="*{name}">
-                    <input type="text" placeholder="Surname" th:field="*{surname}"><br>
+                    <h4 th:each= "e : ${#fields.errors('name')}" th:text="${e}"></h4>
+                    <h4 th:each= "e : ${#fields.errors('surname')}" th:text="${e}"></h4>
+                    <label>Full-Name</label>
+                    <br>
+                    <input type="text" placeholder="Name" th:field="*{name}" th:class="${#fields.hasErrors('name')}?'Error_border':''">
+                    <input type="text" placeholder="Surname" th:field="*{surname}" th:class="${#fields.hasErrors('surname')}?'Error_border':''"><br>
 
                     <label>Father's Name(Optional)</label><br>
                     <input type="text" placeholder="Name">
                     <input type="text" placeholder="Surname"><br>
 
                     <div class="photo">
+                        <h4 th:each= "e : ${#fields.errors('photo')}" th:text="${e}"></h4>
                         <label for="">Upload Your Photograph:</label>
-                        <input type="file" class="in" name="img" >
+                        <input type="file" class="in" name="img">
                     </div>
 
                 </section>
@@ -70,19 +74,23 @@
 
                     <h3>Address Info</h3>
 
+                    <h4 th:each= "e : ${#fields.errors('landmark')}" th:text="${e}"></h4>
                     <label>Landmark/Street/Village</label><br>
-                    <input type="text" th:field="*{landmark}"><br>
+                    <input type="text" th:field="*{landmark}" th:class="${#fields.hasErrors('landmark')}?'Error_border':''"><br>
 
+                    <h4 th:each= "e : ${#fields.errors('city')}" th:text="${e}"></h4>
                     <label>City</label><br>
-                    <input type="text" th:field="*{city}"><br>
-
+                    <input type="text" th:field="*{city}" th:class="${#fields.hasErrors('city')}?'Error_border':''"><br>
+                    
+                    <h4 th:each= "e : ${#fields.errors('state')}" th:text="${e}"></h4>
                     <label>State</label><br>
                     <select id="stateSelect" th:field="*{state}" style="width: 18rem;">
                         <option value=""></option>
                     </select><br>
 
+                    <h4 th:each= "e : ${#fields.errors('pincode')}" th:text="${e}"></h4>
                     <label>Pincode</label><br>
-                    <input type="text" th:field="*{pincode}"><br>
+                    <input type="text" th:field="*{pincode}" th:class="${#fields.hasErrors('pincode')}?'Error_border':''"><br>
 
 
 
@@ -91,32 +99,33 @@
                 <section class="techinfo">
                     <h3>Select Technology</h3>
 
+                    <h4 th:each= "e : ${#fields.errors('tech_type')}" th:text="${e}"></h4>
                     <label for="cat">Select</label><br>
-
                     <select name="cat" id="cat" onchange="chck()" th:field="*{tech_type}">
                         <option value=""></option>
                         <option value="Frontend">Front end</option>
                         <option value="Backend">Back end</option>
                     </select>
 
+                    <h4 th:each= "e : ${#fields.errors('technology')}" th:text="${e}"></h4>
                     <label for="tech" id="lab">Technology</label>
-                    <select name="technology" id="tech" th:field="*{technology}">
+                    <select name="technology" id="tech" th:field="*{technology}" >
 
-                    <optgroup id="tech_part1" class="act">
-                        <option value="">Select</option>
-                        <option value="react">React</option>
-                        <option value="vue js">Vue JS</option>
-                        <option value="css_fremwork">tailwent/Bootstrap</option>
-                        <option value="angular">Angular</option>
-                    </optgroup>
-
-                    <optgroup id="tech_part2" class="act">
-                        <option value="">Select</option>
-                        <option value="spring boot">Spring-Boot</option>
-                        <option value="mern">MERN/MEAN Stack</option>
-                        <option value="django">Django</option>
-                        <option value=".net">.NET</option>
-                    </optgroup>
+                       <optgroup id="tech_part1" class="act">
+                           <option value="">Select</option>
+                           <option value="react">React</option>
+                           <option value="vue js">Vue JS</option>
+                           <option value="css_fremwork">tailwent/Bootstrap</option>
+                           <option value="angular">Angular</option>
+                       </optgroup>
+   
+                       <optgroup id="tech_part2" class="act">
+                           <option value="">Select</option>
+                           <option value="spring boot">Spring-Boot</option>
+                           <option value="mern">MERN/MEAN Stack</option>
+                           <option value="django">Django</option>
+                           <option value=".net">.NET</option>
+                       </optgroup>
 
                     </select><br><br>
 
@@ -125,11 +134,13 @@
                     <div class="contect">
                         <h3>Contect Info</h3>
 
+                        <h4 th:each= "e : ${#fields.errors('mobile')}" th:text="${e}"></h4>
                         <label>Mobile No.</label><br>
-                        <input type="number" maxlength="10" th:field="*{Mobile}"><br>
+                        <input type="number" maxlength="10" th:field="*{mobile}" th:class="${#fields.hasErrors('mobile')}?'Error_border':''"><br>
 
+                        <h4 th:each= "e : ${#fields.errors('email')}" th:text="${e}"></h4>
                         <label>E-mail</label><br>
-                        <input type="email" th:field="*{email}"><br>
+                        <input type="email" th:field="*{email}" th:class="${#fields.hasErrors('email')}?'Error_border':''"><br>
                     </div>
                 </section>
 

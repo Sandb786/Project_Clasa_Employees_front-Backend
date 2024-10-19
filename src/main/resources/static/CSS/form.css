@@ -89,6 +89,7 @@ main {
         justify-content: space-around;
         margin: 2%;
         border-radius: 10px;
+        text-transform: capitalize;
 
 
 
@@ -102,6 +103,20 @@ main {
             color: #028b82;
 
         }
+
+        /* Error Ki CSS */
+        h4
+        {
+            color: rgb(255, 3, 3);
+            /* font-size:small; */
+            font-weight:500;
+            margin-bottom: 1rem;
+           margin-left: -0.5rem;
+
+           font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+
 
         .addres {
             input {
@@ -132,6 +147,13 @@ main {
             
         }
 
+        .Error_border
+        {
+            border-top:  1.5px solid red;
+            border-left: 1.5px solid red;
+           border-right: 1.5px solid red;
+        }
+        
         .photo 
         {
             .in

@@ -44,9 +44,10 @@ public class Controler
         System.out.println("\n\n"+result);
         System.out.println("\n\nData: "+person); 
 
+    
        
-       
-        return "index";
+        return "/Regis_form/form";
+
     }   
     
     /**************************************************************/
