@@ -27,14 +27,6 @@ function chck()
 }
 
 
-function otp()
-{
-   document.getElementById("otp").classList.remove("act");
-   document.getElementById("btn").classList.add("act")
-   document.getElementById("footer").classList.add("act")
-   
-}
-
 const indianStates = [
     "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", 
     "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", 

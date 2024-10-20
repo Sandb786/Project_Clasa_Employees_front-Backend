@@ -44,9 +44,10 @@
        <form th:action="@{/upload}" method="post" enctype="multipart/form-data"> -->
 
         <!-- MAIN FORM  -->
-        <form th:action= "@{/submit}" method="post" th:object="${obj}"  enctype="multipart/form-data">
+        <form th:action= "@{/submit}" method="post" th:object="${obj}"  enctype="multipart/form-data" th:if= "${form}">
             <div id="btn">
             <div class="form">
+               
                 <section class="perinfo">
 
                     <h3>Personal Info</h3>
@@ -63,9 +64,9 @@
                     <input type="text" placeholder="Surname"><br>
 
                     <div class="photo">
-                        <h4 th:each= "e : ${#fields.errors('photo')}" th:text="${e}"></h4>
+                        <h4 th:text="${img_error}"></h4> 
                         <label for="">Upload Your Photograph:</label>
-                        <input type="file" class="in" name="img">
+                        <input type="file" class="in" accept=".jpg, .jpeg, .png , .webp" name="img">
                     </div>
 
                 </section>
@@ -84,7 +85,12 @@
                     
                     <h4 th:each= "e : ${#fields.errors('state')}" th:text="${e}"></h4>
                     <label>State</label><br>
-                    <select id="stateSelect" th:field="*{state}" style="width: 18rem;">
+
+                    <select id="stateSelect" th:field="*{state}" style="width: 18rem;" 
+                    th:style= "${#fields.hasErrors('state')}?'border-top:  1.5px solid red;
+                                                              border-left: 1.5px solid red;
+                                                              border-right: 1.5px solid red;':''">
+
                         <option value=""></option>
                     </select><br>
 
@@ -101,15 +107,21 @@
 
                     <h4 th:each= "e : ${#fields.errors('tech_type')}" th:text="${e}"></h4>
                     <label for="cat">Select</label><br>
-                    <select name="cat" id="cat" onchange="chck()" th:field="*{tech_type}">
+                    <select name="cat" id="cat" onchange="chck()" th:field="*{tech_type}"  th:style= "${#fields.hasErrors('tech_type')}?'border-top:  1.5px solid red;
+                                                                                                                                         border-left: 1.5px solid red;
+                                                                                                                                         border-right: 1.5px solid red;':''">
+
                         <option value=""></option>
                         <option value="Frontend">Front end</option>
                         <option value="Backend">Back end</option>
+
                     </select>
 
                     <h4 th:each= "e : ${#fields.errors('technology')}" th:text="${e}"></h4>
                     <label for="tech" id="lab">Technology</label>
-                    <select name="technology" id="tech" th:field="*{technology}" >
+                    <select name="technology" id="tech" th:field="*{technology}"  th:style= "${#fields.hasErrors('tech_type')}?'border-top:  1.5px solid red;
+                                                                                                                                border-left: 1.5px solid red;
+                                                                                                                                border-right: 1.5px solid red;':''">
 
                        <optgroup id="tech_part1" class="act">
                            <option value="">Select</option>
@@ -149,14 +161,14 @@
             
                 <section class="buttons">
                     <button type="reset" style="background-color: rgb(235, 57, 57);">Reset</button>
-                    <button type="submit" onclick="otp()">Submit</button>
+                    <button type="submit">Submit</button>
                 </section>
             </div>
 
         </form>
 
 
-        <div class="act" id="otp">
+        <div  id="otp" th:if= "${otp}">
             <!-- OTP Form -->
             <form action="" class="otp">
                 <h1 style="color: rgb(5, 104, 68);">OTP Velidation</h3>
