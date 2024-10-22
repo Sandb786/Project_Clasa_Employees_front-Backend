@@ -3,6 +3,7 @@ package com.example.project_clasa.project_clasa_employee.Controllers;
 import java.io.File;
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.project_clasa.project_clasa_employee.Modal_classes.Person;
+import com.example.project_clasa.project_clasa_employee.Other_Service.OtpGenrator;
 
 import jakarta.validation.Valid;
 
@@ -23,9 +25,13 @@ public class Controler
     String path="F:\\Spring\\Spring-Boot-Security\\project_clasa_employee\\src\\main\\resources\\static\\User_images";
 
 
+    @Autowired
+    private OtpGenrator genrator;
+
     @GetMapping("/")
     public String indexPage()
     {
+        System.out.println("\n\n"+genrator.getOtp());
         return "index";
     }
 
@@ -36,6 +42,7 @@ public class Controler
         model.addAttribute("otp", false);
         model.addAttribute("obj",new Person());
 
+        
         return "/Regis_form/form";
     }
 
@@ -79,6 +86,7 @@ public class Controler
         // Enable OTP Field For verification.............
         model.addAttribute("otp", true);
         model.addAttribute("form", false);
+        
         return "/Regis_form/form";
 
     }   
