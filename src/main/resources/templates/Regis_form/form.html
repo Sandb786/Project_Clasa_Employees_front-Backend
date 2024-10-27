@@ -170,11 +170,11 @@
 
         <div  id="otp" th:if= "${otp}">
             <!-- OTP Form -->
-            <form action="" class="otp">
+            <form  th:action= "@{/submit}" method="post"  class="otp">
                 <h1 style="color: rgb(5, 104, 68);">OTP Velidation</h3>
                     <p style=" text-transform:uppercase;">An otp is send to your E-mail.</p>
 
-                    <input type="text" id="input">
+                    <input type="text" id="input" name="otp">
                     <button type="submit" id="btn">Verify</button>
             </form>
         </div>
