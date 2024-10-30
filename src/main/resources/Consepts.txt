@@ -1,0 +1,30 @@
+1. MultipartFile objects
+
+ Explaination:- Since MultipartFile objects often store uploaded files as temporary files, 
+               they may be removed automatically once the request is complete, making tempFile invalid in the next request.
+
+Solution:- Convert 'MultipartFile' to 'InputStream'
+
+            {
+             inputStream = file.getInputStream();
+
+             filePath=Paths.get(path,file.getOriginalFilename());
+
+             Files.copy(inputStream,filePath,StandardCopyOption.REPLACE_EXISTING)
+            }
+
+ Files.copy() :- Method to copy the InputStream directly to the file destination and replaces the file if it already exists. 
+               This method is concise and leverages Java NIO for efficient file operation
+
+ StandardCopyOption.REPLACE_EXISTING :-  Is an enum constant from the StandardCopyOption enum, which is part of the Java NIO (New Input/Output) library (java.nio.file package). 
+                                       Enums in Java are special types used to define collections of constants,and StandardCopyOption is an enum that specifies various options 
+                                       for file copy and move operation.
+
+ InputStream :- Learn About It....        
+
+
+ 2. Dynamic Path using 'ClassPathResource'
+
+ 
+
+                           

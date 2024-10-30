@@ -1,13 +1,14 @@
 package com.example.project_clasa.project_clasa_employee.Controllers;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,7 +24,6 @@ import com.example.project_clasa.project_clasa_employee.Other_Service.OtpGenrato
 
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 
@@ -37,12 +37,21 @@ public class Controler
     @Autowired
     private Mailsender mailsender;
 
+    // Some temporary Variable for Oparetins....
     private Person temPerson;
+    private int tempOtp;
+   
+    //File Temp Veriable...
+    private InputStream inputStream;
+    private Path filePath;
+    
+
 
     @GetMapping("/")
     public String indexPage()
     {
-        System.out.println("\n\n"+genrator.getOtp());
+      //  System.out.println("\n\n"+genrator.getOtp());
+      
         return "index";
     }
 
@@ -60,70 +69,125 @@ public class Controler
 
 
     @PostMapping("/submit")
-    public String postMethodName(@Valid @ModelAttribute("obj") Person person,BindingResult result,@RequestParam("img") MultipartFile file,@RequestParam("otp") String otp,Model model) throws IOException
+    public String postMethodName(@Valid @ModelAttribute("obj") Person person,BindingResult result,@RequestParam("img") MultipartFile file,Model model) throws IOException, MessagingException
     {
-     /* 
-         * Dynamic Path Using '  Resource resource = new ClassPathResource("static/User_images")'.
-         * Then Convert Resource object into a File object 'resource.getFile()', allowing you to work with the file’s methods, like getPath(), exists()...
-         * Then 'getPath()' then returns the absolute path of File as a String.  
-     */
-        String path=new ClassPathResource("static/User_images").getFile().getPath();
+        
+       /* 1.
+           * Dynamic Path Using '  Resource resource = new ClassPathResource("static/User_images")'.
+           * Then Convert Resource object into a File object 'resource.getFile()', allowing you to work with the file’s methods, like getPath(), exists()...
+           * Then 'getPath()' then returns the absolute path of File as a String.  
+        */
+            String path="F:\\Spring\\Spring-Boot-Security\\project_clasa_employee\\src\\main\\resources\\static\\User_images";
+            // String path=new ClassPathResource("static/User_images").getFile().getPath(); 
 
+            /*NOTE :- It Store file into 'Target' folder. So when application is recomplied the files is deleted .
+                      so for devolopment we need to store file path manually. We use it At the time of deployment. */
 
-       if (otp.isEmpty()) 
-       {
-
+        
+       // 2. Set Person Photo Name to Person object....
         person.setPhoto(file.getOriginalFilename());
+
+
+       // 3. Set Persona Current Status 'Applicant'
         person.setStatus("Applicant");
 
-        System.out.println("\n\nData: "+person); 
 
-        // Photograph Validation ------------------
+        //System.out.println("\n\nData: "+person);
+
+
+        //4. Photograph Validation ------------------
         if (file.isEmpty()) 
         {
-          System.out.println("\n\n File Empty: "+file.isEmpty());   
+          System.out.println("\n\nPhoto Velidaton File Empty: "+file.isEmpty());   
            model.addAttribute("img_error", "*Upload Your Profile Photo");
            model.addAttribute("form", true);
             return "/Regis_form/form";
         }
        
-        // Fields Validation ----------------------
+        //5. Fields Validation ----------------------
         if (result.hasFieldErrors()) 
         {
-            System.out.println("\n\nHave Error: "+result.hasErrors());
+            System.out.println("\n\nFeilds Have Error: "+result.hasErrors());
             System.out.println("\n\nError: "+result);
             model.addAttribute("form", true);
             return "/Regis_form/form";
         }
 
+       
+         // 6. Set the file(photo) to temprory File veriables(InputStream inputStream ,Path filePath).................
+              inputStream=file.getInputStream();
+              filePath=Paths.get(path,file.getOriginalFilename());
+
+
+        // 7. Set 'Person' to 'Temporary_Person' Object so after email verificaton it save to databese.
+              temPerson=person;
         
-        // Save The Photo to the Destination.................
-        File destination=new File(path+"\\"+file.getOriginalFilename());
-        file.transferTo(destination);
+
+        // 8. Send Otp to user Enterd Email using Email Class....
+               tempOtp=genrator.getOtp();
+               mailsender.sendMail(person.getEmail(), tempOtp, person.getName()); // throw MessagingException.
+               System.out.println("\n\n Genrated OTP: "+tempOtp);
         
-        
-        // Enable OTP Field For verification.............
+        // 9. Enable OTP Field For verification.............
         model.addAttribute("otp", true);
         model.addAttribute("form", false);
 
         return "/Regis_form/form";
-       } 
-       else 
-       {
-        
-       }
-        return "";
+       
     }   
 
     @PostMapping("/validate-otp")
-    public String otpValidator(@RequestBody String entity) 
-    {
-      
-        return entity;
+    public String otpValidator(@RequestParam("otp") String otp,Model model) throws IOException
+    { 
+        /* 1.
+
+            * Compare an 'int' with a 'String' using the 'equals()' method. 
+            * The equals() method in Java is intended for comparing objects of the same type, not primitive types like int.
+            * Solution: Convert the 'int' to a 'String'.
+            * USE: "String.valueOf(Int_Value)".
+         */
+
+         System.out.println("\n\n USer OTP And tempOtp");
+         System.out.println(tempOtp+" = "+otp);
+
+      // 2. OTP Validation .... 
+        if (!otp.equals(String.valueOf(tempOtp))) 
+        {
+            // Correct Validation...
+            model.addAttribute("otp_error","enter Right otp....");
+
+            //Length Validation.....
+            if (!(otp.length()==6)) 
+             {  model.addAttribute("otp_error","Otp Length should be 6."); }
+
+            model.addAttribute("otp", true);
+            model.addAttribute("form", false);
+
+            return "/Regis_form/form";
+
+        }
+
+
+        // 3. Save the 'Temporery_person' object to the Database 
+           System.out.println("\n Temp person: "+temPerson);
+
+
+
+
+         // 4. Save The Photo to the Destination.................
+           Files.copy(inputStream,filePath,StandardCopyOption.REPLACE_EXISTING);
+           
+           
+
+          
+       
+       
+
+       
+        return "index";
     }
     
-    /**
-     * @throws MalformedURLException ************************************************************/
+    /**************************************************************/
 
     @GetMapping("/mailTest")
     public String gotoform(Model model) throws MalformedURLException 

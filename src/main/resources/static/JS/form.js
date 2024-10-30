@@ -27,6 +27,16 @@ function chck()
 }
 
 
+/*************** Lodder ki Js by Chatgpt***************** */
+
+function showLoading() 
+{
+    console.log("Lodder Function calling...")
+    document.getElementById("loading").style.display = "flex";
+}
+
+
+
 const indianStates = [
     "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", 
     "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", 
@@ -41,4 +51,9 @@ const indianStates = [
 indianStates.forEach(state => {
     document.getElementById('stateSelect').innerHTML += `<option value="${state}">${state}</option>`;
 });
+
+
+
+
+
 

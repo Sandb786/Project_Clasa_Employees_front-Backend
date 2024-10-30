@@ -44,7 +44,7 @@
        <form th:action="@{/upload}" method="post" enctype="multipart/form-data"> -->
 
         <!-- MAIN FORM  -->
-        <form th:action= "@{/submit}" method="post" th:object="${obj}"  enctype="multipart/form-data" th:if= "${form}">
+        <form th:action= "@{/submit}" method="post" th:object="${obj}"  enctype="multipart/form-data" th:if= "${form}" onsubmit="showLoading()">
             <div id="btn">
             <div class="form">
                
@@ -170,7 +170,8 @@
 
         <div  id="otp" th:if= "${otp}">
             <!-- OTP Form -->
-            <form  th:action= "@{/submit}" method="post"  class="otp">
+             <h1 th:text="${otp_error}"></h1>
+            <form  th:action= "@{/validate-otp}" method="post"  class="otp" onsubmit="showLoading()">
                 <h1 style="color: rgb(5, 104, 68);">OTP Velidation</h3>
                     <p style=" text-transform:uppercase;">An otp is send to your E-mail.</p>
 
@@ -181,6 +182,12 @@
 
         <span>.</span>
     </main>
+
+    <!-- *********************************Lodder ki Html*********************************** -->
+
+    <div id="loading" style="display: none;"> 
+        <div class="spinner"></div>
+    </div>
 
 </body>
 

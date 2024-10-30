@@ -33,14 +33,16 @@ public class Mailsender
 
         helper.setTo(to); //throws MessagingException
 
-      //helper.setFrom("sandeepmahawat09@gmail.com");
+       //helper.setFrom("sandeepmahawat09@gmail.com");
 
 
       // Set text content  //throws MessagingException, IOException 
       
         helper.setText(fatcher.getOtpformate(otp,name),true); // "Set to 'true' for HTML" "; 'false' for plain text";
         
-        // mailSender.send(mailMessage); 
+        mailSender.send(mailMessage); 
+
+        System.out.println("Mail Send Successfully...");
         
         return "Mail Send Successfully..";
     }
