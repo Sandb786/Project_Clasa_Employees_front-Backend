@@ -58,18 +58,19 @@ public class Controler
     @GetMapping("/form")
     public String getMethodName(Model model) 
     {
+
+     // Enable Registretion form and give it to Person Object.....
         model.addAttribute("form", true);
         model.addAttribute("otp", false);
         model.addAttribute("obj",new Person());
 
-        
         return "/Regis_form/form";
     }
 
 
 
     @PostMapping("/submit")
-    public String postMethodName(@Valid @ModelAttribute("obj") Person person,BindingResult result,@RequestParam("img") MultipartFile file,Model model) throws IOException, MessagingException
+    public String postMethodName(@Valid @ModelAttribute("object") Person person,BindingResult result,@RequestParam("img") MultipartFile file,Model model) throws IOException, MessagingException
     {
         
        /* 1.
@@ -128,9 +129,11 @@ public class Controler
                mailsender.sendMail(person.getEmail(), tempOtp, person.getName()); // throw MessagingException.
                System.out.println("\n\n Genrated OTP: "+tempOtp);
         
+
         // 9. Enable OTP Field For verification.............
         model.addAttribute("otp", true);
         model.addAttribute("form", false);
+        model.addAttribute("has_error",false); //It tell that Otp feields Dose not have any error
 
         return "/Regis_form/form";
        
@@ -147,7 +150,7 @@ public class Controler
             * USE: "String.valueOf(Int_Value)".
          */
 
-         System.out.println("\n\n USer OTP And tempOtp");
+         System.out.println("\n\n TempOtp OTP And UserOtp");
          System.out.println(tempOtp+" = "+otp);
 
       // 2. OTP Validation .... 
@@ -155,10 +158,11 @@ public class Controler
         {
             // Correct Validation...
             model.addAttribute("otp_error","enter Right otp....");
+            model.addAttribute("has_error",true);
 
             //Length Validation.....
             if (!(otp.length()==6)) 
-             {  model.addAttribute("otp_error","Otp Length should be 6."); }
+             {  model.addAttribute("otp_error","Otp Length should be 6."); model.addAttribute("has_error",true); }
 
             model.addAttribute("otp", true);
             model.addAttribute("form", false);
@@ -173,21 +177,14 @@ public class Controler
 
 
 
-
          // 4. Save The Photo to the Destination.................
-           Files.copy(inputStream,filePath,StandardCopyOption.REPLACE_EXISTING);
-           
+          // Files.copy(inputStream,filePath,StandardCopyOption.REPLACE_EXISTING);
            
 
-          
-       
-       
-
-       
         return "index";
     }
     
-    /**************************************************************/
+    /***************************** Testing Code *********************************/
 
     @GetMapping("/mailTest")
     public String gotoform(Model model) throws MalformedURLException 

@@ -170,17 +170,19 @@
 
         <div  id="otp" th:if= "${otp}">
             <!-- OTP Form -->
-             <h1 th:text="${otp_error}"></h1>
+             <h1 ></h1>
             <form  th:action= "@{/validate-otp}" method="post"  class="otp" onsubmit="showLoading()">
                 <h1 style="color: rgb(5, 104, 68);">OTP Velidation</h3>
                     <p style=" text-transform:uppercase;">An otp is send to your E-mail.</p>
 
-                    <input type="text" id="input" name="otp">
+                    <p style="color: red;" th:if= "${has_error}" th:text="'*'+${otp_error}"></p> 
+                    <input type="tel" id="input" maxlength="6" name="otp" th:style= "${has_error?'border:2px solid red;':''}">
+
                     <button type="submit" id="btn">Verify</button>
             </form>
         </div>
 
-        <span>.</span>
+        <span></span>
     </main>
 
     <!-- *********************************Lodder ki Html*********************************** -->

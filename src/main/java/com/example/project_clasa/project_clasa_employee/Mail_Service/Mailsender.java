@@ -40,7 +40,7 @@ public class Mailsender
       
         helper.setText(fatcher.getOtpformate(otp,name),true); // "Set to 'true' for HTML" "; 'false' for plain text";
         
-        mailSender.send(mailMessage); 
+       // mailSender.send(mailMessage); 
 
         System.out.println("Mail Send Successfully...");
         

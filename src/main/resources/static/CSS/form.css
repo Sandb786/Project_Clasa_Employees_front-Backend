@@ -74,7 +74,7 @@ main {
         font-family: "poppins", sans-serif;
         font-weight: bold;
         text-align: center;
-        text-transform: lowercase;
+        text-transform: capitalize;
 
         span {
             color: red;
@@ -216,6 +216,7 @@ main {
         }
 
     }
+
 .otp
 {
 
@@ -232,6 +233,7 @@ main {
         border-radius: 12px;
         border:2px solid rgb(6, 119, 80);
     }
+    
     button
     {
         padding: .7rem 2rem;
