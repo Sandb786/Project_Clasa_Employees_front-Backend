@@ -21,6 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.project_clasa.project_clasa_employee.Mail_Service.Mailsender;
 import com.example.project_clasa.project_clasa_employee.Modal_classes.Person;
 import com.example.project_clasa.project_clasa_employee.Other_Service.OtpGenrator;
+import com.example.project_clasa.project_clasa_employee.Reposerties.Person_reposerty;
+import com.example.project_clasa.project_clasa_employee.Service_Classes.Person_Service;
 
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
@@ -36,6 +38,9 @@ public class Person_Controler
 
     @Autowired
     private Mailsender mailsender;
+
+    @Autowired
+    private Person_Service service;
 
     // Some temporary Variable for Oparetins....
     private Person temPerson;
@@ -54,6 +59,7 @@ public class Person_Controler
      // Enable Registretion form and give it to Person Object.....
         model.addAttribute("form", true);
         model.addAttribute("otp", false);
+       // model.addAttribute("has_error",false); // If we directly want otp field.
         model.addAttribute("obj",new Person());
 
         return "/Regis_form/form";
@@ -91,7 +97,6 @@ public class Person_Controler
         //4. Photograph Validation ------------------
         if (file.isEmpty()) 
         {
-            System.out.println("\n\nPhoto Velidaton File Empty: "+file.isEmpty());   
             model.addAttribute("img_error", "*Upload Your Profile Photo");
             model.addAttribute("form", true);
             return "/Regis_form/form";
@@ -100,23 +105,29 @@ public class Person_Controler
         //5. Fields Validation ----------------------
         if (result.hasFieldErrors()) 
         {
-            System.out.println("\n\nFeilds Have Error: "+result.hasErrors());
-            System.out.println("\n\nError: "+result);
             model.addAttribute("form", true);
             return "/Regis_form/form";
         }
 
+        // 6. Chack if the 'Email' is alrady 'Registerd' with us....
+        if (service.existByEmail(person.getEmail())) 
+        {
+            model.addAttribute("mail_alrady_regis","*Unable to apply. Enterd 'Email' is alrady registred in our system.");
+            model.addAttribute("form", false);              
+            return "/Regis_form/form"; 
+        }
+
        
-         // 6. Set the file(photo) to temprory File veriables(InputStream inputStream ,Path filePath).................
+         // 7. Set the file(photo) to temprory File veriables(InputStream inputStream ,Path filePath).................
               inputStream=file.getInputStream();
               filePath=Paths.get(path,file.getOriginalFilename());
 
 
-        // 7. Set 'Person' to 'Temporary_Person' Object so after email verificaton it save to databese.
+        // 8. Set 'Person' to 'Temporary_Person' Object so after email verificaton it save to databese.
               temPerson=person;
         
 
-        // 8. Send Otp to user Enterd Email using Email Class....
+        // 9. Send Otp to user Enterd Email using Email Class....
                tempOtp=genrator.getOtp();
                System.out.println("\n\n Genrated OTP: "+tempOtp);
 
@@ -124,7 +135,7 @@ public class Person_Controler
               
                catch (Exception e)
                { 
-                  model.addAttribute("otp_error","Somthing is Wrong, 'Please Try again later' OR chack Your 'Internate Connection'");
+                  model.addAttribute("otp_error","*Somthing is Wrong, 'Please Try again later' OR chack Your 'Internate Connection'");
                   model.addAttribute("has_error",true);
                   model.addAttribute("Mail_exeption",true);
                   model.addAttribute("otp", true);
@@ -134,7 +145,7 @@ public class Person_Controler
                
         
 
-        // 9. Enable OTP Field For verification.............
+        // 10. Enable OTP Field For verification.............
         model.addAttribute("otp", true);
         model.addAttribute("form", false);
         model.addAttribute("has_error",false); //It tell that Otp feields Dose not have any error
@@ -161,13 +172,14 @@ public class Person_Controler
         if (!otp.equals(String.valueOf(tempOtp))) 
         {
             // Correct Validation...
-            model.addAttribute("otp_error","enter Right otp....");
-            model.addAttribute("has_error",true);
+            model.addAttribute("otp_error","Enter Right otp....");
 
             //Length Validation.....
             if (!(otp.length()==6)) 
-             {  model.addAttribute("otp_error","Otp Length should be 6."); model.addAttribute("has_error",true); }
+                model.addAttribute("otp_error","Otp Length should be 6."); //Ovverride otp_error veriable
 
+            
+            model.addAttribute("has_error",true);
             model.addAttribute("otp", true);
             model.addAttribute("form", false);
 
@@ -178,6 +190,8 @@ public class Person_Controler
 
         // 3. Save the 'Temporery_person' object to the Database 
            System.out.println("\n Temp person: "+temPerson);
+           service.savePerson(temPerson);
+
 
 
 
@@ -193,11 +207,12 @@ public class Person_Controler
 
     /***************************** Testing Code *********************************/
 
-    @GetMapping("/mailTest")
+    @GetMapping("/serviceTest")
     public String gotoform(Model model) throws MalformedURLException 
     {
 
-        return "/Regis_form/demoFile";
+        System.out.println(service.existByEmail("sandeepmahawat85@gmail.com"));
+        return "index";
     }
 
     

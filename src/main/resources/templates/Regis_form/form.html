@@ -34,6 +34,7 @@
         <p>Please give right informetion.Unfortunatly you are beging not selected or it effect your profile.
             <br><br>
             <span>*All feilds Are requred to fill mandatry. </span>
+          
         </p>
         <hr>
 
@@ -42,6 +43,8 @@
     and sends it in a way that the server can parse correctly. 
 
        <form th:action="@{/upload}" method="post" enctype="multipart/form-data"> -->
+
+       <h1 th:text="${mail_alrady_regis}" style="color: rgb(237, 52, 52); margin-top: 5rem;"></h1>   <!-- If the User email is alrady in DB -->
 
         <!-- MAIN FORM  -->
         <form th:action= "@{/submit}" method="post" th:object="${obj}"  enctype="multipart/form-data" th:if= "${form}" onsubmit="showLoading()">
@@ -168,6 +171,8 @@
         </form>
 
 
+
+
         <div  id="otp" th:if= "${otp}">
             <!-- OTP Form -->
              <h1 ></h1>
@@ -175,7 +180,7 @@
                 <h1 style="color: rgb(5, 104, 68);">OTP Velidation</h3>
                     <p style=" text-transform:uppercase;">An otp is send to your E-mail.</p>
 
-                    <p style="color: red;" th:if= "${has_error}" th:text="'*'+${otp_error}"></p> 
+                    <p style="color: red;" th:if= "${has_error}" th:text="${otp_error}"></p> 
                     <input type="tel" id="input" maxlength="6" name="otp" th:style= "${has_error?'border:2px solid red;':''}" th:if= "!${Mail_exeption}">
 
                     <button type="submit" id="btn" th:if= "!${Mail_exeption}">Verify</button>
@@ -192,5 +197,4 @@
     </div>
 
 </body>
-
 </html>
