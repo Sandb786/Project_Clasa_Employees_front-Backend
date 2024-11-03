@@ -1,0 +1,287 @@
+@import url(https://fonts.googleapis.com/css?family=Audiowide);
+@import url(https://fonts.googleapis.com/css?family=poppins);
+
+body 
+{
+    margin: 0%;
+    background-repeat: no-repeat;
+    /* background: radial-gradient(at left bottom, #A8A8A7, #4592FB); */
+    background: linear-gradient(135deg, #dad5d5, #b4bdcb);
+}
+
+    header
+    {
+        width: 100%;
+        background-color: rgba(4, 134, 248, 0.66);
+
+        nav {
+
+            display: flex;
+            justify-content: space-between;
+
+            img {
+                margin: 0.5% 1.5rem;
+                width: 8%;
+            }
+
+
+            .box1 {
+                margin-top: 0%;
+
+                h2 {
+                    margin: 1rem;
+                    color: rgb(233, 243, 238);
+                    font-size: xx-large;
+                    text-transform: capitalize;
+                    text-shadow: 1px 2px 2px black;
+                    font-family: "Audiowide", sans-serif;
+                    transition: 0.5s;
+
+                }
+
+               
+            }
+
+            .topbtn
+            {
+                margin-top: 0.8rem;
+                height: 60%;
+
+                button
+                {
+                    width: 90%;
+                    height: 100%;
+
+                    border-radius: 5px;
+                    border: 2px solid rgb(250, 250, 248);
+                    background-color: transparent;
+
+                    font-family: "Audiowide", sans-serif;
+                    color: white;
+                    cursor: pointer;
+                    font-size: medium;
+
+                    box-shadow: -1px 1px 2px rgb(34, 33, 33);
+                    transition: 0.5s;
+                }
+
+                button:hover {
+                    background-color: rgb(235, 238, 236);
+                    color: rgb(12, 12, 12);
+                    font-size: large;
+                    transform: scale(90%);
+                    box-shadow: -2px 2px 3px rgb(7, 7, 7);
+                }
+
+
+            }
+
+
+        }
+
+
+    }
+
+main
+{
+
+    display: flex;
+    
+    margin: 1%;
+    
+  .part1
+    {
+    
+        
+        border: 1px solid rgb(97, 91, 91);
+        border-radius: 50px 0px 50px 0px;
+        
+
+
+        width:15%;
+        height: 39rem;
+      
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .p1nav,.p1bottum
+      {
+         border: 1px solid rgb(106, 109, 110);
+         border-radius: 50px 0px 50px 0px;
+         color: aliceblue;
+         text-shadow: 1px 0px 12px black;
+        text-align: center;
+        font-family:'Lucida Sans Regular';
+        font-weight: bolder;
+        font-size: large;
+        background-color: rgba(4, 110, 248, 0.509);
+        text-transform:uppercase;
+        
+
+
+      }
+
+      .p1main
+      {
+        /* border: 1px solid black; */
+        margin-left: 5%;
+
+        .imgname
+        {
+            font-family: "Audiowide", sans-serif;
+            font-size: large;
+            margin-left: 3rem;
+            margin-top: -13.8rem;
+            line-height: 33px;
+
+            a{ 
+                color: black;
+                text-decoration: none !important;
+            }
+
+            
+            p:hover
+            {
+                color: rgb(9, 88, 197);
+                background-color: rgb(164, 171, 175);
+            }
+
+            /* YE Class color ke liye he page jaha rahega  */
+            .colar
+            {
+                color: rgb(9, 88, 197);
+            }
+        }
+          
+
+        img
+        {
+            width: 21%;
+            border-radius: 50%;
+            background-color: #118174;
+            margin-bottom: 5%;
+            transition: 0.5s;
+        }
+        img:hover
+        {
+            transform: scale(75%);
+
+        }
+        
+    }
+
+    }
+
+    .part2
+    {
+      border: 1px solid rgb(86, 81, 81);
+      border-radius: 10px;
+      margin-left: 1%;
+    
+      width: 100%;
+
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      justify-content: space-between;
+
+     
+      .pbox3{border-radius: 0px 0px 9px 9px;}
+      .pbox1{border-radius: 10px 10px 0px 0px;}
+
+      .pbox1,.pbox3
+      {
+        background-color: rgb(97, 131, 205);
+        
+        /* border: 1px solid black; */
+
+        display: flex;
+        justify-content: space-between;
+
+        img
+        {
+            width: 3.5%;
+            height: 70%;
+            margin: 0.7%;
+        }
+
+        p
+        {
+            font-family: "poppins", sans-serif;
+            color: aliceblue;
+            font-size: large;
+            font-weight: bolder;
+            margin-right: 1rem;
+            text-transform: uppercase;
+            margin-top: 1.3rem;
+        }
+        #hom{
+            font-family: "Audiowide", sans-serif;
+            font-size:x-large; 
+            margin-top: 1.2%;
+            margin-left: 12%;
+            text-transform: uppercase;
+        }
+        
+      }
+
+      .pbox2{
+
+       
+      display: flex;
+      justify-content:space-around;
+      align-items: center;
+      /* flex-wrap: wrap; */
+
+      padding: 35px ;
+     
+      a{text-decoration: none;}
+      .regis,.emp,.work
+      {
+        border: 2px solid rgb(103, 99, 99);
+        border-radius: 50px 0px 50px 0px;
+        transition: 0.5s;
+        box-shadow: 5px 5px 10px rgb(33, 33, 33);
+        cursor: pointer;
+        text-align: center;
+      }
+      #d1:hover,#d2:hover,#d3:hover
+      {
+        background-color: rgba(14, 140, 203, 0.753);
+        transform: scale(90%);
+        p{
+          color: aliceblue;
+          font-size: larger;
+        }
+      }
+      
+      .emp
+      {
+        margin: 5%;
+      }
+
+
+      p{
+        font-family: "Audiowide", sans-serif;
+        color: rgb(17, 17, 18);
+        font-size: large;
+        transition: 0.5s;
+      }
+
+      img
+      {
+        border-radius: 10px;
+        padding: 10px;
+        width: 60%;
+      }
+    }
+    
+}
+
+}
+
+
+
+

@@ -3,7 +3,7 @@
  Explaination:- Since MultipartFile objects often store uploaded files as temporary files, 
                they may be removed automatically once the request is complete, making tempFile invalid in the next request.
 
-Solution:- Convert 'MultipartFile' to 'InputStream'
+ Solution:- Convert 'MultipartFile' to 'InputStream'
 
             {
              inputStream = file.getInputStream();
@@ -23,8 +23,24 @@ Solution:- Convert 'MultipartFile' to 'InputStream'
  InputStream :- Learn About It....        
 
 
- 2. Dynamic Path using 'ClassPathResource'
 
- 
+2.Add Validation errors to a specific field 
 
-                           
+    Explaination:- "result.rejectValue()" is a method in Spring’s 'BindingResult interface' that allows you to programmatically add 
+                    validation errors to a specific field.This can be particularly useful when you need to apply custom business 
+                    logic beyond the basic annotations like( @Size, @NotBlank ) etc.
+
+    Solution:-     Syntex: "result.rejectValue(fieldName, errorCode, errorMessage);"
+
+                    fieldName: The name of the field where the error is occurring.
+
+                    errorCode: A code that identifies the error. This can be used for internationalization (i18n)
+                               purposes, but it can also just be a unique identifier for the error if you’re not 
+                               using messages.properties for translations.
+
+                    errorMessage: The error message you want to display to the user. This will be shown in the view
+                                  if you set it up to display field errors.
+
+                    Example:- result.rejectValue("fieldName", "error.fieldName", "*Your Massage........");
+
+3.

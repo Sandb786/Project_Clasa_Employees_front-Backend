@@ -17,7 +17,7 @@
             <div class="box1">
                 <a href="/">home </a>
                 <a href="#">form</a>
-                <a href="#">admin</a>
+                <a href="/Admin_Login">admin</a>
                 <a href="#">about</a>
                 <span class="line"></span>
             </div>
@@ -176,9 +176,9 @@
                     <p style=" text-transform:uppercase;">An otp is send to your E-mail.</p>
 
                     <p style="color: red;" th:if= "${has_error}" th:text="'*'+${otp_error}"></p> 
-                    <input type="tel" id="input" maxlength="6" name="otp" th:style= "${has_error?'border:2px solid red;':''}">
+                    <input type="tel" id="input" maxlength="6" name="otp" th:style= "${has_error?'border:2px solid red;':''}" th:if= "!${Mail_exeption}">
 
-                    <button type="submit" id="btn">Verify</button>
+                    <button type="submit" id="btn" th:if= "!${Mail_exeption}">Verify</button>
             </form>
         </div>
 

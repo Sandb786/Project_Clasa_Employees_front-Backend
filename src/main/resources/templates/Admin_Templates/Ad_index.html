@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+     <title>Admin Portal</title>
+</head>
+<link rel="stylesheet" th:href="@{/CSS/admin.css}">
+<body>
+    <header>
+        <div class="demo">
+
+        </div>
+        <nav>
+
+            <img th:src="@{/Images/logo1.png}" class="logo1">
+
+            <div class="box1">
+               <h2>Admin Dashbord</h2>
+            </div>
+
+            <div class="topbtn">
+                <a href="/"><button type="submit">Log out</button></a>
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+        
+        <section class="part1">
+           
+            <div class="p1nav">
+                <p>Menu</p>
+            </div>
+
+            <div class="p1main"> 
+                
+                <img th:src="@{/Images/home.png}"><br>
+                <img th:src="@{/Images/application.png}"><br>
+                <img th:src="@{/Images/officer.png}"><br>
+                <img th:src="@{/Images/work.png}" ><br>
+        
+
+                <div class="imgname">
+                        <a href="#"><p class="colar">Home</p></a>
+                        <a href="/Admin/HTML/Applicatin.html"><p>Application</p></a>
+                        <a href="/Admin/HTML/Employee.html"><p>Employee</p></a>
+                        <a href="/Admin/HTML/Project.html"><p>Work</p></a>
+                </div>
+
+            </div>
+            
+            
+            <div class="p1bottum">
+                <p>buttoom</p>
+            </div>
+
+
+        </section>
+        
+        <section class="part2">
+            
+            <div class="pbox1">
+              <img th:src="@{/Images/home.png}">
+              <p id="hom">Home</p>  
+             <p>Apply:10 | Employee:10</p>
+
+            </div>
+           
+        <div class="pbox2">
+
+            <div class="regis" id="d1">
+                <a href="/Admin/HTML/Applicatin.html">
+                <img th:src="@{/Images/application.png}">
+                <p>Applications</p></a>
+            </div>
+
+            <div class="emp" id="d2">
+                <a href="/Admin/HTML/Employee.html">
+              <img th:src="@{/Images/employee.png}" alt="">
+                <p>Employee</p></a>
+            </div>
+
+            <div class="work" id="d3">
+                <a href="/Admin/HTML/Project.html">
+              <img th:src="@{/Images/work.png}" alt="">
+                <p>Projects</p></a>
+            </div>
+        </div>
+
+
+        <div class="pbox3">
+            <p>Pbox3</p>
+        </div>
+
+        </section>
+    </main>
+    
+</body>
+</html>
