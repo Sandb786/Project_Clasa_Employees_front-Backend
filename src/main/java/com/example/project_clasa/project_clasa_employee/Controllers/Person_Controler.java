@@ -53,7 +53,7 @@ public class Person_Controler
 
 
     @GetMapping("/form")
-    public String getMethodName(Model model) 
+    public String gotoRegisForm(Model model) 
     {
 
      // Enable Registretion form and give it to Person Object.....
@@ -65,10 +65,8 @@ public class Person_Controler
         return "/Regis_form/form";
     }
 
-
-
     @PostMapping("/submit")
-    public String postMethodName(@Valid @ModelAttribute("obj") Person person,BindingResult result,@RequestParam("img") MultipartFile file,Model model) throws IOException, MessagingException
+    public String handleRegistretionForm(@Valid @ModelAttribute("obj") Person person,BindingResult result,@RequestParam("img") MultipartFile file,Model model) throws IOException, MessagingException
     {
         
        /* 1.
@@ -211,7 +209,7 @@ public class Person_Controler
     public String gotoform(Model model) throws MalformedURLException 
     {
 
-        System.out.println(service.existByEmail("sandeepmahawat85@gmail.com"));
+       // System.out.println(service.noOfPerson());
         return "index";
     }
 

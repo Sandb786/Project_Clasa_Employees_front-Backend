@@ -35,4 +35,9 @@ public class Person_Service
     {
         reposerty.save(person);
     }
+
+    public int countPerson()
+    {
+        return (int)reposerty.count();
+    }
 }

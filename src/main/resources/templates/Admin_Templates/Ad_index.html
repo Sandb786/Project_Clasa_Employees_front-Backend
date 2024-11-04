@@ -62,26 +62,26 @@
             <div class="pbox1">
               <img th:src="@{/Images/home.png}">
               <p id="hom">Home</p>  
-             <p>Apply:10 | Employee:10</p>
+             <p>Apply : <span th:text="${total_person}"></span> | Employee : <span th:text="${total_employee}"></span> </p>
 
             </div>
            
         <div class="pbox2">
 
+            <a href="/Admin/HTML/Applicatin.html">
             <div class="regis" id="d1">
-                <a href="/Admin/HTML/Applicatin.html">
                 <img th:src="@{/Images/application.png}">
                 <p>Applications</p></a>
             </div>
 
+            <a href="/Admin/HTML/Employee.html">
             <div class="emp" id="d2">
-                <a href="/Admin/HTML/Employee.html">
               <img th:src="@{/Images/employee.png}" alt="">
                 <p>Employee</p></a>
             </div>
 
+            <a href="/Admin/HTML/Project.html">
             <div class="work" id="d3">
-                <a href="/Admin/HTML/Project.html">
               <img th:src="@{/Images/work.png}" alt="">
                 <p>Projects</p></a>
             </div>
