@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.project_clasa.project_clasa_employee.Modal_classes.Admin_login;
@@ -13,6 +14,8 @@ import com.example.project_clasa.project_clasa_employee.Service_Classes.Employee
 import com.example.project_clasa.project_clasa_employee.Service_Classes.Person_Service;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -71,7 +74,36 @@ public class Admin_Controler
         return "/Admin_Templates/Login_page.html";
     }
 
-    /**********************************Admin Services Controller*******************************/
+/**********************************Admin Services Controller*******************************/
+
+    @GetMapping("/Admin_index")
+    public String redirecToAdminIndex(Model model) 
+    {
+        model.addAttribute("total_person", person_Service.countPerson());
+        model.addAttribute("total_employee",employee_Service.countEmployee());
+        return "/Admin_Templates/Ad_index";
+    }
+
+    @GetMapping("/Manage_Applications")
+    public String person_Appli_Managment(Model model) 
+    {
+        model.addAttribute("all_applicant",person_Service.getAllPersons());
+        return "/Admin_Templates/Manage_Application";
+    }
+
+/******************************** Employee Applications Controller****************************/
+
+@GetMapping("/user/{id}")
+public String acceptApplication(@PathVariable String id,Model model) 
+{
+    System.out.println("\n Accept_Application ID : "+person_Service.findByid(id));
+
+
+    // 1. Redirect To Application Managment Page with All Persons...
+    model.addAttribute("all_applicant",person_Service.getAllPersons());
+    return "/Admin_Templates/Manage_Application";
+
+}
 
     
 

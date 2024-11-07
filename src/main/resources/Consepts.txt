@@ -43,4 +43,27 @@
 
                     Example:- result.rejectValue("fieldName", "error.fieldName", "*Your Massage........");
 
-3.
+3.URL Building with Parameters
+
+    Explaination:- Building URLs with parameters in Thymeleaf using th:href is a powerful way to create dynamic links in 
+                    Spring Boot applications, especially when you need to pass specific data like user IDs, product codes, or any path
+                    variable directly into the URL.
+
+    Basic Syntax:- In Thymeleaf, you can use @{...} to build URLs dynamically. 
+
+                   *Path Variables:- These are parameters that are part of the URL path, like "/user/123".
+                                     To include path variables in a URL with Thymeleaf, you define the 
+                                     variable in curly braces {} and pass the value using (...).
+
+                            Example: Suppose we have a URL /user/{id}, where {id} is a placeholder for a user ID. 
+                                     Here's how to build this dynamically in Thymeleaf:
+
+                                    "<a th:href="@{ /user/ {id}   (id=${user.id}) }">User Profile</a>"
+
+                                   ' id' is the name of the 'path variable' you want to replace.
+
+                   *Query Parameters:- These are parameters that come after a ? in the URL, like "/search?query=spring".
+
+                            Example: <a th:href="@{/search(query=${searchQuery})}">Search</a>
+
+4.

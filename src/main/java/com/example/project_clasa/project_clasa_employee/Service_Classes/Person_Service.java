@@ -19,16 +19,18 @@ public class Person_Service
         return reposerty.findAll();
     }
 
-    public Person getPersonByid(String id)
+    public Person findByid(String id)
     {
+        //Return Type: Optional<Person>
        //repository.findById(id).orElse(null): This returns the Person if present; otherwise, it returns null. 
          return reposerty.findById(id).orElse(null);
     }
 
     public boolean existByEmail(String eamil)
     {
-        List<Person> list=reposerty.findByEmail(eamil);
-        return !list.isEmpty();
+        // List<Person> list=reposerty.findByEmail(eamil);
+        // !list.isEmpy(): iF present: true | if Not: flase
+        return !reposerty.findByEmail(eamil).isEmpty();
     }
 
     public void savePerson(Person person)

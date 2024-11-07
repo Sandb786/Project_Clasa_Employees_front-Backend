@@ -75,7 +75,7 @@ function home()
 {
     console.log("home......")
    document.getElementById("home_btn").classList.remove("deactive")
-    location.href="/Admin/admin.html";
+    location.href="/Admin_index";
 
 }
 

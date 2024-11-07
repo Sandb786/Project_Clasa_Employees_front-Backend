@@ -86,7 +86,7 @@ public class Person_Controler
 
 
        // 3. Set Persona Current Status 'Applicant'
-        person.setStatus("Applicant");
+        person.setStatus("applicant");
 
 
         //System.out.println("\n\nData: "+person);
