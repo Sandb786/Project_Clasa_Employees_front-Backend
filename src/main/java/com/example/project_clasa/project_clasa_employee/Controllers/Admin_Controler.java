@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.project_clasa.project_clasa_employee.Modal_classes.Admin_login;
+import com.example.project_clasa.project_clasa_employee.Modal_classes.Person;
 import com.example.project_clasa.project_clasa_employee.Service_Classes.Employee_Service;
 import com.example.project_clasa.project_clasa_employee.Service_Classes.Person_Service;
 
@@ -76,9 +77,13 @@ public class Admin_Controler
 
 /**********************************Admin Services Controller*******************************/
 
+
+  // 1. Redirect to 
     @GetMapping("/Admin_index")
     public String redirecToAdminIndex(Model model) 
     {
+        person_Service.setStatus("Accepted"); // Set Stetus for demo persus..
+
         model.addAttribute("total_person", person_Service.countPerson());
         model.addAttribute("total_employee",employee_Service.countEmployee());
         return "/Admin_Templates/Ad_index";
@@ -93,18 +98,53 @@ public class Admin_Controler
 
 /******************************** Employee Applications Controller****************************/
 
-@GetMapping("/user/{id}")
-public String acceptApplication(@PathVariable String id,Model model) 
-{
-    System.out.println("\n Accept_Application ID : "+person_Service.findByid(id));
+  // Accept The Persons Applicantion...
+   @GetMapping("/accpeted_application/{id}")
+   public String acceptApplication(@PathVariable String id,Model model) 
+    {
+
+       Person pr=person_Service.findByid(id);
+       pr.setStatus("Accepted");
+       person_Service.savePerson(pr);
+       System.out.println("\n  Person Application Is Accepted: "+id);
 
 
     // 1. Redirect To Application Managment Page with All Persons...
     model.addAttribute("all_applicant",person_Service.getAllPersons());
     return "/Admin_Templates/Manage_Application";
 
-}
+    }
 
-    
+  // Reject The Persons Applicantion...
+    @GetMapping("/reject_application/{id}")
+    public String rejectApplication(@PathVariable String id,Model model)  
+    {
+      // 1.Delete Person From Database Permanently..
+        person_Service.deletePerson(person_Service.findByid(id));
+
+      // 2. Redirect To Application Managment Page with All Persons...
+        model.addAttribute("all_applicant",person_Service.getAllPersons());
+        return "/Admin_Templates/Manage_Application";
+    }
+
+
+  /******************************************************************************************/
+
+  @GetMapping("/call-for-interview/{id}")
+  public String callForInterview(@PathVariable String id,Model model) 
+   {
+
+      Person pr=person_Service.findByid(id);
+      pr.setStatus("demo");
+      person_Service.savePerson(pr);
+      System.out.println("\n  Person Application Is Accepted: "+id);
+
+
+   // 1. Redirect To Application Managment Page with All Persons...
+   model.addAttribute("all_applicant",person_Service.getAllPersons());
+   return "/Admin_Templates/Manage_Application";
+
+   }
+
 
 }

@@ -365,7 +365,7 @@ main
             tr:nth-child(odd){background-color: #b4b4ae;}
             tr:hover
             {
-               background-color: #90949a;
+               background-color: #768192;
                color: white;
                
             }
@@ -382,28 +382,33 @@ main
 
             td
             {
-                padding: 0.8rem;
+                padding: 0.9rem;
                 border: 1px solid #4a4747;
                 font-size: medium;
-               
+
+
                 button
                 {
-                    padding: 0.5rem 1rem;
+                    padding: 0.5rem 0.9rem;
                     cursor:pointer;
+                    border-radius: 5px;
                     background-color: #1b8290;
                     border: none;
                     color: aliceblue;
                     font-weight: bold;
-                    transition: 0.2s;
+                    transition: 0.4s;
                 }
-                button:nth-child(even){background-color: #dd501c;}
+                
+                   .red{background-color: #f7490a;}
+                
 
                 button:hover{
                     transform: scale(90%);
-                   background-color: #7e7e7a;
+                   background-color: #f9f9f5;
+                   color: black;
                    border-radius: 3px;
                 }
-
+            
                 select
                 {
                     padding: 0.3rem 1rem;

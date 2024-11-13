@@ -50,7 +50,7 @@
         <div class="imgname">
           
           <a href="/Admin_index"><p>Home</p></a>  <!-- Request To Controller.... -->
-          <a href="Applicatin.html"><p class="colar">Application</p></a>
+          <a href="#"><p class="colar">Application</p></a>
           <a href="Employee.html"><p>Employee</p></a>
           <a href="Project.html"><p>Work</p></a>
 
@@ -105,10 +105,10 @@
         </div>
 
         <div class="tablecontainer">
-          <table class="table" th:each= "applicant:${all_applicant}">
-
-            <span th:if= "${applicant.status}=='applicant'">  <!-- For Condition..... -->
-
+          <table class="table">
+            
+            <!-- Accept Applicant Here ..... -->
+            
             <tr>
               <th>Name</th>
               <th>Contact</th>
@@ -119,19 +119,26 @@
               <th>State</th>
               <th>Action</th>
             </tr>
+            
+            <tr th:each= "applicant:${all_applicant}">
 
-            <tr>
-              <td th:text="${applicant.name}+' '+${applicant.surname}"></td>
-              <td th:text="${applicant.mobile}"></td>
-              <td th:text="${applicant.email}"></td>
-              <td th:text="${applicant.tech_type}"></td>
-              <td th:text="${applicant.technology}"></td>
-              <td th:text="${applicant.city}"></td>
-              <td th:text="${applicant.state}"></td>
-              <td><a th:href="@{/user/{id} (id=${applicant.id})}" ><button type="submit">Accept</button></a> <button>Reject</button></td>
+              <span th:if= "${applicant.status}=='applicant'">  <!-- For Condition..... -->
+             
+                  <td th:text="${applicant.name}+' '+${applicant.surname}"></td>
+                  <td th:text="${applicant.mobile}"></td>
+                  <td th:text="${applicant.email}"></td>
+                  <td th:text="${applicant.tech_type}"></td>
+                  <td th:text="${applicant.technology}"></td>
+                  <td th:text="${applicant.city}"></td>
+                  <td th:text="${applicant.state}"></td>
+
+                  <td>  <a th:href="@{/accpeted_application/{id} (id=${applicant.id})}" ><button type="submit">Accept</button></a> 
+                        <a th:href="@{/reject_application/{id} (id=${applicant.id})}" ><button type="submit" class="red">Reject</button></a>   </td>
+            
+              </span>
+            
             </tr>
 
-          </span>
 
           </table>
         </div>
@@ -140,8 +147,8 @@
       <div class="accpeted_application deactive" id="Acpt_appli">
         
         <div class="info">
-          <p> <b>Accept Button:</b> It 'Send' official e-mail to the Applicant. that it will we selected for the job in
-            your selected domain. </p>
+          <p> <b>Accept Button:</b> After clearing all the steps this button is activeted and after this 'Applicant' become
+           'Employee' of company. </p>
           <p> <b>Reject Button :</b> It 'Delete' the Data of the Applicant. you will use it if the applicitient is not
             suitable for the position. </p>
         </div>
@@ -159,15 +166,38 @@
 
 
             </tr>
-            <tr>
-              <td>Sandeep Mahawat</td>
-              <td>sandeemamawar85@gami.com</td>
-              <td>Frontend</td>
-              <td>Spring boot</td>
-              <td ><button>Call</button></td>
-              <td><button>Send offer Latter</button></td>
-              <td><button>Accept</button> <button>Reject</button></td>
+            <!-- Accepted Applicant Here ..... -->
+            <tr th:each= "applicant:${all_applicant}">
+
+              <span th:if= "${applicant.status == 'Accepted' || applicant.status == 'selected'}">
+
+              <td th:text="${applicant.name}+' '+${applicant.surname}"></td>
+              <td th:text="${applicant.email}"></td>
+              <td th:text="${applicant.tech_type}"></td>
+              <td th:text="${applicant.technology}"></td>
+
+              <td th:if= "${applicant.status}=='Accepted'">
+                 <button>Call</button> <!-- Call For Interview-->
+              </td>
+              <td th:unless= "${applicant.status}=='Accepted'">
+                Send6
+              </td>
+
+              <td th:if= "${applicant.status}=='selected'">
+                <button>Send offer Latter</button> <!-- Send Offer Latter-->
+              </td>
+              <td th:unless= "${applicant.status}=='selected'">
+                 Send 
+              </td>
+
+              <td>
+                <button>Accept</button> 
+                <a th:href="@{/reject_application/{id} (id=${applicant})}" ><button type="submit" class="red">Reject</button></a> 
+              </td>
+            </span>
             </tr>
+
+
             <tr>
               <td>kandeep rahawat</td>
               <td>hgndeemamawar85@gami.com</td>

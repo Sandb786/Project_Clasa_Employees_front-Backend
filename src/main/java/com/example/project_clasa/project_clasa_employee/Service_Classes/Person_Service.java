@@ -38,8 +38,29 @@ public class Person_Service
         reposerty.save(person);
     }
 
+    public void deletePerson(Person person)
+    {
+        System.out.println("\n\n Person delted: "+person);
+        reposerty.delete(person);
+    }
+
     public int countPerson()
     {
         return (int)reposerty.count();
     }
+
+    /************************DEMO SErvices................... ******************/
+
+    public void setStatus(String status)
+    {
+      
+        List<Person> list=reposerty.findAll();
+
+        for (Person person : list) 
+        {
+            person.setStatus(status);
+            reposerty.save(person);
+        }
+    }
 }
+
