@@ -82,7 +82,7 @@ public class Admin_Controler
     @GetMapping("/Admin_index")
     public String redirecToAdminIndex(Model model) 
     {
-        person_Service.setStatus("Accepted"); // Set Stetus for demo persus..
+        person_Service.setStatus("Application_Accepted"); // Set Stetus for demo persus..
 
         model.addAttribute("total_person", person_Service.countPerson());
         model.addAttribute("total_employee",employee_Service.countEmployee());
@@ -104,7 +104,7 @@ public class Admin_Controler
     {
 
        Person pr=person_Service.findByid(id);
-       pr.setStatus("Accepted");
+       pr.setStatus("Application_Accepted");
        person_Service.savePerson(pr);
        System.out.println("\n  Person Application Is Accepted: "+id);
 
@@ -121,6 +121,7 @@ public class Admin_Controler
     {
       // 1.Delete Person From Database Permanently..
         person_Service.deletePerson(person_Service.findByid(id));
+       
 
       // 2. Redirect To Application Managment Page with All Persons...
         model.addAttribute("all_applicant",person_Service.getAllPersons());
@@ -130,14 +131,16 @@ public class Admin_Controler
 
   /******************************************************************************************/
 
+
+  // Call Person For Interview...
   @GetMapping("/call-for-interview/{id}")
   public String callForInterview(@PathVariable String id,Model model) 
    {
 
       Person pr=person_Service.findByid(id);
-      pr.setStatus("demo");
+      pr.setStatus("Interview_Cleared");
       person_Service.savePerson(pr);
-      System.out.println("\n  Person Application Is Accepted: "+id);
+      System.out.println("\n  Person Interview Called: "+id);
 
 
    // 1. Redirect To Application Managment Page with All Persons...
@@ -145,6 +148,37 @@ public class Admin_Controler
    return "/Admin_Templates/Manage_Application";
 
    }
+
+  // Send Person's Offer Latter... 
+   @GetMapping("/send-offer-latter/{id}")
+   public String sendOfferLatter(@PathVariable String id,Model model) 
+   {
+
+    Person pr=person_Service.findByid(id);
+    pr.setStatus("Offer_Latter_Sended");
+    person_Service.savePerson(pr);
+    System.out.println("\n  Send Offer Latter: "+pr.getName());
+
+    // 1. Redirect To Application Managment Page with All Persons...
+      model.addAttribute("all_applicant",person_Service.getAllPersons());
+      return "/Admin_Templates/Manage_Application";
+   }
+   
+  // Create Person As Employee. 
+   @GetMapping("/make-it-employee/{id}")
+   public String saveAsEmployee(@PathVariable String id,Model model)
+   {
+
+    Person pr=person_Service.findByid(id);
+    pr.setStatus("Employee");
+    person_Service.savePerson(pr);
+    System.out.println("\n  Employee: "+pr.getName());
+
+    // 1. Redirect To Application Managment Page with All Persons...
+    model.addAttribute("all_applicant",person_Service.getAllPersons());
+    return "/Admin_Templates/Manage_Application";
+   }
+   
 
 
 }

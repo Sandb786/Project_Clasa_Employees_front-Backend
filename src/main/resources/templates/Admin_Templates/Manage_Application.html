@@ -5,10 +5,7 @@
   <title>Applications Managment</title>
 </head>
 <link rel="stylesheet" th:href="@{/CSS/all.css}">
-<link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
-    rel="stylesheet"
-/>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
 <script th:src="@{/JS/Admin.js}" defer></script>
 
 <body>
@@ -48,11 +45,19 @@
 
 
         <div class="imgname">
-          
-          <a href="/Admin_index"><p>Home</p></a>  <!-- Request To Controller.... -->
-          <a href="#"><p class="colar">Application</p></a>
-          <a href="Employee.html"><p>Employee</p></a>
-          <a href="Project.html"><p>Work</p></a>
+
+          <a href="/Admin_index">
+            <p>Home</p>
+          </a> <!-- Request To Controller.... -->
+          <a href="#">
+            <p class="colar">Application</p>
+          </a>
+          <a href="Employee.html">
+            <p>Employee</p>
+          </a>
+          <a href="Project.html">
+            <p>Work</p>
+          </a>
 
         </div>
 
@@ -66,36 +71,36 @@
 
     </section>
 
-  <section class="part2">
+    <section class="part2">
 
       <div class="pbox1">
 
-      <button id="back_btn" class="deactive"  onclick="back()"><i class="ri-arrow-go-back-line"></i></button>
-      <button class="home_btn" id="home_btn" onclick="home()"><i class="ri-home-3-line"></i></button></a>
-        
-      <p class="hom"id="txt1">Applications</p>
-  
+        <button id="back_btn" class="deactive" onclick="back()"><i class="ri-arrow-go-back-line"></i></button>
+        <button class="home_btn" id="home_btn" onclick="home()"><i class="ri-home-3-line"></i></button></a>
+
+        <p class="hom" id="txt1">Applications</p>
+
         <img th:src="@{/Images/application.png}">
 
       </div>
 
       <div class="apptype" id="Application_type">
 
-      <div class="demo">
-               <div class="btn1" onclick="demo()">
-                 <img th:src="@{/Images/application1.png}" alt="">
-                 <p>Total Applications</p>
-               </div>
-       
-               <div class="btn2" onclick="demo1()">
-                 <img th:src="@{/Images/accepted.png}">
-                 <p>Accepted Applicent</p>
-               </div>
-      </div>
+        <div class="demo">
+          <div class="btn1" onclick="demo()">
+            <img th:src="@{/Images/application1.png}" alt="">
+            <p>Total Applications</p>
+          </div>
+
+          <div class="btn2" onclick="demo1()">
+            <img th:src="@{/Images/accepted.png}">
+            <p>Accepted Applicent</p>
+          </div>
+        </div>
 
       </div>
 
-      <div class="applicatins deactive" id="total_Application"> 
+      <div class="applicatins deactive" id="total_Application">
 
         <div class="info">
           <p> <b>Accept Button:</b> It 'Send' official e-mail to the Applicant. that it will we selected for the job in
@@ -106,9 +111,9 @@
 
         <div class="tablecontainer">
           <table class="table">
-            
+
             <!-- Accept Applicant Here ..... -->
-            
+
             <tr>
               <th>Name</th>
               <th>Contact</th>
@@ -119,24 +124,27 @@
               <th>State</th>
               <th>Action</th>
             </tr>
-            
-            <tr th:each= "applicant:${all_applicant}">
 
-              <span th:if= "${applicant.status}=='applicant'">  <!-- For Condition..... -->
-             
-                  <td th:text="${applicant.name}+' '+${applicant.surname}"></td>
-                  <td th:text="${applicant.mobile}"></td>
-                  <td th:text="${applicant.email}"></td>
-                  <td th:text="${applicant.tech_type}"></td>
-                  <td th:text="${applicant.technology}"></td>
-                  <td th:text="${applicant.city}"></td>
-                  <td th:text="${applicant.state}"></td>
+            <tr th:each="applicant:${all_applicant}">
 
-                  <td>  <a th:href="@{/accpeted_application/{id} (id=${applicant.id})}" ><button type="submit">Accept</button></a> 
-                        <a th:href="@{/reject_application/{id} (id=${applicant.id})}" ><button type="submit" class="red">Reject</button></a>   </td>
-            
+              <span th:if="${applicant.status}=='applicant'"> <!-- For Condition..... -->
+
+                <td th:text="${applicant.name}+' '+${applicant.surname}"></td>
+                <td th:text="${applicant.mobile}"></td>
+                <td th:text="${applicant.email}"></td>
+                <td th:text="${applicant.tech_type}"></td>
+                <td th:text="${applicant.technology}"></td>
+                <td th:text="${applicant.city}"></td>
+                <td th:text="${applicant.state}"></td>
+
+                <td> <a th:href="@{/accpeted_application/{id} (id=${applicant.id})}"><button
+                      type="submit">Accept</button></a>
+                  <a th:href="@{/reject_application/{id} (id=${applicant.id})}"><button type="submit"
+                      class="red">Reject</button></a>
+                </td>
+
               </span>
-            
+
             </tr>
 
 
@@ -145,10 +153,11 @@
       </div>
 
       <div class="accpeted_application deactive" id="Acpt_appli">
-        
+
         <div class="info">
-          <p> <b>Accept Button:</b> After clearing all the steps this button is activeted and after this 'Applicant' become
-           'Employee' of company. </p>
+          <p> <b>Accept Button:</b> After clearing all the steps this button is activeted and after this 'Applicant'
+            become
+            'Employee' of company. </p>
           <p> <b>Reject Button :</b> It 'Delete' the Data of the Applicant. you will use it if the applicitient is not
             suitable for the position. </p>
         </div>
@@ -167,119 +176,61 @@
 
             </tr>
             <!-- Accepted Applicant Here ..... -->
-            <tr th:each= "applicant:${all_applicant}">
+            <tr th:each="applicant:${all_applicant}">
 
-              <span th:if= "${applicant.status == 'Accepted' || applicant.status == 'selected'}">
+              <span
+                th:if="${applicant.status == 'Application_Accepted' || applicant.status == 'Interview_Cleared' || applicant.status == 'Offer_Latter_Sended'}">
 
-              <td th:text="${applicant.name}+' '+${applicant.surname}"></td>
-              <td th:text="${applicant.email}"></td>
-              <td th:text="${applicant.tech_type}"></td>
-              <td th:text="${applicant.technology}"></td>
+                <td th:text="${applicant.name}+' '+${applicant.surname}"></td>
+                <td th:text="${applicant.email}"></td>
+                <td th:text="${applicant.tech_type}"></td>
+                <td th:text="${applicant.technology}"></td>
 
-              <td th:if= "${applicant.status}=='Accepted'">
-                 <button>Call</button> <!-- Call For Interview-->
-              </td>
-              <td th:unless= "${applicant.status}=='Accepted'">
-                Send6
-              </td>
+                <div th:if="${applicant.status}=='Application_Accepted'"> <!-- Call For Interview-->
+                  <td>
+                    <a th:href="@{/call-for-interview/{id} (id=${applicant.id})}"><button type="submit">Call</button></a>
+                  </td>
+                  <td>
+                    Waiting....
+                  </td>
+                </div>
 
-              <td th:if= "${applicant.status}=='selected'">
-                <button>Send offer Latter</button> <!-- Send Offer Latter-->
-              </td>
-              <td th:unless= "${applicant.status}=='selected'">
-                 Send 
-              </td>
+                <div th:if="${applicant.status}=='Interview_Cleared'"> <!-- Send Offer Latter-->
+                  <td>
+                    <b class="colour">Called..</b>
+                  </td>
+                  <td>
+                    <a th:href="@{/send-offer-latter/{id} (id=${applicant.id})}"><button type="submit">Send offer Latter</button></a>
+                  </td>
+                </div>
 
-              <td>
-                <button>Accept</button> 
-                <a th:href="@{/reject_application/{id} (id=${applicant})}" ><button type="submit" class="red">Reject</button></a> 
-              </td>
-            </span>
-            </tr>
+                <div th:if="${applicant.status}=='Offer_Latter_Sended'"> <!-- All Process Done.-->
+                  <td>
+                    <b class="colour">Cleared</b>
+                  </td>
+                  <td>
+                    <b class="colour">Sended</b>
+                  </td>
+                </div>
 
+                <td>
 
-            <tr>
-              <td>kandeep rahawat</td>
-              <td>hgndeemamawar85@gami.com</td>
-              <td>Backend</td>
-              <td>MERN</td>
-              <td>Called..</td>
-              <td style="color: rgb(247, 5, 0); font-weight: bolder;">Send...</td>
-              <td><button>Accept</button> <button>Reject</button></td>
+                 <a th:href="@{/make-it-employee/{id} (id=${applicant.id})}"><button th:if="${applicant.status}=='Offer_Latter_Sended'" type="submit">Accept</button></a>
+
+                  <a th:href="@{/reject_application/{id} (id=${applicant.id})}"><button type="submit"
+                      class="red">Reject</button></a>
+
+                </td>
+                
+              </span>
             </tr>
-          <!--   <tr>
-              <td>Sandeep Mahawat</td>
-              <td>7879243194</td>
-              <td>sandeemamawar85@gami.com</td>
-              <td>Frontend</td>
-              <td>Spring boot</td>
-             
-              <td><button>Accept</button> <button>Reject</button></td>
-            </tr>
-            <tr>
-              <td>kandeep rahawat</td>
-              <td>9879243194</td>
-              <td>hgndeemamawar85@gami.com</td>
-              <td>Backend</td>
-              <td>MERN</td>
-             
-              <td><button>Accept</button> <button>Reject</button></td>
-            </tr>
-            <tr>
-              <td>kandeep rahawat</td>
-              <td>9879243194</td>
-              <td>hgndeemamawar85@gami.com</td>
-              <td>Backend</td>
-              <td>MERN</td>
-             
-              <td><button>Accept</button> <button>Reject</button></td>
-            </tr>
-            <tr>
-              <td>kandeep rahawat</td>
-              <td>9879243194</td>
-              <td>hgndeemamawar85@gami.com</td>
-              <td>Backend</td>
-              <td>MERN</td>
-             
-              <td><button>Accept</button> <button>Reject</button></td>
-            </tr>
-            <tr>
-              <td>kandeep rahawat</td>
-              <td>9879243194</td>
-              <td>hgndeemamawar85@gami.com</td>
-              <td>Backend</td>
-              <td>MERN</td>
-             
-              <td><button>Accept</button> <button>Reject</button></td>
-            </tr>
-            <tr>
-              <td>kandeep rahawat</td>
-              <td>9879243194</td>
-              <td>hgndeemamawar85@gami.com</td>
-              <td>Backend</td>
-              <td>MERN</td>
-             
-              <td><button>Accept</button> <button>Reject</button></td>
-            </tr>
-            <tr>
-              <td>kandeep rahawat</td>
-              <td>9879243194</td>
-              <td>hgndeemamawar85@gami.com</td>
-              <td>Backend</td>
-              <td>MERN</td>
-             
-              <td><button>Accept</button> <button>Reject</button></td>
-            </tr> -->
           </table>
         </div>
       </div>
-
-      
-
-        <div class="pbox3">
-          <p></p>
-          <p>Last Login: 20/10/2004 .</p>
-        </div>
+      <div class="pbox3">
+        <p></p>
+        <p>Last Login: 20/10/2004 .</p>
+      </div>
 
     </section>
 
