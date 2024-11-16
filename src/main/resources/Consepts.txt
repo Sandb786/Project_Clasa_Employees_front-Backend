@@ -66,4 +66,25 @@
 
                             Example: <a th:href="@{/search(query=${searchQuery})}">Search</a>
 
-4.
+4.Dynamically Construct "URLs" for File
+
+    Explaination:- "ServletUriComponentsBuilder" is a utility provided by Spring that helps dynamically construct URLs based 
+                   on the current HTTP request context. It's particularly useful when you need to build a URL that automatically 
+                   adjusts to changes in the host, port, context path, or other parts of the request.
+
+    Syntax:-  "String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().toUriString();"
+
+               This line dynamically builds the base URL, like http://localhost:8083 or http://example.com
+
+              1. fromCurrentContextPath():
+
+                    This method builds a UriComponentsBuilder instance that represents the current context path of the application. It includes:
+                   * Scheme (http or https)
+                   * Host (localhost, example.com, etc.)
+                   * Port (8083, 8080, etc., if applicable)
+                   * Context path if your application is deployed under a specific base path, e.g.,(/myapp)
+
+              2. toUriString():
+              
+                    Converts the constructed UriComponentsBuilder to a string representing the URL.             
+

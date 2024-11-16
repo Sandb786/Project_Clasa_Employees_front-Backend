@@ -1,5 +1,8 @@
 package com.example.project_clasa.project_clasa_employee.Controllers;
 
+import java.text.DateFormat;
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,11 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.project_clasa.project_clasa_employee.Modal_classes.Admin_login;
 import com.example.project_clasa.project_clasa_employee.Modal_classes.Person;
+import com.example.project_clasa.project_clasa_employee.Other_Service.FormateDateTime;
 import com.example.project_clasa.project_clasa_employee.Service_Classes.Employee_Service;
 import com.example.project_clasa.project_clasa_employee.Service_Classes.Person_Service;
 
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
 
@@ -28,9 +33,13 @@ public class Admin_Controler
     @Autowired
     private Person_Service person_Service;
 
-     // 1. Employee Service Class for Opretion...
+     // 2. Employee Service Class for Opretion...
      @Autowired
      private Employee_Service employee_Service;
+
+      // 3.Other Service Class for Opretion...
+      @Autowired
+      private FormateDateTime formateDateTime;
  
 
 
@@ -78,17 +87,18 @@ public class Admin_Controler
 /**********************************Admin Services Controller*******************************/
 
 
-  // 1. Redirect to 
+  // 1. Redirect to Admin Pannel
     @GetMapping("/Admin_index")
     public String redirecToAdminIndex(Model model) 
     {
-        person_Service.setStatus("Application_Accepted"); // Set Stetus for demo persus..
+        person_Service.setStatus("applicant"); // Set Stetus for demo persus..
 
         model.addAttribute("total_person", person_Service.countPerson());
         model.addAttribute("total_employee",employee_Service.countEmployee());
         return "/Admin_Templates/Ad_index";
     }
 
+  // 2. Manage Admin Applications...
     @GetMapping("/Manage_Applications")
     public String person_Appli_Managment(Model model) 
     {
@@ -103,13 +113,12 @@ public class Admin_Controler
    public String acceptApplication(@PathVariable String id,Model model) 
     {
 
+    // 1. Accepts The Person Applicaton And set Status 'Application_Accepted'...
        Person pr=person_Service.findByid(id);
        pr.setStatus("Application_Accepted");
        person_Service.savePerson(pr);
-       System.out.println("\n  Person Application Is Accepted: "+id);
-
-
-    // 1. Redirect To Application Managment Page with All Persons...
+      
+    // 2. Redirect To Application Managment Page with All Persons...
     model.addAttribute("all_applicant",person_Service.getAllPersons());
     return "/Admin_Templates/Manage_Application";
 
@@ -134,13 +143,18 @@ public class Admin_Controler
 
   // Call Person For Interview...
   @GetMapping("/call-for-interview/{id}")
-  public String callForInterview(@PathVariable String id,Model model) 
+  public String callForInterview(@PathVariable String id,@RequestParam("date") String date,@RequestParam("time") String time,Model model) 
    {
 
-      Person pr=person_Service.findByid(id);
-      pr.setStatus("Interview_Cleared");
-      person_Service.savePerson(pr);
+      // Person pr=person_Service.findByid(id);
+      // // pr.setStatus("Interview_Cleared");
+      // person_Service.savePerson(pr);
+      
+      
+
       System.out.println("\n  Person Interview Called: "+id);
+      System.out.println("Date: "+formateDateTime.formateDate(date));
+      System.out.println("Time: "+formateDateTime.formatTime(time).toUpperCase());
 
 
    // 1. Redirect To Application Managment Page with All Persons...
@@ -179,6 +193,17 @@ public class Admin_Controler
     return "/Admin_Templates/Manage_Application";
    }
    
+   @GetMapping("/demo")
+   public String demo(Model model) 
+   {
+      String str=ServletUriComponentsBuilder.fromCurrentContextPath().toUriString();
 
+      System.out.println("\n\nURL: "+str+"/Images/anguler.png");
+       model.addAttribute("total_person", person_Service.countPerson());
+       model.addAttribute("total_employee",employee_Service.countEmployee());
+       
+       return "/Admin_Templates/Ad_index";
+   }
+   
 
 }

@@ -159,7 +159,7 @@
             become
             'Employee' of company. </p>
           <p> <b>Reject Button :</b> It 'Delete' the Data of the Applicant. you will use it if the applicitient is not
-            suitable for the position. </p>
+            suitable for the position.</p>
         </div>
 
         <div class="tablecontainer">
@@ -188,12 +188,31 @@
 
                 <div th:if="${applicant.status}=='Application_Accepted'"> <!-- Call For Interview-->
                   <td>
-                    <a th:href="@{/call-for-interview/{id} (id=${applicant.id})}"><button type="submit">Call</button></a>
+                    <!-- <a th:href="@{/call-for-interview/{id} (id=${applicant.id})}"><button type="submit" >Call</button></a> -->
+                     <button popovertarget="datetimeinput">Call </button>
                   </td>
                   <td>
                     Waiting....
                   </td>
                 </div>
+
+            <!-- **************************PopOver form Date and Time******************************** -->
+
+            <div id="datetimeinput" popover>
+              <form th:action= "@{/call-for-interview/{id} (id=${applicant.id})}" method="get">
+                  <p>Interview Date & Time</p>
+      
+                  <label for="timeInput">Time:</label>
+                  <input type="time" id="timeInput" required name="time">
+      
+                  <label for="dateInput">Date:</label>
+                  <input type="date" id="dateInput" required name="date">
+      
+                  <!-- <input type="hidden" name="" th:value="${applicant.id}"> -->
+      
+                  <button type="submit">Submit</button>
+              </form>
+            </div>
 
                 <div th:if="${applicant.status}=='Interview_Cleared'"> <!-- Send Offer Latter-->
                   <td>
