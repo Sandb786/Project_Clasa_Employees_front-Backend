@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Schedule Interview</title>
+</head>
+<link rel="stylesheet" th:href="@{/CSS/schedule.css}">
+<body>
+
+    <!-- Loader -->
+    <div class="loader-container" id="loader" style="display: none;">
+        <div class="loader"></div>
+        <p class="loader-text">Interview Invitation Email is Sending...</p>
+    </div>
+
+
+
+    <div class="form-container" >
+        <h2>Schedule Interview</h2>
+        <!-- User Details -->
+        <div class="details-container">
+            <p><strong>Full Name: </strong> <span th:text="${person.name}+' '+${person.surname}"></span></p>
+            <p><strong>Email: </strong> <span th:text="${person.email}"></span></p>
+            <p><strong>Technology Type: </strong><span th:text="${person.tech_type}"></span></p>
+            <p><strong>Technology: </strong> <span th:text="${person.technology}"></span></p>
+        </div>
+
+        <!-- Interview Date and Time -->
+        <form th:action="@{/call-for-interview/{id} (id=${person.id})}" onsubmit="showLoader()">
+
+            <label for="date">Select Date:</label>
+            <input type="date" id="date" name="interviewDate" required>
+
+            <label for="time">Select Time:</label>
+            <input type="time" id="time" name="interviewTime" required>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <p class="footer-text">
+            Cancel ? <a href="/Manage_Applications">Back</a>
+        </p>
+
+    </div>
+
+    <!--  Function to show loader on form submission -->
+    <script>
+        function showLoader() {
+                document.getElementById('loader').style.display = 'flex';
+            }
+    </script>
+
+</body>
+</html>

@@ -189,7 +189,7 @@
                 <div th:if="${applicant.status}=='Application_Accepted'"> <!-- Call For Interview-->
 
                   <td>
-                    <a th:href="@{ /demo(param=${applicant.id})}"><button type="submit">Call </button> </a> 
+                    <a th:href="@{ /Schedule_interview/{id} (id=${applicant.id})}"><button type="submit">Call </button> </a> 
                   </td>
 
                   <td> <!-- Offer Latter-->

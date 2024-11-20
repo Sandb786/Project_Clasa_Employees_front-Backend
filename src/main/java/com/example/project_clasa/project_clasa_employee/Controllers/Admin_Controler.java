@@ -146,16 +146,25 @@ public class Admin_Controler
 
   /******************************************************************************************/
 
+  // Scadule Person's Interview...
+  @GetMapping("/Schedule_interview/{id}")
+   public String demo(@PathVariable String id,Model model) 
+   {   
+       model.addAttribute("person",person_Service.findByid(id));
+       return "/Admin_Templates/Scedule_interview"; // Redirect To new page
+   }
 
   // Call Person For Interview...
   @GetMapping("/call-for-interview/{id}")
-  public String callForInterview(@PathVariable String id,@RequestParam("date") String date,@RequestParam("time") String time,Model model)throws MessagingException, IOException 
+  public String callForInterview(@PathVariable String id,@RequestParam("interviewDate") String date,@RequestParam("interviewTime") String time,Model model)throws MessagingException, IOException 
    {
 
       Person pr=person_Service.findByid(id);
-      // pr.setStatus("Interview_Cleared");
+      pr.setStatus("Interview_Cleared");
      
-      System.out.println("\n Person: "+pr.getName());
+      System.out.println("\n Person: "+pr);
+      System.out.println("\n Person: "+formateDateTime.formateDate(date));
+      System.out.println("\n Person: "+formateDateTime.formatTime(time));
       
       // mailsender.sendInterviewCallMail(pr,formateDateTime.formateDate(date),formateDateTime.formatTime(time));
       
@@ -164,8 +173,8 @@ public class Admin_Controler
 
 
    // 1. Redirect To Application Managment Page with All Persons...
-      model.addAttribute("all_applicant",person_Service.getAllPersons());
-      return "/Admin_Templates/Manage_Application";
+        return "/";
+
 
    }
 
@@ -195,23 +204,10 @@ public class Admin_Controler
     System.out.println("\n  Employee: "+pr.getName());
 
     // 1. Redirect To Application Managment Page with All Persons...
-    model.addAttribute("all_applicant",person_Service.getAllPersons());
-    return "/Admin_Templates/Manage_Application";
+        return "/Manage_Applications";
    }
    
-   @GetMapping("/demo")
-   public String demo() 
-   {
-      // String str=ServletUriComponentsBuilder.fromCurrentContextPath().toUriString();
-
-      // System.out.println("\n\nURL: "+str+"/Images/anguler.png");
-      //  model.addAttribute("total_person", person_Service.countPerson());
-      //  model.addAttribute("total_employee",employee_Service.countEmployee());
-
-      System.out.println("\n\n demo Called...");
-       
-       return "/Admin_Templates/demo";
-   }
+   
    
 
 }
