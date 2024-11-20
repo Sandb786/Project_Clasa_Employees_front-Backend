@@ -1,5 +1,6 @@
 package com.example.project_clasa.project_clasa_employee.Controllers;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.time.LocalDate;
 
@@ -12,12 +13,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.project_clasa.project_clasa_employee.Mail_Service.Mailsender;
 import com.example.project_clasa.project_clasa_employee.Modal_classes.Admin_login;
 import com.example.project_clasa.project_clasa_employee.Modal_classes.Person;
 import com.example.project_clasa.project_clasa_employee.Other_Service.FormateDateTime;
 import com.example.project_clasa.project_clasa_employee.Service_Classes.Employee_Service;
 import com.example.project_clasa.project_clasa_employee.Service_Classes.Person_Service;
 
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -40,7 +43,10 @@ public class Admin_Controler
       // 3.Other Service Class for Opretion...
       @Autowired
       private FormateDateTime formateDateTime;
- 
+
+       // 5.MailSender Service Class for Opretion...
+       @Autowired
+       private Mailsender mailsender;
 
 
     
@@ -143,23 +149,23 @@ public class Admin_Controler
 
   // Call Person For Interview...
   @GetMapping("/call-for-interview/{id}")
-  public String callForInterview(@PathVariable String id,@RequestParam("date") String date,@RequestParam("time") String time,Model model) 
+  public String callForInterview(@PathVariable String id,@RequestParam("date") String date,@RequestParam("time") String time,Model model)throws MessagingException, IOException 
    {
 
-      // Person pr=person_Service.findByid(id);
-      // // pr.setStatus("Interview_Cleared");
-      // person_Service.savePerson(pr);
+      Person pr=person_Service.findByid(id);
+      // pr.setStatus("Interview_Cleared");
+     
+      System.out.println("\n Person: "+pr.getName());
       
+      // mailsender.sendInterviewCallMail(pr,formateDateTime.formateDate(date),formateDateTime.formatTime(time));
       
 
-      System.out.println("\n  Person Interview Called: "+id);
-      System.out.println("Date: "+formateDateTime.formateDate(date));
-      System.out.println("Time: "+formateDateTime.formatTime(time).toUpperCase());
+     
 
 
    // 1. Redirect To Application Managment Page with All Persons...
-   model.addAttribute("all_applicant",person_Service.getAllPersons());
-   return "/Admin_Templates/Manage_Application";
+      model.addAttribute("all_applicant",person_Service.getAllPersons());
+      return "/Admin_Templates/Manage_Application";
 
    }
 
@@ -194,15 +200,17 @@ public class Admin_Controler
    }
    
    @GetMapping("/demo")
-   public String demo(Model model) 
+   public String demo() 
    {
-      String str=ServletUriComponentsBuilder.fromCurrentContextPath().toUriString();
+      // String str=ServletUriComponentsBuilder.fromCurrentContextPath().toUriString();
 
-      System.out.println("\n\nURL: "+str+"/Images/anguler.png");
-       model.addAttribute("total_person", person_Service.countPerson());
-       model.addAttribute("total_employee",employee_Service.countEmployee());
+      // System.out.println("\n\nURL: "+str+"/Images/anguler.png");
+      //  model.addAttribute("total_person", person_Service.countPerson());
+      //  model.addAttribute("total_employee",employee_Service.countEmployee());
+
+      System.out.println("\n\n demo Called...");
        
-       return "/Admin_Templates/Ad_index";
+       return "/Admin_Templates/demo";
    }
    
 

@@ -129,7 +129,7 @@ public class Person_Controler
                tempOtp=genrator.getOtp();
                System.out.println("\n\n Genrated OTP: "+tempOtp);
 
-               try { mailsender.sendMail(person.getEmail(), tempOtp, person.getName()); } // throw MessagingException.
+               try { mailsender.sendOtpMail(person.getEmail(), tempOtp, person.getName()); } // throw MessagingException.
               
                catch (Exception e)
                { 
@@ -226,7 +226,7 @@ public class Person_Controler
 
        try {
         
-        feedback=mailsender.sendMail(mail,genrator.getOtp(),temPerson.getName());
+        feedback=mailsender.sendOtpMail(mail,genrator.getOtp(),temPerson.getName());
        } 
        catch (Exception e) 
        {

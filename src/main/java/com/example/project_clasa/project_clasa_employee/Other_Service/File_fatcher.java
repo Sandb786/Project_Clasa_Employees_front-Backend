@@ -6,6 +6,9 @@ import java.nio.file.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import com.example.project_clasa.project_clasa_employee.Modal_classes.Person;
 
 // This Class Ftach the Data of file And return it into the string formate....
 @Service
@@ -42,8 +45,21 @@ public class File_fatcher
         return otpHtmlFile;
     }
 
- // 'Call For Interviwe' Mail Formate..   
-    public String getInterviewMailFromate(String name,String position,String date,String time) throws IOException
+// Get Img Dynamic Path..   
+    public String getImgUrl()
+    {
+       // 1.This line dynamically builds the base URL, like http://localhost:8083 or http://example.com
+          String baseUrl=ServletUriComponentsBuilder.fromCurrentContextPath().toUriString();
+
+       // 2.Cuntructing an 'URL' For sending image in mail.
+          String url=baseUrl+"/Images/logo1.png";
+          System.out.println("\nURL: "+url);
+
+        return "https://www.tvh.com/sites/tvh/files/styles/max_650x650/public/2023-07/baldwin_filters_0_3.png?itok=SRyWoos7";
+    }
+
+// 'Call For Interviwe' Mail Formate..   
+    public String getInterviewMailFromate(Person person,String date,String time) throws IOException
     {
        /* 1.
          * Dynamic Path Using '  Resource resource = new ClassPathResource("templates/Formates/mailOtp.html")'.
@@ -59,12 +75,14 @@ public class File_fatcher
         String Inter_Mail=Files.readString(path);  
 
       // 4. This method replace the value of veriable with '%s'. 
-        String Inter_Mail_HtmlFile=String.format(Inter_Mail,name,position,date,time);
+        String Inter_Mail_HtmlFile=String.format(Inter_Mail,getImgUrl(),person.getName(),person.getTech_type(),date,time,person.getId());
         
         System.out.println("\n\n \tInteview HTML: \n"+Inter_Mail_HtmlFile);
        
       return Inter_Mail_HtmlFile;
     }
+
+
 
     
 

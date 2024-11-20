@@ -380,6 +380,7 @@ main
         #datetimeinput input[type="date"] 
         {
             font-family: Poppins, sans-serif;
+            /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
             width: 95%;
             padding: 0.6rem; 
             margin: 0.3rem 0 1rem; 

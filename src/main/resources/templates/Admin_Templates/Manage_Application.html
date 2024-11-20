@@ -187,62 +187,52 @@
                 <td th:text="${applicant.technology}"></td>
 
                 <div th:if="${applicant.status}=='Application_Accepted'"> <!-- Call For Interview-->
+
                   <td>
-                    <!-- <a th:href="@{/call-for-interview/{id} (id=${applicant.id})}"><button type="submit" >Call</button></a> -->
-                     <button popovertarget="datetimeinput">Call </button>
+                    <a th:href="@{ /demo(param=${applicant.id})}"><button type="submit">Call </button> </a> 
                   </td>
-                  <td>
+
+                  <td> <!-- Offer Latter-->
                     Waiting....
                   </td>
+
                 </div>
 
-            <!-- **************************PopOver form Date and Time******************************** -->
-
-            <div id="datetimeinput" popover>
-              <form th:action= "@{/call-for-interview/{id} (id=${applicant.id})}" method="get">
-                  <p>Interview Date & Time</p>
-      
-                  <label for="timeInput">Time:</label>
-                  <input type="time" id="timeInput" required name="time">
-      
-                  <label for="dateInput">Date:</label>
-                  <input type="date" id="dateInput" required name="date">
-      
-                  <!-- <input type="hidden" name="" th:value="${applicant.id}"> -->
-      
-                  <button type="submit">Submit</button>
-              </form>
-            </div>
-
                 <div th:if="${applicant.status}=='Interview_Cleared'"> <!-- Send Offer Latter-->
-                  <td>
+
+                  <td><!-- Call For Interview-->
                     <b class="colour">Called..</b>
                   </td>
                   <td>
-                    <a th:href="@{/send-offer-latter/{id} (id=${applicant.id})}"><button type="submit">Send offer Latter</button></a>
+                    <a th:href="@{/send-offer-latter/{id} (id=${applicant.id})}"><button type="submit">Send offer
+                        Latter</button></a>
                   </td>
                 </div>
 
                 <div th:if="${applicant.status}=='Offer_Latter_Sended'"> <!-- All Process Done.-->
                   <td>
-                    <b class="colour">Cleared</b>
+                    <b class="colour">Cleared</b><!-- Call For Interview-->
                   </td>
                   <td>
-                    <b class="colour">Sended</b>
+                    <b class="colour">Sended</b><!-- Offer Latter Send-->
                   </td>
                 </div>
 
                 <td>
 
-                 <a th:href="@{/make-it-employee/{id} (id=${applicant.id})}"><button th:if="${applicant.status}=='Offer_Latter_Sended'" type="submit">Accept</button></a>
+                  <a th:href="@{/make-it-employee/{id} (id=${applicant.id})}"><button
+                      th:if="${applicant.status}=='Offer_Latter_Sended'" type="submit">Accept</button></a>
 
                   <a th:href="@{/reject_application/{id} (id=${applicant.id})}"><button type="submit"
                       class="red">Reject</button></a>
 
                 </td>
-                
+
               </span>
             </tr>
+
+         
+    
           </table>
         </div>
       </div>
