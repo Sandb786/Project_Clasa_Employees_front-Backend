@@ -1,8 +1,6 @@
 package com.example.project_clasa.project_clasa_employee.Controllers;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.project_clasa.project_clasa_employee.Mail_Service.Mailsender;
 import com.example.project_clasa.project_clasa_employee.Modal_classes.Admin_login;
@@ -22,8 +21,6 @@ import com.example.project_clasa.project_clasa_employee.Service_Classes.Person_S
 
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
 
@@ -146,37 +143,42 @@ public class Admin_Controler
 
   /******************************************************************************************/
 
+  String cid; // This is for not Resend mail if it is once Send.
+
   // Scadule Person's Interview...
   @GetMapping("/Schedule_interview/{id}")
    public String demo(@PathVariable String id,Model model) 
    {   
+       cid=id;
        model.addAttribute("person",person_Service.findByid(id));
        return "/Admin_Templates/Scedule_interview"; // Redirect To new page
    }
 
+
+
   // Call Person For Interview...
-  @GetMapping("/call-for-interview/{id}")
+  @PostMapping("/call-for-interview/{id}")
   public String callForInterview(@PathVariable String id,@RequestParam("interviewDate") String date,@RequestParam("interviewTime") String time,Model model)throws MessagingException, IOException 
    {
 
       Person pr=person_Service.findByid(id);
       pr.setStatus("Interview_Cleared");
      
-      System.out.println("\n Person: "+pr);
-      System.out.println("\n Person: "+formateDateTime.formateDate(date));
-      System.out.println("\n Person: "+formateDateTime.formatTime(time));
+      if(cid.equals(id)) // It is Compare the candidate id to rechivded id.
+      mailsender.sendInterviewCallMail(pr,formateDateTime.formateDate(date),formateDateTime.formatTime(time));
+      else
+      System.out.println("\n Mail not send..."); 
       
-      // mailsender.sendInterviewCallMail(pr,formateDateTime.formateDate(date),formateDateTime.formatTime(time));
-      
 
-     
+      cid=""; // After sending Mail put empty string in cid.
 
 
-   // 1. Redirect To Application Managment Page with All Persons...
-        return "/";
-
+     // 1. Redirect To Application Managment Page with All Persons...
+     model.addAttribute("all_applicant",person_Service.getAllPersons());
+     return "/Admin_Templates/Manage_Application";
 
    }
+
 
   // Send Person's Offer Latter... 
    @GetMapping("/send-offer-latter/{id}")

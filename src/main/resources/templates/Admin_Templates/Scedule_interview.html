@@ -25,7 +25,7 @@
         </div>
 
         <!-- Interview Date and Time -->
-        <form th:action="@{/call-for-interview/{id} (id=${person.id})}" onsubmit="showLoader()">
+        <form th:action="@{/call-for-interview/{id} (id=${person.id})}" method="post" onsubmit="showLoader()">
 
             <label for="date">Select Date:</label>
             <input type="date" id="date" name="interviewDate" required>
