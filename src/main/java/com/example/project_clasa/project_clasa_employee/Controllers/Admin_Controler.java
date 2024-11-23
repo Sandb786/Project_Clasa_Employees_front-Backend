@@ -21,6 +21,8 @@ import com.example.project_clasa.project_clasa_employee.Service_Classes.Person_S
 
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 
@@ -141,7 +143,7 @@ public class Admin_Controler
     }
 
 
-  /******************************************************************************************/
+  /************************************* Interview Handller******************************************/
 
   String cid; // This is for not Resend mail if it is once Send.
 
@@ -154,31 +156,51 @@ public class Admin_Controler
        return "/Admin_Templates/Scedule_interview"; // Redirect To new page
    }
 
-
-
   // Call Person For Interview...
   @PostMapping("/call-for-interview/{id}")
   public String callForInterview(@PathVariable String id,@RequestParam("interviewDate") String date,@RequestParam("interviewTime") String time,Model model)throws MessagingException, IOException 
    {
 
-      Person pr=person_Service.findByid(id);
-      pr.setStatus("Interview_Cleared");
+      person_Service.setStatusById(id,"Interview_Scheduled"); // Set status of person
      
       if(cid.equals(id)) // It is Compare the candidate id to rechivded id.
-      mailsender.sendInterviewCallMail(pr,formateDateTime.formateDate(date),formateDateTime.formatTime(time));
+      System.out.println("Mail send....");// mailsender.sendInterviewCallMail(pr,formateDateTime.formateDate(date),formateDateTime.formatTime(time));
       else
       System.out.println("\n Mail not send..."); 
       
 
-      cid=""; // After sending Mail put empty string in cid.
+        cid=""; // After sending Mail put empty string in cid.
 
 
      // 1. Redirect To Application Managment Page with All Persons...
-     model.addAttribute("all_applicant",person_Service.getAllPersons());
-     return "/Admin_Templates/Manage_Application";
+        model.addAttribute("all_applicant",person_Service.getAllPersons());
+        return "/Admin_Templates/Manage_Application";
 
    }
 
+ // Interview Status chack...
+  @PostMapping("/Interview_status/{id}")
+  public String postMethodName(@PathVariable String id,@RequestParam("status") String status,Model model) 
+    {
+
+      switch (status) // It switch to each case for if interview clear or not
+      {
+        case "Interview_Cleared":
+          person_Service.setStatusById(id,"Interview_Cleared");
+          break;
+
+        case "Not_Cleared":  
+          person_Service.setStatusById(id,"Not_Cleared");
+          break;
+       
+      }
+      
+       // 1. Redirect To Application Managment Page with All Persons...
+       model.addAttribute("all_applicant",person_Service.getAllPersons());
+       return "/Admin_Templates/Manage_Application";
+   }
+   
+/*****************************************************************************************************************/
 
   // Send Person's Offer Latter... 
    @GetMapping("/send-offer-latter/{id}")
@@ -186,8 +208,9 @@ public class Admin_Controler
    {
 
     Person pr=person_Service.findByid(id);
-    pr.setStatus("Offer_Latter_Sended");
-    person_Service.savePerson(pr);
+
+    person_Service.setStatusById(id,"Offer_Latter_Sended");
+
     System.out.println("\n  Send Offer Latter: "+pr.getName());
 
     // 1. Redirect To Application Managment Page with All Persons...

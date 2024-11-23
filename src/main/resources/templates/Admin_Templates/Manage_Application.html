@@ -177,46 +177,92 @@
             </tr>
             <!-- Accepted Applicant Here ..... -->
             <tr th:each="applicant:${all_applicant}">
-
+              
               <span
-                th:if="${applicant.status == 'Application_Accepted' || applicant.status == 'Interview_Cleared' || applicant.status == 'Offer_Latter_Sended'}">
+                th:if="${applicant.status == 'Application_Accepted' || applicant.status == 'Interview_Scheduled' 
+                        || applicant.status == 'Interview_Cleared' || applicant.status == 'Not_Cleared'
+                        || applicant.status == 'Offer_Latter_Sended'}">
 
                 <td th:text="${applicant.name}+' '+${applicant.surname}"></td>
                 <td th:text="${applicant.email}"></td>
                 <td th:text="${applicant.tech_type}"></td>
                 <td th:text="${applicant.technology}"></td>
 
-                <div th:if="${applicant.status}=='Application_Accepted'"> <!-- Call For Interview-->
+                <section th:switch= "${applicant.status}">
 
-                  <td>
-                    <a th:href="@{ /Schedule_interview/{id} (id=${applicant.id})}"><button type="submit">Call </button> </a> 
-                  </td>
+ <!--******************************************************************************************************************************************************-->
+                  <part1 th:case= "'Application_Accepted'"><!-- Call For Interview-->
 
-                  <td> <!-- Offer Latter-->
-                    Waiting....
-                  </td>
+                    <td>
+                      <a th:href="@{ /Schedule_interview/{id} (id=${applicant.id})}"><button type="submit">Call </button> </a> 
+                    </td>
+  
+                    <td> <!-- Offer Latter-->
+                      Waiting....
+                    </td>
 
-                </div>
+                  </part1>
 
-                <div th:if="${applicant.status}=='Interview_Cleared'"> <!-- Send Offer Latter-->
+ <!--******************************************************************************************************************************************************-->
 
-                  <td><!-- Call For Interview-->
-                    <b class="colour">Called..</b>
-                  </td>
-                  <td>
-                    <a th:href="@{/send-offer-latter/{id} (id=${applicant.id})}"><button type="submit">Send offer
-                        Latter</button></a>
-                  </td>
-                </div>
+                  <part2 th:case= "'Interview_Scheduled'"><!--Interview Scheduled-->
 
-                <div th:if="${applicant.status}=='Offer_Latter_Sended'"> <!-- All Process Done.-->
-                  <td>
-                    <b class="colour">Cleared</b><!-- Call For Interview-->
-                  </td>
-                  <td>
-                    <b class="colour">Sended</b><!-- Offer Latter Send-->
-                  </td>
-                </div>
+                    <td>
+                      <form th:action="@{/Interview_status/{id} (id=${applicant.id})}" method="POST">
+
+                      <select name="status" >
+                        <option value="">Status</option>
+                        <option value="Interview_Cleared">Cleared</option>
+                        <option value="Not_Cleared">Not Cleared</option>
+                      </select>
+
+                      <button>Save</button>
+
+                    </form>
+                    </td>
+  
+                    <td> <!-- Offer Latter-->
+                      Waiting....
+                    </td>
+                    
+                  </part2>
+
+ <!--******************************************************************************************************************************************************-->
+
+                  <part3 th:case= "'Interview_Cleared'"><!--Interview Cleared-->
+
+                    <td><!-- Call For Interview-->
+                      <b class="colour"><img th:src="@{/Images/BlueTick.png}" alt="Done"></b>
+                    </td>
+                    <td>
+                      <a th:href="@{/send-offer-latter/{id} (id=${applicant.id})}"><button type="submit">Send offer
+                          Latter</button></a>
+                    </td>
+
+                  </part3>
+
+ <!--******************************************************************************************************************************************************-->
+
+                  <part4 th:case= "'Offer_Latter_Sended'"><!--Offer Latter Sended-->
+                    <td>
+                      <b class="colour"><img th:src="@{/Images/BlueTick.png}" alt="Done"></b><!-- Call For Interview-->
+                    </td>
+                    <td>
+                      <b class="colour"><img th:src="@{/Images/BlueTick.png}" alt="Done"></b><!-- Offer Latter Send-->
+                    </td>
+                  </part4>
+
+ <!--******************************************************************************************************************************************************-->
+                  <part5 th:case= "'Not_Cleared'"><!--Offer Latter Sended-->
+                   <td>
+                     <b class="colour">Not Cleared</b><!-- Call For Interview-->
+                   </td>
+                   <td>
+                     <b class="colour">Not Eligible</b><!-- Offer Latter Send-->
+                   </td>
+                   </part5>
+ <!--******************************************************************************************************************************************************-->
+                </section>
 
                 <td>
 

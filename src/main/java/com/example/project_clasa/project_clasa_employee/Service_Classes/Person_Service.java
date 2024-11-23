@@ -49,6 +49,13 @@ public class Person_Service
         return (int)reposerty.count();
     }
 
+    public void setStatusById(String id,String status)
+    {
+        Person pr=findByid(id);
+        pr.setStatus(status);
+        savePerson(pr);
+    }
+
     /************************DEMO SErvices................... ******************/
 
     public void setStatus(String status)
@@ -62,5 +69,7 @@ public class Person_Service
             reposerty.save(person);
         }
     }
+
+
 }
 
