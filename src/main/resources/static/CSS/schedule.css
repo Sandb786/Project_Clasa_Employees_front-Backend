@@ -56,7 +56,8 @@ label {
 }
 
 input[type="date"],
-input[type="time"] 
+input[type="time"],
+input[type="tel"]
 {
     width: 100%;
     padding: 10px;
@@ -71,7 +72,8 @@ input[type="time"]
 }
 
 input[type="date"]:focus,
-input[type="time"]:focus 
+input[type="time"]:focus,
+input[type="tel"]:focus 
 {
     outline: none;
     border-color: #10a3f2;

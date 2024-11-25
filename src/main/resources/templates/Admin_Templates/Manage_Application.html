@@ -178,10 +178,12 @@
             <!-- Accepted Applicant Here ..... -->
             <tr th:each="applicant:${all_applicant}">
               
-              <span
+              <!-- <span
                 th:if="${applicant.status == 'Application_Accepted' || applicant.status == 'Interview_Scheduled' 
                         || applicant.status == 'Interview_Cleared' || applicant.status == 'Not_Cleared'
-                        || applicant.status == 'Offer_Latter_Sended'}">
+                        || applicant.status == 'Offer_Latter_Sended'}"> -->
+
+                <span th:if= "${applicant.status !='applicant'}">
 
                 <td th:text="${applicant.name}+' '+${applicant.surname}"></td>
                 <td th:text="${applicant.email}"></td>
@@ -211,7 +213,7 @@
                       <form th:action="@{/Interview_status/{id} (id=${applicant.id})}" method="POST">
 
                       <select name="status" >
-                        <option value="">Status</option>
+                         <option value="Interview_Scheduled">Status</option> <!-- Dafault status -->
                         <option value="Interview_Cleared">Cleared</option>
                         <option value="Not_Cleared">Not Cleared</option>
                       </select>
@@ -235,7 +237,7 @@
                       <b class="colour"><img th:src="@{/Images/BlueTick.png}" alt="Done"></b>
                     </td>
                     <td>
-                      <a th:href="@{/send-offer-latter/{id} (id=${applicant.id})}"><button type="submit">Send offer
+                      <a th:href="@{/Schedule_offer_Latter/{id} (id=${applicant.id})}"><button type="submit">Send offer
                           Latter</button></a>
                     </td>
 
@@ -262,7 +264,7 @@
                    </td>
                    </part5>
  <!--******************************************************************************************************************************************************-->
-                </section>
+                </section> 
 
                 <td>
 

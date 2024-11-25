@@ -145,20 +145,27 @@ public class Admin_Controler
 
   /************************************* Interview Handller******************************************/
 
-  String cid; // This is for not Resend mail if it is once Send.
+
+  String cid=""; // This is for not Resend mail if it is once Send.
 
   // Scadule Person's Interview...
   @GetMapping("/Schedule_interview/{id}")
    public String demo(@PathVariable String id,Model model) 
    {   
        cid=id;
+       //Status: Application_Accepted
+       
        model.addAttribute("person",person_Service.findByid(id));
-       return "/Admin_Templates/Scedule_interview"; // Redirect To new page
+       return "/Admin_Templates/Scedule_Events"; // Redirect To new page
    }
 
-  // Call Person For Interview...
+
+  
+   
+   // Call Person For Interview...
   @PostMapping("/call-for-interview/{id}")
-  public String callForInterview(@PathVariable String id,@RequestParam("interviewDate") String date,@RequestParam("interviewTime") String time,Model model)throws MessagingException, IOException 
+  public String callForInterview(@PathVariable String id,@RequestParam("interviewDate") String date,
+                                  @RequestParam("interviewTime") String time,Model model)throws MessagingException, IOException 
    {
 
       person_Service.setStatusById(id,"Interview_Scheduled"); // Set status of person
@@ -169,7 +176,7 @@ public class Admin_Controler
       System.out.println("\n Mail not send..."); 
       
 
-        cid=""; // After sending Mail put empty string in cid.
+        cid=""; // After sending Mail put empty string in cid. 
 
 
      // 1. Redirect To Application Managment Page with All Persons...
@@ -178,46 +185,54 @@ public class Admin_Controler
 
    }
 
- // Interview Status chack...
+
+   // Interview Status chack...
   @PostMapping("/Interview_status/{id}")
   public String postMethodName(@PathVariable String id,@RequestParam("status") String status,Model model) 
     {
 
-      switch (status) // It switch to each case for if interview clear or not
-      {
-        case "Interview_Cleared":
-          person_Service.setStatusById(id,"Interview_Cleared");
-          break;
+       // 1.Set the Status of person that it clear interview or not
+       person_Service.setStatusById(id, status);
 
-        case "Not_Cleared":  
-          person_Service.setStatusById(id,"Not_Cleared");
-          break;
-       
-      }
       
-       // 1. Redirect To Application Managment Page with All Persons...
+       // 2. Redirect To Application Managment Page with All Persons...
        model.addAttribute("all_applicant",person_Service.getAllPersons());
        return "/Admin_Templates/Manage_Application";
    }
    
-/*****************************************************************************************************************/
+
+/*********************************************************************************************************/
+
+   //Scadule Person's Interview...
+   @GetMapping("/Schedule_offer_Latter/{id}")
+   public String scheduleJoinDate(@PathVariable String id,Model model) 
+   {   
+       cid=id;
+       model.addAttribute("person",person_Service.findByid(id));
+       return "/Admin_Templates/Scedule_Events"; // Redirect To new page
+   }
+
+
 
   // Send Person's Offer Latter... 
-   @GetMapping("/send-offer-latter/{id}")
-   public String sendOfferLatter(@PathVariable String id,Model model) 
+   @PostMapping("/send-offer-latter/{id}")
+   public String sendOfferLatter(@PathVariable String id,@RequestParam("JoiningDate") String joindate,
+                                  @RequestParam("Salary") String salary,Model model) throws MessagingException, IOException 
    {
 
-    Person pr=person_Service.findByid(id);
+     System.out.println("Data: "+id);
+     System.out.println("Data: "+joindate);
+     System.out.println("Data: "+salary);
 
-    person_Service.setStatusById(id,"Offer_Latter_Sended");
-
-    System.out.println("\n  Send Offer Latter: "+pr.getName());
-
+     mailsender.sendOfferLatterMail(person_Service.findByid(id),formateDateTime.formateDate(joindate),salary);
+   
     // 1. Redirect To Application Managment Page with All Persons...
       model.addAttribute("all_applicant",person_Service.getAllPersons());
       return "/Admin_Templates/Manage_Application";
    }
    
+
+
   // Create Person As Employee. 
    @GetMapping("/make-it-employee/{id}")
    public String saveAsEmployee(@PathVariable String id,Model model)
@@ -231,6 +246,8 @@ public class Admin_Controler
     // 1. Redirect To Application Managment Page with All Persons...
         return "/Manage_Applications";
    }
+   
+   
    
    
    

@@ -48,13 +48,7 @@ public class File_fatcher
 // Get Img Dynamic Path..   
     public String getImgUrl()
     {
-       // 1.This line dynamically builds the base URL, like http://localhost:8083 or http://example.com
-          String baseUrl=ServletUriComponentsBuilder.fromCurrentContextPath().toUriString();
-
-       // 2.Cuntructing an 'URL' For sending image in mail.
-          String url=baseUrl+"/Images/logo1.png";
-          System.out.println("\nURL: "+url);
-
+       // 1.Local Storage Images is Not supported So we use Image cdn 
         return "https://www.tvh.com/sites/tvh/files/styles/max_650x650/public/2023-07/baldwin_filters_0_3.png?itok=SRyWoos7";
     }
 
@@ -66,7 +60,7 @@ public class File_fatcher
          * Then Convert Resource object into a File object 'resource.getFile()', allowing you to work with the file’s methods, like getPath(), exists()...
          * Then 'getPath()' then returns the absolute path of File as a String .  
       */
-      String filePath= new ClassPathResource("templates/Formates/InterviewMail.html").getFile().getPath(); // 'F:\gem\fnn\....'
+      String filePath= new ClassPathResource("templates/Formates/InterviewMail.html").getFile().getPath(); // '(F:/gem/fnn/....)'
       
       // 2. Now Convert 'String filePath' into 'Path object'....
        Path path=Paths.get(filePath); 
@@ -78,6 +72,33 @@ public class File_fatcher
         String Inter_Mail_HtmlFile=String.format(Inter_Mail,getImgUrl(),person.getName(),person.getTech_type(),date,time,person.getId());
         
         System.out.println("\n\n \tInteview HTML: \n"+Inter_Mail_HtmlFile);
+       
+      return Inter_Mail_HtmlFile;
+    }
+
+
+// 'Offer Latter Formate' Mail Formate..   
+    public String getOfferLatterFromate(Person person,String date,String salary) throws IOException
+    {
+       /* 1.
+         * Dynamic Path Using '  Resource resource = new ClassPathResource("templates/Formates/mailOtp.html")'.
+         * Then Convert Resource object into a File object 'resource.getFile()', allowing you to work with the file’s methods, like getPath(), exists()...
+         * Then 'getPath()' then returns the absolute path of File as a String .  
+      */
+
+      String filePath= new ClassPathResource("templates/Formates/OfferLatter.html").getFile().getPath(); // '(F:/gem/fnn/....)'
+      
+      // 2. Now Convert 'String filePath' into 'Path object'....
+       Path path=Paths.get(filePath); 
+
+      // 3. Read the content of the .txt , .html , .xml file into a String using 'Files.readString(path)'...
+        String Inter_Mail=Files.readString(path);  
+
+      // 4. This method replace the value of veriable with '%s'. 
+        String Inter_Mail_HtmlFile=String.format(Inter_Mail,person.getName(),person.getTech_type(),person.getTech_type(),
+                                                            date,salary,person.getCity(),getImgUrl(),getImgUrl());
+        
+        // System.out.println("\n\n \tInteview HTML: \n"+Inter_Mail_HtmlFile);
        
       return Inter_Mail_HtmlFile;
     }

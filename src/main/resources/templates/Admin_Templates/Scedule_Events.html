@@ -15,7 +15,10 @@
 
 
     <div class="form-container" >
-        <h2>Schedule Interview</h2>
+        <h2 th:if= "${person.status=='Application_Accepted'}">Schedule Interview</h2>
+        <h2 th:if= "${person.status=='Interview_Cleared'}">Schedule Joining</h2>
+        
+
         <!-- User Details -->
         <div class="details-container">
             <p><strong>Full Name: </strong> <span th:text="${person.name}+' '+${person.surname}"></span></p>
@@ -24,8 +27,9 @@
             <p><strong>Technology: </strong> <span th:text="${person.technology}"></span></p>
         </div>
 
+
         <!-- Interview Date and Time -->
-        <form th:action="@{/call-for-interview/{id} (id=${person.id})}" method="post" onsubmit="showLoader()">
+        <form th:action="@{/call-for-interview/{id} (id=${person.id})}" method="post" onsubmit="showLoader()" th:if= "${person.status=='Application_Accepted'}">
 
             <label for="date">Select Date:</label>
             <input type="date" id="date" name="interviewDate" required>
@@ -35,6 +39,21 @@
 
             <button type="submit">Submit</button>
         </form>
+
+
+
+         <!-- Joining Date in Offer latter -->
+         <form th:action="@{/send-offer-latter/{id} (id=${person.id})}" method="post" onsubmit="showLoader()" th:if= "${person.status=='Interview_Cleared'}">
+
+            <label for="date">Joining Date:</label>
+            <input type="date" id="date" name="JoiningDate" required>
+
+            <label for="time">Salary (in LPA):</label>
+            <input type="tel" id="time" name="Salary" required maxlength="2">
+
+            <button type="submit">Submit</button>
+        </form>
+
 
         <p class="footer-text">
             Cancel ? <a href="/Manage_Applications">Back</a>

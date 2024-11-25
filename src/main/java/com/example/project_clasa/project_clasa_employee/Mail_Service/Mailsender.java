@@ -70,5 +70,29 @@ public class Mailsender
 
         return "mail sended";
     }
+
+
+    public String sendOfferLatterMail(Person person,String date,String salary) throws MessagingException, IOException
+    {
+        // 1.Initilize Mimeassage useng 'MailSender' Class. 
+           MimeMessage mimeMessage=mailSender.createMimeMessage();
+
+        // 2.Initilize 'MimeMassageHalper' using 'MimeMassage' 
+           MimeMessageHelper helper=new MimeMessageHelper(mimeMessage);
+
+        // 3. Set Mail Subject
+           helper.setSubject("Offer Latter from Lanksoft Ltd."); 
+
+        // 4.Set Body of Massage (String type interviewFile using 'fatcher' class)
+           helper.setText(fatcher.getOfferLatterFromate(person, date, salary),true);
+
+        // 5.Set Rechiver Mail address
+          helper.setTo("sandeepmahawat85@gmail.com");
+
+        // 6.Sending Mail Using 'MailSender' Class and parse 'MimeMeassage' in it.
+           mailSender.send(mimeMessage);   
+
+        return "mail sended";
+    }
     
 }

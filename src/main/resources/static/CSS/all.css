@@ -333,7 +333,7 @@ main
          font-size: 1.1rem;
         }
 
-     .tab{margin-left: 2.5rem;}
+     /* .tab{margin-left: 0.5rem;} */
 
       .tablecontainer
       {
@@ -364,7 +364,7 @@ main
             tr:nth-child(odd){background-color: #d9d9d2;}
             tr:hover
             {
-               background-color: #768192;
+               background-color: #8792a2;
                color: white;
                
             }
@@ -373,7 +373,7 @@ main
             th
             {
             background-color: #06639e;
-            padding: .5rem;
+            padding: 0.6rem;
             color: aliceblue;
             border: 1px solid #fefdfd;
             font-size: large;
@@ -384,30 +384,39 @@ main
                 padding: 0.8rem ;
                 border: 1px solid #4a4747;
                 font-size: medium;
+                
+                .red{background-color: #f7490a;}
+                .colour{color: rgb(38, 55, 70);}
 
-
-                button
+                /* Chat GPT code for 'Button' */
+                button 
                 {
-                    padding: 0.5rem 1rem;
-                    cursor:pointer;
-                    border-radius: 5px;
-                    background-color: #1b8290;
-                    border: none;
-                    color: aliceblue;
-                    font-weight: bold;
-                    transition: 0.4s;
+                padding: 0.4rem   0.9rem;
+                cursor: pointer;
+                border-radius: 8px; /* Slightly more rounded corners */
+                background-color: #188b9a; /* Dark teal background */
+                border: 2px solid transparent; /* Transparent border for consistency */
+                color: #f0f8ff; /* Use hex for AliceBlue */
+                font-weight: bold;
+                font-size: 0.9rem; /*Increase font size for better readability*/
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.441); /* Add a subtle shadow for depth */
+                transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
                 }
                 
-                   .red{background-color: #f7490a;}
-                   .colour{color: rgb(38, 55, 70);}
-                
-
-                button:hover{
-                    transform: scale(90%);
-                   background-color: #f9f9f5;
-                   color: black;
-                   border-radius: 3px;
+                button:hover 
+                {
+                    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+                    transform: translateY(-2px); /* Slight lift effect */
                 }
+                
+                button:active 
+                {
+                    background-color: #145e63; /* Even darker for active state */
+                    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.15); /* Reduced shadow on click */
+                    transform: translateY(0); /* Reset lift effect */
+                }
+              
+                
             
                 select
                 {
@@ -419,7 +428,7 @@ main
                 }
                 img
                 {
-                    width: 3rem;
+                    width: 2.5rem;
                     height: 2rem;
                     background-color: rgb(215, 217, 220);
                     border-radius: 10px;
