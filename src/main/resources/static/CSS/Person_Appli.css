@@ -1,0 +1,199 @@
+
+body, html 
+{
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    box-sizing: border-box;
+}
+
+header {
+    width: 100%;
+    background-image: linear-gradient(319deg, #479bc6 0%, #3a7bc5 37%, #4089ca 100%);
+    padding: 1rem 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+nav img {
+    width: 130px;
+}
+
+nav .box1 a {
+    color: rgb(245, 248, 247);
+    font-size: 2.2rem;
+    font-family: "Poppins", sans-serif;
+    text-transform: capitalize;
+    text-decoration: none;
+    margin-left: 1rem;
+    transition: 0.3s;
+}
+
+nav .box1 a:hover {
+    border-bottom: 2px solid white;
+    font-size: 2.4rem;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem auto;
+    padding: 1rem;
+}
+
+.profile-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.57);
+    width: 90%;
+    max-width: 900px;
+    padding: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.profile-header {
+    flex: 1 1 100%;
+    text-align: center;
+    padding: 25px;
+    background-color: #e3e4e8;
+    border-radius: 10px;
+}
+
+.profile-header img {
+    border-radius: 5%;
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+}
+
+.profile-header h1 {
+    font-size: 1.8rem;
+    color: #333333;
+    margin-bottom: -10px;
+}
+
+.profile-header p {
+    font-size: 1.2rem;
+    color: #666666;
+    margin-bottom: -5px;
+}
+
+.profile-details {
+    flex: 1 1 100%;
+}
+
+.profile-details h2 {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    color: #ffffff;
+    padding: 10px 20px;
+    background-color: #4a6fa5;
+    border-radius: 10px;
+    text-transform: uppercase;
+}
+
+.profile-details p {
+    font-size: 1.05rem;
+    color: #413c3c;
+    margin: 12px 0;
+    padding-left: 2rem;
+
+}
+
+.technologies {
+    margin-top: 30px;
+}
+
+.technology-type {
+    margin-bottom: 10px;
+    color: #333333;
+    padding-left: 2rem;
+}
+
+.technology {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #64666b;
+    padding: 8px 18px;
+    border-radius: 10px;
+    margin: 10px 0px 9px 30px;
+    display: inline-block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        flex-wrap: wrap;
+        text-align: center;
+    }
+
+    nav img {
+        margin-bottom: 1rem;
+    }
+    nav .box1 a {
+    font-size: 1.2rem;
+}
+
+nav .box1 a:hover {
+    font-size: 1.4rem;
+}
+
+    .profile-container {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .profile-header img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-header h1 {
+        font-size: 1.5rem;
+    }
+    .profile-header p {
+        font-size: 1rem;
+    }
+
+    .profile-details h2 {
+        font-size: 1rem;
+    }
+   
+    .profile-details p {
+        font-size: 1rem;
+    }
+
+    .technology {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav img {
+        width: 50px;
+    }
+
+    .profile-header img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-header h1 {
+        font-size: 1.2rem;
+    }
+
+    .profile-details p {
+        font-size: 0.9rem;
+    }
+  
+}

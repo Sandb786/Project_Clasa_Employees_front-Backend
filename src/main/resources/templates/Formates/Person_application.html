@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Employee Profile</title>
+  <link rel="stylesheet" th:href="@{/CSS/Person_Appli.css}">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <img th:src="@{/Images/logo1.png}" alt="Logo" class="logo1">
+            <div class="box1">
+                <a href="/Manage_Applications">Back</a>
+            </div>
+            <img th:src="@{/Images/logo2.png}" alt="Logo" class="logo2">
+        </nav>
+    </header>
+
+    <section>
+        <div class="profile-container">
+            <div class="profile-header">
+                <img th:src="@{/User_images/rish.jpg}" alt="Profile Photo">
+                <h1>Rishabh Patel</h1>
+                <p>Applicant</p>
+            </div>
+            <div class="profile-details">
+                <h2>Personal Information</h2>
+                <p><strong>Email:</strong> example@example.com</p>
+                <p><strong>Phone:</strong> (123) 456-7890</p>
+                <p><strong>Street:</strong> 123 Main Street</p>
+                <p><strong>City:</strong> Indore</p>
+                <p><strong>State:</strong> Madhya Pradesh</p>
+                <p><strong>Pincode:</strong> 452010</p>
+
+                <div class="technologies">
+                    <h2>Technology Expertise</h2>
+                    <div class="technology-type">
+                        <strong>Technology Type:</strong>
+                        <div><span class="technology">Backend</span></div>
+                    </div>
+                    <div class="technology-type">
+                        <strong>Technology:</strong>
+                        <div><span class="technology">Spring Boot</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

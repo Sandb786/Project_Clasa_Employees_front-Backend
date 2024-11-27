@@ -96,7 +96,7 @@ public class File_fatcher
 
       // 4. This method replace the value of veriable with '%s'. 
         String Inter_Mail_HtmlFile=String.format(Inter_Mail,person.getName(),person.getTech_type(),person.getTech_type(),
-                                                            date,salary,person.getCity(),getImgUrl(),getImgUrl());
+                                                            date,salary,person.getCity());
         
         // System.out.println("\n\n \tInteview HTML: \n"+Inter_Mail_HtmlFile);
        

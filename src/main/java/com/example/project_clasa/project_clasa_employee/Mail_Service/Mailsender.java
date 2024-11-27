@@ -18,7 +18,7 @@ public class Mailsender
 {
     @Autowired
     private JavaMailSender mailSender;
-
+   
     @Autowired
     private File_fatcher fatcher;
 
@@ -63,7 +63,7 @@ public class Mailsender
            helper.setText(fatcher.getInterviewMailFromate(person, date, time),true);
 
         // 5.Set Rechiver Mail address
-           helper.setTo("sandeepmahawat85@gmail.com");
+           helper.setTo(person.getEmail());
 
         // 6.Sending Mail Using 'MailSender' Class and parse 'MimeMeassage' in it.
            mailSender.send(mimeMessage);   
@@ -87,7 +87,7 @@ public class Mailsender
            helper.setText(fatcher.getOfferLatterFromate(person, date, salary),true);
 
         // 5.Set Rechiver Mail address
-          helper.setTo("sandeepmahawat85@gmail.com");
+          helper.setTo(person.getEmail());
 
         // 6.Sending Mail Using 'MailSender' Class and parse 'MimeMeassage' in it.
            mailSender.send(mimeMessage);   

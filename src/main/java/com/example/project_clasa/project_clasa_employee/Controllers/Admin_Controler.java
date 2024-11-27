@@ -21,7 +21,6 @@ import com.example.project_clasa.project_clasa_employee.Service_Classes.Person_S
 
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 
@@ -89,7 +88,7 @@ public class Admin_Controler
         return "/Admin_Templates/Login_page.html";
     }
 
-/**********************************Admin Services Controller*******************************/
+/*Admin Services Controller*/
 
 
   // 1. Redirect to Admin Pannel
@@ -111,7 +110,7 @@ public class Admin_Controler
         return "/Admin_Templates/Manage_Application";
     }
 
-/******************************** Employee Applications Controller****************************/
+/******************************** Employee Applications Controller**/
 
   // Accept The Persons Applicantion...
    @GetMapping("/accpeted_application/{id}")
@@ -143,7 +142,7 @@ public class Admin_Controler
     }
 
 
-  /************************************* Interview Handller******************************************/
+  /************************************* Interview Handller**/
 
 
   String cid=""; // This is for not Resend mail if it is once Send.
@@ -159,9 +158,7 @@ public class Admin_Controler
        return "/Admin_Templates/Scedule_Events"; // Redirect To new page
    }
 
-
-  
-   
+ 
    // Call Person For Interview...
   @PostMapping("/call-for-interview/{id}")
   public String callForInterview(@PathVariable String id,@RequestParam("interviewDate") String date,
@@ -171,7 +168,7 @@ public class Admin_Controler
       person_Service.setStatusById(id,"Interview_Scheduled"); // Set status of person
      
       if(cid.equals(id)) // It is Compare the candidate id to rechivded id.
-      System.out.println("Mail send....");// mailsender.sendInterviewCallMail(pr,formateDateTime.formateDate(date),formateDateTime.formatTime(time));
+      mailsender.sendInterviewCallMail(person_Service.findByid(id),formateDateTime.formateDate(date),formateDateTime.formatTime(time));
       else
       System.out.println("\n Mail not send..."); 
       
@@ -200,10 +197,7 @@ public class Admin_Controler
        return "/Admin_Templates/Manage_Application";
    }
    
-
-/*********************************************************************************************************/
-
-   //Scadule Person's Interview...
+   //Scadule Person's Joining Date...
    @GetMapping("/Schedule_offer_Latter/{id}")
    public String scheduleJoinDate(@PathVariable String id,Model model) 
    {   
@@ -213,18 +207,24 @@ public class Admin_Controler
    }
 
 
-
   // Send Person's Offer Latter... 
    @PostMapping("/send-offer-latter/{id}")
    public String sendOfferLatter(@PathVariable String id,@RequestParam("JoiningDate") String joindate,
                                   @RequestParam("Salary") String salary,Model model) throws MessagingException, IOException 
    {
 
-     System.out.println("Data: "+id);
-     System.out.println("Data: "+joindate);
-     System.out.println("Data: "+salary);
-
+    
+     if(cid.equals(id)) // It is Compare the candidate id to rechivded id.
      mailsender.sendOfferLatterMail(person_Service.findByid(id),formateDateTime.formateDate(joindate),salary);
+     else
+     System.out.println("\n(Offer Latter) Mail not send..."); 
+     
+
+     person_Service.setStatusById(id, "Offer_Latter_Sended");
+
+
+       cid=""; // After sending Mail put empty string in cid. 
+
    
     // 1. Redirect To Application Managment Page with All Persons...
       model.addAttribute("all_applicant",person_Service.getAllPersons());
@@ -243,11 +243,17 @@ public class Admin_Controler
     person_Service.savePerson(pr);
     System.out.println("\n  Employee: "+pr.getName());
 
-    // 1. Redirect To Application Managment Page with All Persons...
-        return "/Manage_Applications";
+     // 1. Redirect To Application Managment Page with All Persons...
+     model.addAttribute("all_applicant",person_Service.getAllPersons());
+     return "/Admin_Templates/Manage_Application";
    }
    
    
+   @GetMapping("/demo")
+   public String getMethodName() 
+   {
+       return "/Formates/Person_application";
+   }
    
    
    
