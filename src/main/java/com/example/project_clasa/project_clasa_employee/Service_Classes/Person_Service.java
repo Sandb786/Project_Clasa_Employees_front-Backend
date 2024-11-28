@@ -19,6 +19,11 @@ public class Person_Service
         return reposerty.findAll();
     }
 
+   public List<Person> getPersonsByStatus(String status)
+   {
+        return reposerty.findByStatus(status);
+   }
+
     public Person findByid(String id)
     {
         //Return Type: Optional<Person>

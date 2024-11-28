@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+     <title>Employees</title>
+</head>
+
+<link rel="stylesheet" th:href="@{/CSS/all.css}">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+<script  th:src="@{/JS/Admin.js}"></script>
+
+<body>
+    <header>
+        <div class="demo">
+
+        </div>
+        <nav>
+
+            <img th:src="@{/Images/logo1.png}" class="logo1">
+
+            <div class="box1">
+               <h2>Admin Dashbord</h2>
+            </div>
+
+            <div class="topbtn">
+                <a href="/"><button type="submit">Log out</button></a>
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+        
+        <section class="part1">
+
+            <div class="p1nav">
+              <p>Menu</p>
+            </div>
+      
+            <div class="p1main">
+      
+              <img th:src="@{/Images/home.png}"><br>
+              <img th:src="@{/Images/application.png}"><br>
+              <img th:src="@{/Images/officer.png}"><br>
+              <img th:src="@{/Images/work.png}"><br>
+      
+      
+              <div class="imgname">
+      
+                <a href="/Admin_index">
+                  <p>Home</p>
+                </a> <!-- Request To Controller.... -->
+                <a href="/Manage_Applications">
+                  <p>Application</p>
+                </a>
+                <a href="#">
+                  <p class="colar">Employee</p>
+                </a>
+                <a href="Project.html">
+                  <p>Work</p>
+                </a>
+      
+              </div>
+      
+            </div>
+      
+      
+            <div class="p1bottum">
+              <p>buttoom</p>
+            </div>
+      
+      
+          </section>
+        
+        <section class="part2">
+            
+            <div class="pbox1">
+
+              
+               <button class="home_btn" id="home_btn" onclick="home()"><i class="ri-home-3-line"></i></button></a>
+                  
+                <p class="hom"id="txt1">Employees</p>
+            
+                  <img th:src="@{/Images/officer.png}">
+          
+                </div>
+
+                
+                <div class="Emp_type">
+
+                    <input type="text"  placeholder="Search Employee by Name">
+
+                    <select name="">
+                        <option value="">All</option>
+                        <option value="FOR1">Frontend</option>
+                        <option value="BACK1">Backend</option>
+                    </select>
+
+                </div>
+                
+           
+      <div class="">
+           <div class="employee">
+
+            <div class="emp_card" th:each="emp : ${Employees}">
+              <div class="imgcover">
+                  <img th:src="@{/User_images/{url} (url=${emp.photo})}" alt="Employee Photo">
+              </div>
+          
+              <div class="empinfo">
+                  <p th:text="${emp.name + ' ' + emp.surname}"></p>
+                  <p id="info"><span th:text="${emp.tech_type}"></span>: <b th:text="${emp.technology}"></b></p>
+                  <p id="info1"><b>EID: </b> <span th:text="${emp.id}"></span></p>
+                  <p id="info1"><b>DOJ: </b> 27/08/2020</p>
+                  <p id="info1"><b>Current Project: </b> <b>CLASA</b></p>
+                  <a href="Employee_detail.html">
+                      <button>Read More</button>
+                  </a>
+              </div>
+          </div>
+            
+           </div>
+        </div>
+
+
+        <div class="pbox3">
+            <p>buttom...</p>
+        </div>
+
+        </section>
+    </main>
+    
+</body>
+</html>

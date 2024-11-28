@@ -189,6 +189,9 @@ main
     .part2
     {
       border: 1px solid rgb(58, 55, 55);
+
+      background-color: #b8b8b8;
+
      
       margin-left: 1%;
       width: 80rem;
@@ -270,6 +273,7 @@ main
        .apptype   /* Applicatin Type CSS*/
     {
 
+
         .demo
         {
           display: flex;
@@ -281,7 +285,8 @@ main
            .btn1,.btn2
            {
             border: 2px solid rgb(103, 99, 99);
-            border-radius: 20px 20px 20px 20px;
+            border-radius: 20px;
+            background-color: white;
             transition: 0.5s;
             box-shadow: 5px 5px 10px rgb(33, 33, 33);
             cursor: pointer;
@@ -349,7 +354,7 @@ main
 
         .table
         {
-            width:100%;
+            width:110%;
             text-align: center;
             border-collapse:collapse ;
             font-size:calc(20px);
@@ -445,7 +450,11 @@ main
     .Emp_type   /* Employees ki CSS */
     {
         
-        background-color: #a6bec0;
+
+        background-color: #b8b8b8;
+        border-radius: 30px 30px 0 0;
+
+
 
        padding: 0.19rem;
         
@@ -483,117 +492,111 @@ main
         
         
     }
-    /*
-    ::-webkit-scrollbar 
-    {
-      
-       
-        width: 10px;
-    
-    }
-    ::-webkit-scrollbar-track 
-    {
-        border: 1px solid rgb(111, 105, 105);
-        border-radius: 10px;
-        background-color: rgb(201, 208, 208);
-    }
-    ::-webkit-scrollbar-thumb 
-    {
-       
-        background: rgb(241, 244, 243);
-        border: 1px solid rgb(95, 90, 90);
-        border-radius: 10px;
-    }
-      */
+   
     .employee 
       {
 
         display: flex;
         justify-content: space-evenly;
         flex-wrap: wrap;
-        background-color: #a2c2c5;
-
+         background-color: #b8b8b8;
         overflow-y: scroll;
 
-        /* border: 1px solid rgb(13, 13, 13); */
         height:26.8rem;
-      
-        .emp_card
-        {
-            border: 1px solid black;
-            border-radius: 20px;
-            width: 20rem;
-            height: 32rem;
-            margin: 20px;
-            box-shadow: 0px 0px 5px 2px #9c9696;
 
-           
-         
-            background-color: #dff1ea;
-
-            img{
-                border-right: 1px solid black;
-            
-                width: 20rem;
-                height: 18rem;
-                border-radius:19px 19px 0px 0px;
-            }
-
-            .empinfo
-            {
-                font-family: "poppins", sans-serif;
-                font-size:3vh;
-                text-transform: uppercase;
-                margin-left: 2vh;
-                margin-top: -0.8rem;
-
-                text-align: center;
-
-                #info
-                {
-                    font-size:medium;
-                    text-align: center;
-                    text-transform: capitalize;
-                    margin-top: -1rem;
-                    margin-bottom: 1.2rem;
-                }
-                #info1
-                {
-                    text-transform: capitalize;
-                   text-align: start;
-                    font-size:medium;
-                }
-                button
-                {
-                   padding: 0.5rem 1rem;
-                   /* margin-left: 4rem; */
-                   background-color: #225faa;
-                   color: #faf8f8;
-                   font-weight: bolder;
-                   border: none;
-                   border-radius: 20px;
-                   transition: 0.5s;
-                   cursor: pointer;
-                   
-                }
-        
-                button:hover {
-                    background-color: rgba(0, 0, 0, 0.708);
-                    color: rgb(253, 252, 250);
-                   transform: scale(90%);
-                    box-shadow: 1px 1px 10px rgb(252, 250, 250);
-                }
-        
-            }
-
-            transition: 0.5s;
-        }
-        .emp_card:hover
-        {
-            transform:scale(90%);
-            box-shadow: 12px 14px 10px rgb(57, 55, 55);
-        }
     
+
+
+
+/**************************************** Emp Card CSS ************************************/ 
+        .emp_card {
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            width: 21rem;
+            height: 35rem;
+            margin: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .emp_card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .imgcover {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5f5f5;
+            width: 100%;
+            height: 50%;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .imgcover img 
+        {
+            width: 16rem;
+            height: 15rem;
+            border-radius: 10%;
+            object-fit:inherit;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .empinfo {
+            font-family: "Poppins", sans-serif;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            text-transform: capitalize;
+
+        }
+        
+        .empinfo p {
+            margin: 0.8rem 0;
+            color: #292828;
+            
+        }
+        
+        .empinfo p:first-child {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+        
+        #info {
+            font-size: 1rem;
+            color: #555555;
+        }
+        
+        #info1 {
+            font-size: 0.9rem;
+            color: #777777;
+            text-align: start;
+        }
+        
+        button {
+            padding: 0.7rem 1.5rem;
+            background-color: #225faa;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 1rem;
+            border: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        
+        button:hover {
+            background-color: #1a4785;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+        }
+
+/********************************** END ****************************************/
+        
       }
   
 /*-------------------------EMP Details CSS --------------------------------*/

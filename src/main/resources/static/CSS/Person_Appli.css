@@ -5,6 +5,7 @@ body, html
     padding: 0;
     font-family: 'Arial', sans-serif;
     box-sizing: border-box;
+   
 }
 
 header {
@@ -65,6 +66,7 @@ section {
     padding: 25px;
     background-color: #e3e4e8;
     border-radius: 10px;
+    text-transform: capitalize;
 }
 
 .profile-header img {
@@ -86,8 +88,10 @@ section {
     margin-bottom: -5px;
 }
 
-.profile-details {
+.profile-details 
+{
     flex: 1 1 100%;
+    text-transform: capitalize;
 }
 
 .profile-details h2 {
@@ -110,6 +114,7 @@ section {
 
 .technologies {
     margin-top: 30px;
+    text-transform: capitalize;
 }
 
 .technology-type {
@@ -127,6 +132,27 @@ section {
     border-radius: 10px;
     margin: 10px 0px 9px 30px;
     display: inline-block;
+}
+
+button 
+{
+    width: 20%;
+ 
+    background: linear-gradient(to right, #1e90ff, #4682b4);
+    color: #ffffff;
+    font-size: larger;
+    font-weight:100;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 40%;   
+    margin-bottom: 2rem;
+}
+
+button:hover 
+{
+    background: linear-gradient(to right, #47a8e5, #6bb4fc);
 }
 
 /* Responsive Design */
@@ -196,4 +222,26 @@ nav .box1 a:hover {
         font-size: 0.9rem;
     }
   
+}
+
+@media print 
+{
+    header
+    {
+        display: none;
+    }
+    button
+    {
+        display: none;
+    }
+
+    section
+    {
+        
+        height: 85vh;
+    }
+    body
+    {
+        background-color: #696363;
+    }
 }

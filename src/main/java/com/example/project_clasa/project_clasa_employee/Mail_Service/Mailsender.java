@@ -66,7 +66,7 @@ public class Mailsender
            helper.setTo(person.getEmail());
 
         // 6.Sending Mail Using 'MailSender' Class and parse 'MimeMeassage' in it.
-           mailSender.send(mimeMessage);   
+          mailSender.send(mimeMessage);   
 
         return "mail sended";
     }

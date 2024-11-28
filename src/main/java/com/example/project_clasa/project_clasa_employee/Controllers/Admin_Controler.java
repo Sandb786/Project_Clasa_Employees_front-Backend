@@ -1,6 +1,6 @@
 package com.example.project_clasa.project_clasa_employee.Controllers;
 
-import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,6 @@ import com.example.project_clasa.project_clasa_employee.Other_Service.FormateDat
 import com.example.project_clasa.project_clasa_employee.Service_Classes.Employee_Service;
 import com.example.project_clasa.project_clasa_employee.Service_Classes.Person_Service;
 
-import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 
 
@@ -110,7 +109,17 @@ public class Admin_Controler
         return "/Admin_Templates/Manage_Application";
     }
 
-/******************************** Employee Applications Controller**/
+  // 3. Redirect to Employee Profile
+    @GetMapping("/Employee_index")
+    public String getMethodName(Model model) 
+    {
+          
+     model.addAttribute("Employees",person_Service.getPersonsByStatus("Employee"));
+    
+     return "/Admin_Templates/Employee";
+    }
+  
+/******************************** Employee Applications Controller*****************************************/
 
   // Accept The Persons Applicantion...
    @GetMapping("/accpeted_application/{id}")
@@ -141,8 +150,16 @@ public class Admin_Controler
         return "/Admin_Templates/Manage_Application";
     }
 
+  // Show Person's Application From
+  @GetMapping("/Application_form/{id}")
+  public String applicationForm(@PathVariable String id,Model model) 
+  {
+ 
+     model.addAttribute("applicant", person_Service.findByid(id)); 
+      return "/Formates/Person_application";
+  }
 
-  /************************************* Interview Handller**/
+  /******************************* Interview Handller*********************************/
 
 
   String cid=""; // This is for not Resend mail if it is once Send.
@@ -161,20 +178,30 @@ public class Admin_Controler
  
    // Call Person For Interview...
   @PostMapping("/call-for-interview/{id}")
-  public String callForInterview(@PathVariable String id,@RequestParam("interviewDate") String date,
-                                  @RequestParam("interviewTime") String time,Model model)throws MessagingException, IOException 
+  public String callForInterview(@PathVariable String id,@RequestParam("interviewDate") String date,@RequestParam("interviewTime") String time,Model model)
    {
-
-      person_Service.setStatusById(id,"Interview_Scheduled"); // Set status of person
      
+    try // if Applicantion not connected to Internate
+    {
+
       if(cid.equals(id)) // It is Compare the candidate id to rechivded id.
       mailsender.sendInterviewCallMail(person_Service.findByid(id),formateDateTime.formateDate(date),formateDateTime.formatTime(time));
       else
       System.out.println("\n Mail not send..."); 
       
 
-        cid=""; // After sending Mail put empty string in cid. 
+      // Set status of person
+      person_Service.setStatusById(id,"Interview_Scheduled"); 
 
+    }
+    catch (Exception e) 
+    {
+      System.out.println("\n Mail Exeption(Interview call)...");
+    }
+    
+     
+     cid=""; // After sending Mail put empty string in cid. 
+     
 
      // 1. Redirect To Application Managment Page with All Persons...
         model.addAttribute("all_applicant",person_Service.getAllPersons());
@@ -197,6 +224,10 @@ public class Admin_Controler
        return "/Admin_Templates/Manage_Application";
    }
    
+
+/**************************** Offer Latter Handller******************************/
+
+
    //Scadule Person's Joining Date...
    @GetMapping("/Schedule_offer_Latter/{id}")
    public String scheduleJoinDate(@PathVariable String id,Model model) 
@@ -209,18 +240,26 @@ public class Admin_Controler
 
   // Send Person's Offer Latter... 
    @PostMapping("/send-offer-latter/{id}")
-   public String sendOfferLatter(@PathVariable String id,@RequestParam("JoiningDate") String joindate,
-                                  @RequestParam("Salary") String salary,Model model) throws MessagingException, IOException 
+   public String sendOfferLatter(@PathVariable String id,@RequestParam("JoiningDate") String joindate,@RequestParam("Salary") String salary,Model model) 
    {
 
-    
-     if(cid.equals(id)) // It is Compare the candidate id to rechivded id.
-     mailsender.sendOfferLatterMail(person_Service.findByid(id),formateDateTime.formateDate(joindate),salary);
-     else
-     System.out.println("\n(Offer Latter) Mail not send..."); 
-     
+     try 
+    {
 
-     person_Service.setStatusById(id, "Offer_Latter_Sended");
+      if(cid.equals(id)) // It is Compare the candidate id to rechivded id.
+      mailsender.sendOfferLatterMail(person_Service.findByid(id),formateDateTime.formateDate(joindate),salary);
+      else
+      System.out.println("\n Mail not send..."); 
+
+      //Set status of person
+      person_Service.setStatusById(id, "Offer_Latter_Sended");
+
+    }
+    catch (Exception e) 
+    {
+      System.out.println("\n Mail Exeption(Offer Latter)...");
+    }
+
 
 
        cid=""; // After sending Mail put empty string in cid. 
@@ -230,7 +269,6 @@ public class Admin_Controler
       model.addAttribute("all_applicant",person_Service.getAllPersons());
       return "/Admin_Templates/Manage_Application";
    }
-   
 
 
   // Create Person As Employee. 
@@ -242,20 +280,16 @@ public class Admin_Controler
     pr.setStatus("Employee");
     person_Service.savePerson(pr);
     System.out.println("\n  Employee: "+pr.getName());
+    
 
      // 1. Redirect To Application Managment Page with All Persons...
      model.addAttribute("all_applicant",person_Service.getAllPersons());
      return "/Admin_Templates/Manage_Application";
    }
+  
    
-   
-   @GetMapping("/demo")
-   public String getMethodName() 
-   {
-       return "/Formates/Person_application";
-   }
-   
-   
+/***************************************** Employee Handler ****************************************/
+
    
 
 }

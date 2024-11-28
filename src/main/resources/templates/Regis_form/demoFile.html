@@ -3,7 +3,106 @@
 <head>
     <title>Admin</title>
 </head>
+<style>
+    .emp_card {
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    width: 20rem;
+    height: 32rem;
+    margin: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.emp_card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.imgcover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    width: 100%;
+    height: 50%;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.imgcover img {
+    width: 12rem;
+    height: 12rem;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.empinfo {
+    font-family: "Poppins", sans-serif;
+    padding: 1.5rem 1rem;
+    text-align: center;
+}
+
+.empinfo p {
+    margin: 0.5rem 0;
+    color: #333333;
+}
+
+.empinfo p:first-child {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+#info {
+    font-size: 1rem;
+    color: #555555;
+}
+
+#info1 {
+    font-size: 0.9rem;
+    color: #777777;
+    text-align: start;
+}
+
+button {
+    padding: 0.7rem 1.5rem;
+    background-color: #225faa;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1rem;
+    border: none;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+button:hover {
+    background-color: #1a4785;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+</style>
 <body>
-    <h1>Admin Page....</h1>
+    <div class="emp_card" th:each="emp : ${Employees}">
+        <div class="imgcover">
+            <img th:src="@{/User_images/{url} (url=${emp.photo})}" alt="Employee Photo">
+        </div>
+    
+        <div class="empinfo">
+            <p th:text="${emp.name + ' ' + emp.surname}"></p>
+            <p id="info"><span th:text="${emp.tech_type}"></span>: <b th:text="${emp.technology}"></b></p>
+            <p id="info1">EID: <span th:text="${emp.id}"></span></p>
+            <p id="info1">DOJ: 27/08/2020</p>
+            <p id="info1">Current Project: <b>CLASA</b></p>
+            <a href="Employee_detail.html">
+                <button>Read More</button>
+            </a>
+        </div>
+    </div>
 </body>
 </html>

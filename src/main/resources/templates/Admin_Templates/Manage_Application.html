@@ -52,7 +52,7 @@
           <a href="#">
             <p class="colar">Application</p>
           </a>
-          <a href="Employee.html">
+          <a href="/Employee_index">
             <p>Employee</p>
           </a>
           <a href="Project.html">
@@ -122,6 +122,7 @@
               <th>Technology</th>
               <th>City</th>
               <th>State</th>
+              <th>View</th>
               <th>Action</th>
             </tr>
 
@@ -137,11 +138,16 @@
                 <td th:text="${applicant.city}"></td>
                 <td th:text="${applicant.state}"></td>
 
+                <td>
+                   <a th:href="@{/Application_form/{id} (id=${applicant.id})}">Application</a>
+                </td>
+
                 <td> <a th:href="@{/accpeted_application/{id} (id=${applicant.id})}"><button
                       type="submit">Accept</button></a>
                   <a th:href="@{/reject_application/{id} (id=${applicant.id})}"><button type="submit"
                       class="red">Reject</button></a>
                 </td>
+
 
               </span>
 
@@ -169,6 +175,7 @@
               <th>E-mail</th>
               <th>Tech.type</th>
               <th>Technology</th>
+              <th>Application</th>
               <th>Interview</th>
               <th>Status</th>
               <th>Action</th>
@@ -183,14 +190,19 @@
                         || applicant.status == 'Interview_Cleared' || applicant.status == 'Not_Cleared'
                         || applicant.status == 'Offer_Latter_Sended'}"> -->
 
-                <span th:if= "${applicant.status !='applicant'}">
+                <span th:if= "${applicant.status !='applicant' && applicant.status !='Employee'}">
 
                 <td th:text="${applicant.name}+' '+${applicant.surname}"></td>
                 <td th:text="${applicant.email}"></td>
                 <td th:text="${applicant.tech_type}"></td>
                 <td th:text="${applicant.technology}"></td>
 
-                <section th:switch= "${applicant.status}">
+            
+
+              
+              <section th:switch= "${applicant.status}">
+                
+                  <td><a th:href="@{/Application_form/{id} (id=${applicant.id})}">View</a></td>
 
  <!--******************************************************************************************************************************************************-->
                   <part1 th:case= "'Application_Accepted'"><!-- Call For Interview-->
@@ -276,10 +288,11 @@
 
                 </td>
 
-              </span>
+               
+              
             </tr>
 
-         
+          </span>
     
           </table>
         </div>

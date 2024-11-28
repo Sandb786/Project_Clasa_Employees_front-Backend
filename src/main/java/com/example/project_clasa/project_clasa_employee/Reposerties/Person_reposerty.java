@@ -11,4 +11,6 @@ import java.util.List;
 public interface Person_reposerty extends MongoRepository<Person,String>
 {
    public List<Person> findByEmail(String email);
+
+   public List<Person> findByStatus(String status);
 }

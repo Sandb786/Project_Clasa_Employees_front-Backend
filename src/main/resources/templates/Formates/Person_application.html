@@ -22,33 +22,38 @@
     <section>
         <div class="profile-container">
             <div class="profile-header">
-                <img th:src="@{/User_images/rish.jpg}" alt="Profile Photo">
-                <h1>Rishabh Patel</h1>
-                <p>Applicant</p>
+                <img th:src="@{/User_images/{url} (url=${applicant.photo})}" alt="Profile Photo">
+                <h1 th:text="${applicant.name}+' '+${applicant.surname}"></h1>
+                <p th:text="${applicant.status}"></p>
             </div>
             <div class="profile-details">
                 <h2>Personal Information</h2>
-                <p><strong>Email:</strong> example@example.com</p>
-                <p><strong>Phone:</strong> (123) 456-7890</p>
-                <p><strong>Street:</strong> 123 Main Street</p>
-                <p><strong>City:</strong> Indore</p>
-                <p><strong>State:</strong> Madhya Pradesh</p>
-                <p><strong>Pincode:</strong> 452010</p>
+                <p><strong>Email:</strong> <span th:text="${applicant.email}"></span></p>
+                <p><strong>Phone:</strong> <span th:text="${applicant.mobile}"></span></p>
+                <p><strong>Street:</strong> <span th:text="${applicant.landmark}"></span></p>
+                <p><strong>City:</strong> <span th:text="${applicant.city}"></span> </p>
+                <p><strong>State:</strong> <span th:text="${applicant.state}"></span></p>
+                <p><strong>Pincode:</strong> <span th:text="${applicant.pincode}"></span></p>
 
                 <div class="technologies">
                     <h2>Technology Expertise</h2>
+
                     <div class="technology-type">
                         <strong>Technology Type:</strong>
-                        <div><span class="technology">Backend</span></div>
+                        <div><span class="technology" th:text="${applicant.tech_type}"></span></div>
                     </div>
+
                     <div class="technology-type">
                         <strong>Technology:</strong>
-                        <div><span class="technology">Spring Boot</span></div>
+                        <div><span class="technology" th:text="${applicant.technology}"></span></div>
                     </div>
+
                 </div>
             </div>
         </div>
     </section>
+
+    <button onclick="window.print()">Download</button>
 </body>
 
 </html>
