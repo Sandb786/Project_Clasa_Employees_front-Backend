@@ -2,6 +2,7 @@
 <html lang="en">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <head>
      <title>Employees</title>
 </head>
@@ -100,26 +101,37 @@
                 </div>
                 
            
-      <div class="">
-           <div class="employee">
+      <div class=""  >
+          <div class="employee">
 
-            <div class="emp_card" th:each="emp : ${Employees}">
+            <span th:each= "employee:${Employees}">
+            <span th:each= "person:${Persons}"> 
+              
+            <div class="emp_card" th:if= "${person.id==employee.personId}">
+
               <div class="imgcover">
-                  <img th:src="@{/User_images/{url} (url=${emp.photo})}" alt="Employee Photo">
+                  <img th:src="@{/User_images/{url} (url=${person.photo})}" alt="Employee Photo">
               </div>
           
               <div class="empinfo">
-                  <p th:text="${emp.name + ' ' + emp.surname}"></p>
-                  <p id="info"><span th:text="${emp.tech_type}"></span>: <b th:text="${emp.technology}"></b></p>
-                  <p id="info1"><b>EID: </b> <span th:text="${emp.id}"></span></p>
-                  <p id="info1"><b>DOJ: </b> 27/08/2020</p>
-                  <p id="info1"><b>Current Project: </b> <b>CLASA</b></p>
-                  <a href="Employee_detail.html">
+                
+                <!-- Person Information -->
+                  <p th:text="${person.name + ' ' + person.surname}"></p>
+                  <p id="info"><span th:text="${person.tech_type}"></span>: <b th:text="${person.technology}"></b></p>
+
+                <!-- Employee Information -->
+                  <p id="info1"><b>EID: </b> <span th:text="${employee.eid}"></span></p>
+                  <p id="info1"><b>DOJ: </b> <span th:text="${employee.doj}"></span></p>
+                  <p id="info1"><b>Current Project: </b> <b th:text="${employee.currentProject}"></b></p>
+
+                  <a href="Employee_detail">
                       <button>Read More</button>
                   </a>
-              </div>
-          </div>
-            
+                </div>
+            </div>
+            </span>
+              
+            </span>
            </div>
         </div>
 

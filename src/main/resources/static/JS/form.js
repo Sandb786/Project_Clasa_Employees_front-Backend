@@ -48,8 +48,10 @@ const indianStates = [
     "Jammu and Kashmir", "Ladakh", "Lakshadweep", "Puducherry"
 ];
 
-indianStates.forEach(state => {
+indianStates.forEach(state => 
+    {
     document.getElementById('stateSelect').innerHTML += `<option value="${state}">${state}</option>`;
+    document.getElementById('state').innerHTML += `<option value="${state}">${state}</option>`;
 });
 
 

@@ -107,8 +107,40 @@ function  change()
     }
 }
 
+function activeEditDetail(param)
+{
+    switch (param) 
+    {
+        case "Form":
+            document.getElementById("Edit_info").classList.remove("deactive");
+            document.getElementById("Info").classList.add("deactive");
+            break;
+    
+        case "Back":
+            document.getElementById("Edit_info").classList.add("deactive");
+            document.getElementById("Info").classList.remove("deactive");
+            break;
+    }
+    
+}
+
 function newpro()
 {
     alert("This feture is coming soon....")
 }
 
+const indianStates = [
+    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", 
+    "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", 
+    "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", 
+    "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", 
+    "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", 
+    "Uttar Pradesh", "Uttarakhand", "West Bengal", 
+    "Andaman and Nicobar Islands", "Chandigarh", "Delhi", 
+    "Jammu and Kashmir", "Ladakh", "Lakshadweep", "Puducherry"
+];
+
+indianStates.forEach(state => 
+    {
+    document.getElementById('state').innerHTML += `<option value="${state}">${state}</option>`;
+});

@@ -601,263 +601,134 @@ main
   
 /*-------------------------EMP Details CSS --------------------------------*/
 
-   .Details
-   {
+.Details {
+    background: linear-gradient(135deg, #ddd4d4 0%, #f5ededba 100%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    height: 29rem;
+    padding: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+}
 
-    background-image: linear-gradient(319deg, #ffffffeb 0%, #d4d4d4e0 37%, #edeff0d0 100%);
+.Details h1 {
+    text-align: left;
+    font-family: "Audiowide", sans-serif;
+    color: #2c3e50;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+    border-left: 4px solid #35506a;
+    letter-spacing: 1px;
+}
 
-      /* border: 1px solid black; */
-     
-      
-      overflow-y: scroll;
-      height:31rem;
-     
+.Details .box1 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background: rgba(239, 237, 236, 0.903);
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.533);
+}
 
-         padding: 0.5rem;
+.Details .box1 img {
+    border: 2px solid #bbb;
+    width: 12rem;
+    height: 12rem;
+    border-radius: 10%;
+    object-fit: cover;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 1rem;
+}
 
-         h1
-         {
-         text-align: left;
-         font-family: "Audiowide", sans-serif; 
-         color: #0e5682;
-         font-size:x-large ;
-         margin-left: 1rem;
-         letter-spacing: 2px;
-         }
+.Details .box1 .txt {
+    flex: 1;
+    margin: 0.5rem;
+}
+
+.Details .box1 .txt ul {
+    list-style: none;
+    padding: 0;
+}
+
+.Details .box1 .txt li {
+    font-size: 1.2rem;
+    color: #4a4a4a;
+    margin: 0.8rem 0;
+    padding: 0.5rem 1rem;
+    border: 1px solid #c8b9b9;
+    border-radius: 10px;
+    background-color: #dfdcdc;
+    transition: all 0.3s ease-in-out;
+}
+
+.Details .box1 .txt li:hover {
+    background-color: #e8e8e8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: scale(1.02);
+}
+
+.Details .box1 .txt label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+    color: #2c3e50;
+}
+
+.Details .box1 .txt input,select {
+    width: 90%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f9f9f9;
+    transition: all 0.3s ease-in-out;
+}
+
+.Details .box1 .txt input:focus {
+    border-color: #357abd;
+    background: #eef5fb;
+    outline: none;
+    box-shadow: 0 0 4px rgba(53, 122, 189, 0.5);
+}
+
+.Details .btns {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.Details .btns button {
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    color: white;
+    margin: 0 0.5rem;
+}
+
+.Details .btns button:nth-child(1) {
+    background: #357abd;
+}
+
+.Details .btns button:nth-child(2) {
+    background: #c0392b;
+}
+
+.Details .btns button:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
 
 
-      .box1
-      {
-       
+/*-------------------------EMP Details (END) --------------------------------*/
 
-        font-family: "poppins", sans-serif; 
-        border: 3px solid rgb(59, 95, 117);
-        border-radius: 10px;
-
-        display: flex;
-        justify-content: space-around;
-
-        margin-top: 1rem;
-        height: 16em;
-       
-        img
-        {
-            border: 3px solid rgb(86, 87, 91);
-            width: 14rem;
-            height: 14rem;
-            border-radius: 10px;
-            margin-top: 0.7rem;
-
-        }
-
-        .txt
-        {
-          text-shadow: 1.5px 1px 2px rgb(137, 154, 155);
-          
-
-            font-size:x-large;
-            text-transform: capitalize;
-          
-
-            ul{list-style: none;
-            
-            }
-
-            li
-            {
-                margin: 2rem;
-                border-bottom: 2px solid rgb(42, 54, 70);
-                padding: 0.3rem 1.5rem;
-                border-radius: 20px;
-                transition: 0.5s;
-            }
-            li:hover
-            {
-                background-color: rgba(248, 245, 245, 0.831);
-               
-                box-shadow: 6px 8px 10px black;
-            }
-        }
-
-      }
-
-      .btns,.edit_type,.edit_form
-      {
-        /* border: 1px solid black; */
-        text-align: center;
-        
-
-        button
-        {
-            margin: 2rem;
-            padding: 0.8rem 3rem;
-            border: none;
-            border-radius: 10px;
-           background-color: #1670a8;
-           color: white;
-           font-weight: bold;
-           font-size: large;
-           cursor: pointer;
-           transition: 0.5s;
-        }
-        button:nth-child(even){background-color: #dd501c;}
-        button:hover
-        {
-            background-color: rgb(41, 39, 39);
-          transform: scale(95%);
-        }
-
-        
-      }
-
-    .edit_type
-     {
-        background: transparent;
-       backdrop-filter: blur(5px);
-
-       border:1px solid #04487d;
-       border-radius: 10px;
-
-       margin-top: 11rem;
-       padding: 5rem;
-
-      
-       box-shadow: 0px 0px 10px black;
-
-        p
-        {
-            text-align: center;
-            font-size: xx-large;
-            font-weight: bold;
-            font-family: "poppins", sans-serif; 
-            text-transform:uppercase;
-            color: #809cb8;
-            text-shadow: 1px 2px 2px rgb(4, 4, 4);
-          
-        }
-      
-        button
-        {
-            box-shadow: 3px 2px 5px black;
-        }
-        button, button:nth-child(even){background-color: #52a517;}
-        button:hover
-        {
-            background-color: rgb(41, 39, 39);
-          transform: scale(95%);
-        }
-
-     }
-
-     .edit_form
-     {
-        /* background: transparent; */
-        background-color:#a6aeb12d;
-        backdrop-filter: blur(8px);
- 
-        border:1px solid #0a0a0a;
-        border-radius: 10px;
-
-        /* display: block; */
-        margin-top: 10rem;
-   
-        width: 41rem;
-        height: 26rem;
-
-       
-        
-      .box
-      {
-        display: flex;
-        flex-wrap: wrap;
-        
-       
-
-        h2
-        {
-            margin-left: 9rem;
-            font-size: xx-large;
-            font-weight: bold;
-            font-family: "poppins", sans-serif; 
-            text-transform:capitalize;
-            color: #f7f8f9;
-            text-shadow: 1px 1px 3px rgb(4, 4, 4);
-        }
-
-        form
-        {
-            text-align: center;
-            text-transform: capitalize;
-            input
-            {
-                background: none;
-                text-transform: capitalize;
-                border: 2px solid rgb(65, 62, 62);
-                padding:0.5rem 2rem;
-                border-radius:8px;
-                color: rgb(20, 21, 20);
-                text-shadow:1px 1px 2px rgb(191, 185, 185);
-                font-size: large;
-               margin: 1rem;
-               outline: none;
-            }
-
-           
-                label
-                {
-                    margin-left:8rem;
-                    font-size: x-large;
-                    font-weight: bold;
-                    font-family: "poppins", sans-serif; 
-                    text-transform:capitalize;
-                    color: #080808;
-                }
-                
-
-            select
-            {
-                border: 2px solid rgb(23, 22, 22);
-                padding:0.5rem 2rem;
-                border-radius:8px;
-                font-size: medium;
-               margin: 1rem;
-               background-color: rgba(255, 255, 255, 0.521);
-               backdrop-filter: blur(10px);
-           
-                text-transform: capitalize;
-               
-               
-            }
-            select:nth-child(even){margin-left: 2rem;}
-            select:nth-child(odd){margin-left: 1rem;}
-
-            label:nth-child(1){margin-right: 6rem;}
-           
-
-            .off_btn
-            {margin-left: 8rem;}
-         button
-         {
-            background-color: #4aa30a;
-            text-transform: capitalize;
-         }
-        button:nth-child(even){background-color: #dd501c;}
-        button:hover
-        {
-            background-color: rgb(11, 156, 57);
-          transform: scale(95%);
-        }
-        ::placeholder
-         {
-             color: rgb(83, 90, 85);
-            text-shadow:1px 1px 1px rgb(95, 88, 88);
-         }
-        }
-      }
-     }
-
-   }
-    
     }
     /* Part 2 ka end */
 

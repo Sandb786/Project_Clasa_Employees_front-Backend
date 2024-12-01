@@ -19,4 +19,15 @@ public class OtpGenrator
         
         return otp;
     }
+
+    public int getRendomeDigit()
+    {
+        //It Genrate Randome number.
+        Random random=new Random();
+
+        //We Spesify rang that we want randome no from 1,00,000-9,99,999
+        int num=random.nextInt(1000,9999);
+
+        return num;
+    }
 }

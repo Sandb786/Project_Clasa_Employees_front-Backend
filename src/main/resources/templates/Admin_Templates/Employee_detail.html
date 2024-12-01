@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Employees Details</title>
+</head>
+
+<link rel="stylesheet" th:href="@{/CSS/all.css}">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+<script th:src="@{/JS/Admin.js}"></script>
+<script th:src="@{/JS/form.js}"></script>
+
+<body>
+
+    <header>
+        <div class="demo">
+
+        </div>
+        <nav>
+
+            <img th:src="@{/Images/logo1.png}" class="logo1">
+
+            <div class="box1">
+                <h2>Admin Dashbord</h2>
+            </div>
+
+            <div class="topbtn">
+                <a href="/"><button type="submit">Log out</button></a>
+            </div>
+
+        </nav>
+    </header>
+
+
+    <main>
+
+        <section class="part1">
+
+            <div class="p1nav">
+                <p>Menu</p>
+            </div>
+
+            <div class="p1main">
+
+                <img th:src="@{/Images/home.png}"><br>
+                <img th:src="@{/Images/application.png}"><br>
+                <img th:src="@{/Images/officer.png}"><br>
+                <img th:src="@{/Images/work.png}"><br>
+
+
+                <div class="imgname">
+
+                    <a href="/Admin_index">
+                        <p>Home</p>
+                    </a> <!-- Request To Controller.... -->
+                    <a href="/Manage_Applications">
+                        <p>Application</p>
+                    </a>
+                    <a href="#">
+                        <p class="colar">Employee</p>
+                    </a>
+                    <a href="Project.html">
+                        <p>Work</p>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="p1bottum">
+                <p>buttoom</p>
+            </div>
+
+
+        </section>
+
+        <section class="part2">
+
+            <div class="pbox1">
+
+
+                <a href="/Employee_index"><button class="home_btn"><i class="ri-arrow-go-back-line"></i></button></a>
+
+                <p class="hom" id="txt1">Manage Employee</p>
+
+                <img th:src="@{/Images/application2.png}">
+
+
+            </div>
+
+
+             <div class="Details" id="Info">
+
+                <h1>Personal Info</h1>
+                <div class="box1">
+                    <img th:src="@{/Images/emp_img.jpg}" alt="Employee Image">
+                    <div class="txt">
+                        <ul>
+                            <li>Name: Sandeep Mahawat</li>
+                            <li>Mob No: 7879245294</li>
+                            <li>Email: sandeepmahawat@gmail.com</li>
+                        </ul>
+                    </div>
+                    <div class="txt">
+                        <ul>
+                            <li>City: Indore</li>
+                            <li>State: Madhya Pradesh</li>
+                            <li>Pincode: 452010</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h1>Office Info</h1>
+                <div class="box1">
+                    <div class="txt">
+                        <ul>
+                            <li>EID: EMP17705</li>
+                            <li>DOJ: 27-08-2024</li>
+                            <li>Role: Junior Developer</li>
+                        </ul>
+                    </div>
+                    <div class="txt">
+                        <ul>
+                            <li>Technology Type: Backend</li>
+                            <li>Technology: Spring Boot</li>
+                            <li>Current Project: CLASA</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="btns">
+                    <button onclick="activeEditDetail('Form')">Edit</button>
+                    <button>Delete</button>
+                </div>
+
+            </div> 
+
+            <div class="Details deactive" id="Edit_info">
+
+                <h1>Upadte Personal Info</h1>
+                <div class="box1">
+                    <img th:src="@{/Images/emp_img.jpg}" alt="Employee Image">
+                    <div class="txt">
+                        <ul>
+                            <li>
+                                <label for="name">Name:</label>
+                                <input type="text" id="name" value="Sandeep Mahawat">
+                            </li>
+                            <li>
+                                <label for="mob">Mob No:</label>
+                                <input type="text" id="mob" value="7879245294">
+                            </li>
+                            <li>
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" value="sandeepmahawat@gmail.com">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="txt">
+                        <ul>
+                            <li>
+                                <label for="city">City:</label>
+                                <input type="text" id="city" value="Indore">
+                            </li>
+                            <li>
+                                <label for="state">State:</label>
+
+                                <select id="state" >
+                                <option value="de">demo</option>
+                                </select>
+
+                            </li>
+                            <li>
+                                <label for="pincode">Pincode:</label>
+                                <input type="text" id="pincode" value="452010">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btns">
+                    <button>Save</button>
+                    <button onclick="activeEditDetail('Back')">Back</button>
+                </div>
+            
+                <h1>Update Office Info</h1>
+                <div class="box1">
+                    <div class="txt">
+                        <ul>
+                            <li>
+                                <label for="eid">EID:</label>
+                                <input type="text" id="eid" value="EMP17705">
+                            </li>
+                            <li>
+                                <label for="doj">DOJ:</label>
+                                <input type="date" id="doj" value="2024-08-27">
+                            </li>
+                            <li>
+                                <label for="role">Role:</label>
+                                <input type="text" id="role" value="Junior Developer">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="txt">
+                        <ul>
+                            <li>
+                                <label for="techType">Technology Type:</label>
+                                <input type="text" id="techType" value="Backend">
+                            </li>
+                            <li>
+                                <label for="tech">Technology:</label>
+                                <input type="text" id="tech" value="Spring Boot">
+                            </li>
+                            <li>
+                                <label for="project">Current Project:</label>
+                                <input type="text" id="project" value="CLASA">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btns">
+                    <button>Save</button>
+                    <button onclick="activeEditDetail('Back')">Back</button>
+                </div>
+            
+            </div>
+            
+
+
+
+
+            <div class="pbox3">
+                <p>Pbox3</p>
+            </div>
+
+        </section>
+    </main>
+
+</body>
+
+</html>

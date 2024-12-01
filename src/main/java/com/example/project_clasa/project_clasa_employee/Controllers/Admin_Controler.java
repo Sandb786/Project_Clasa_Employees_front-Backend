@@ -1,8 +1,11 @@
 package com.example.project_clasa.project_clasa_employee.Controllers;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.auditing.CurrentDateTimeProvider;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.project_clasa.project_clasa_employee.Mail_Service.Mailsender;
 import com.example.project_clasa.project_clasa_employee.Modal_classes.Admin_login;
+import com.example.project_clasa.project_clasa_employee.Modal_classes.Employee;
 import com.example.project_clasa.project_clasa_employee.Modal_classes.Person;
 import com.example.project_clasa.project_clasa_employee.Other_Service.FormateDateTime;
 import com.example.project_clasa.project_clasa_employee.Service_Classes.Employee_Service;
@@ -94,7 +98,9 @@ public class Admin_Controler
     @GetMapping("/Admin_index")
     public String redirecToAdminIndex(Model model) 
     {
-        person_Service.setStatus("applicant"); // Set Stetus for demo persus..
+        person_Service.setStatus("Interview_Scheduled"); // Set Stetus for demo persus..
+
+        employee_Service.deleteAllEmployee(); // Test code ....
 
         model.addAttribute("total_person", person_Service.countPerson());
         model.addAttribute("total_employee",employee_Service.countEmployee());
@@ -114,7 +120,10 @@ public class Admin_Controler
     public String getMethodName(Model model) 
     {
           
-     model.addAttribute("Employees",person_Service.getPersonsByStatus("Employee"));
+     model.addAttribute("Persons",person_Service.getPersonsByStatus("Employee"));
+     model.addAttribute("Employees",employee_Service.getAllEmployee());
+     
+
     
      return "/Admin_Templates/Employee";
     }
@@ -185,7 +194,7 @@ public class Admin_Controler
     {
 
       if(cid.equals(id)) // It is Compare the candidate id to rechivded id.
-      mailsender.sendInterviewCallMail(person_Service.findByid(id),formateDateTime.formateDate(date),formateDateTime.formatTime(time));
+      System.out.println("\n Interview mail Sended....");//mailsender.sendInterviewCallMail(person_Service.findByid(id),formateDateTime.formateDate(date),formateDateTime.formatTime(time));
       else
       System.out.println("\n Mail not send..."); 
       
@@ -237,6 +246,8 @@ public class Admin_Controler
        return "/Admin_Templates/Scedule_Events"; // Redirect To new page
    }
 
+  // Creating A local veriable to strore Joining date for use...
+     String joinDate;
 
   // Send Person's Offer Latter... 
    @PostMapping("/send-offer-latter/{id}")
@@ -247,7 +258,7 @@ public class Admin_Controler
     {
 
       if(cid.equals(id)) // It is Compare the candidate id to rechivded id.
-      mailsender.sendOfferLatterMail(person_Service.findByid(id),formateDateTime.formateDate(joindate),salary);
+      System.out.println("\n Offer Latter Sended....");//mailsender.sendOfferLatterMail(person_Service.findByid(id),formateDateTime.formateDate(joindate),salary);
       else
       System.out.println("\n Mail not send..."); 
 
@@ -261,9 +272,11 @@ public class Admin_Controler
     }
 
 
-
+    // Initilize Local joinDate veriable 
+       joinDate=formateDateTime.formateDate(joindate);
+       
        cid=""; // After sending Mail put empty string in cid. 
-
+       
    
     // 1. Redirect To Application Managment Page with All Persons...
       model.addAttribute("all_applicant",person_Service.getAllPersons());
@@ -276,19 +289,33 @@ public class Admin_Controler
    public String saveAsEmployee(@PathVariable String id,Model model)
    {
 
-    Person pr=person_Service.findByid(id);
-    pr.setStatus("Employee");
-    person_Service.savePerson(pr);
-    System.out.println("\n  Employee: "+pr.getName());
-    
+    // 1.Now Person Become Employee so set Person Status "Employee"
+        person_Service.setStatusById(id, "Employee");
 
-     // 1. Redirect To Application Managment Page with All Persons...
+  
+     // 2.Fatching The Current Date When Employee is Join
+        String date=LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+    
+     // 3.Save Emp detailes in Employee class..
+       Employee employee= employee_Service.setEmpData(date, id);
+
+       employee_Service.saveEmp(employee);
+
+     //4. Redirect To Application Managment Page with All Persons...
      model.addAttribute("all_applicant",person_Service.getAllPersons());
      return "/Admin_Templates/Manage_Application";
+     
    }
   
    
 /***************************************** Employee Handler ****************************************/
+
+   @GetMapping("/Employee_detail")
+   public String employeeDtailPage(Model model) 
+   {
+    return "/Admin_Templates/Employee_detail";
+   }
+   
 
    
 
