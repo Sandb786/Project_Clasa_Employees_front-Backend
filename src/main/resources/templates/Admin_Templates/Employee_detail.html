@@ -8,7 +8,6 @@
 <link rel="stylesheet" th:href="@{/CSS/all.css}">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
 <script th:src="@{/JS/Admin.js}"></script>
-<script th:src="@{/JS/form.js}"></script>
 
 <body>
 
@@ -94,19 +93,19 @@
 
                 <h1>Personal Info</h1>
                 <div class="box1">
-                    <img th:src="@{/Images/emp_img.jpg}" alt="Employee Image">
+                    <img th:src="@{/User_images/{photo} (photo=${person.photo})}" alt="Employee Image">
                     <div class="txt">
                         <ul>
-                            <li>Name: Sandeep Mahawat</li>
-                            <li>Mob No: 7879245294</li>
-                            <li>Email: sandeepmahawat@gmail.com</li>
+                            <li><b>Name:</b> <span th:text="${person.name}+' '+${person.surname}"></span></li>
+                            <li><b>Mob No:</b> <span th:text="${person.mobile}"></span></li>
+                            <li><b>Email:</b> <span th:text="${person.email}"></span></li>
                         </ul>
                     </div>
                     <div class="txt">
                         <ul>
-                            <li>City: Indore</li>
-                            <li>State: Madhya Pradesh</li>
-                            <li>Pincode: 452010</li>
+                            <li><b>City:</b> <span th:text="${person.city}"></span></li>
+                            <li><b>State:</b> <span th:text="${person.state}"></span></li>
+                            <li><b>Pincode:</b> <span th:text="${person.pincode}"></span></li>
                         </ul>
                     </div>
                 </div>
@@ -115,16 +114,16 @@
                 <div class="box1">
                     <div class="txt">
                         <ul>
-                            <li>EID: EMP17705</li>
-                            <li>DOJ: 27-08-2024</li>
-                            <li>Role: Junior Developer</li>
+                            <li><b>EID: </b> <span th:text="${employee.eid}"></span></li>
+                            <li><b>DOJ: </b> <span th:text="${employee.doj}"></span></li>
+                            <li><b>Role:</b>  <span th:text="${employee.role}"></span></li>
                         </ul>
                     </div>
                     <div class="txt">
                         <ul>
-                            <li>Technology Type: Backend</li>
-                            <li>Technology: Spring Boot</li>
-                            <li>Current Project: CLASA</li>
+                            <li><b>Technology Type:</b> <span th:text="${person.tech_type}"></span></li>
+                            <li><b>Technology: </b> <span th:text="${person.technology}"></span></li>
+                            <li><b>Current Project:</b> <span th:text="${employee.currentProject}"></span></li>
                         </ul>
                     </div>
                 </div>
@@ -140,7 +139,14 @@
 
                 <h1>Upadte Personal Info</h1>
                 <div class="box1">
-                    <img th:src="@{/Images/emp_img.jpg}" alt="Employee Image">
+    
+                    <div class="uploadImg">
+                        <label class="imgLable">Upload Image</label>
+                        <div class="upload-button-container">
+                            <input type="file" id="fileInput" />
+                        </div>
+                    </div>
+
                     <div class="txt">
                         <ul>
                             <li>
@@ -157,6 +163,7 @@
                             </li>
                         </ul>
                     </div>
+
                     <div class="txt">
                         <ul>
                             <li>
@@ -166,8 +173,9 @@
                             <li>
                                 <label for="state">State:</label>
 
-                                <select id="state" >
-                                <option value="de">demo</option>
+                                <select id="state" class="demo">
+                                <option value=""></option>
+
                                 </select>
 
                             </li>

@@ -386,7 +386,7 @@ main
 
             td
             {
-                padding: 0.7rem ;
+                padding: 0.9rem 1rem;
                 border: 1px solid #4a4747;
                 font-size: medium;
                 
@@ -396,7 +396,7 @@ main
                 /* Chat GPT code for 'Button' */
                 button 
                 {
-                padding: 0.4rem   0.9rem;
+                padding: 0.3rem   0.7rem;
                 cursor: pointer;
                 border-radius: 8px; /* Slightly more rounded corners */
                 background-color: #188b9a; /* Dark teal background */
@@ -658,6 +658,7 @@ main
     font-size: 1.2rem;
     color: #4a4a4a;
     margin: 0.8rem 0;
+    text-transform: capitalize;
     padding: 0.5rem 1rem;
     border: 1px solid #c8b9b9;
     border-radius: 10px;
@@ -726,7 +727,41 @@ main
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
+.uploadImg
+{
+    color: #045384;
+    margin-left: 4rem;
 
+.imgLable
+{
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: x-large;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+input::file-selector-button
+{
+    
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #4290c4; /* Exact pink-red color */
+  color: white;
+  padding: 12px 30px;
+  border-radius: 10px; /* Fully rounded button */
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+ 
+}
+}
 /*-------------------------EMP Details (END) --------------------------------*/
 
     }

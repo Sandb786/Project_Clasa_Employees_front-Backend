@@ -125,7 +125,7 @@
                   <p id="info1"><b>Current Project: </b> <b th:text="${employee.currentProject}"></b></p>
 
                   <a href="Employee_detail">
-                      <button>Read More</button>
+                    <a th:href= "@{/Employee_detail/{id} (id=${employee.id})}"><button type="submit">Read More</button></a>
                   </a>
                 </div>
             </div>

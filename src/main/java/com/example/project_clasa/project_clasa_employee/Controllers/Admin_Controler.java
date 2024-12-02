@@ -98,7 +98,7 @@ public class Admin_Controler
     @GetMapping("/Admin_index")
     public String redirecToAdminIndex(Model model) 
     {
-        person_Service.setStatus("Interview_Scheduled"); // Set Stetus for demo persus..
+        person_Service.setStatus("Offer_Latter_Sended"); // Set Stetus for demo persus..
 
         employee_Service.deleteAllEmployee(); // Test code ....
 
@@ -310,9 +310,17 @@ public class Admin_Controler
    
 /***************************************** Employee Handler ****************************************/
 
-   @GetMapping("/Employee_detail")
-   public String employeeDtailPage(Model model) 
+   @GetMapping("/Employee_detail/{id}")
+   public String employeeDtailPage(@PathVariable String id, Model model) 
    {
+
+    Employee emp=employee_Service.findByID(id);
+    Person per=person_Service.findByid(emp.getPersonId());
+
+    model.addAttribute("employee",emp);
+    model.addAttribute("person",per);
+    
+
     return "/Admin_Templates/Employee_detail";
    }
    
