@@ -89,7 +89,7 @@
             </div>
 
 
-             <div class="Details" id="Info">
+            <div class="Details" id="Info">
 
                 <h1>Personal Info</h1>
                 <div class="box1">
@@ -116,7 +116,7 @@
                         <ul>
                             <li><b>EID: </b> <span th:text="${employee.eid}"></span></li>
                             <li><b>DOJ: </b> <span th:text="${employee.doj}"></span></li>
-                            <li><b>Role:</b>  <span th:text="${employee.role}"></span></li>
+                            <li><b>Role:</b> <span th:text="${employee.role}"></span></li>
                         </ul>
                     </div>
                     <div class="txt">
@@ -133,13 +133,15 @@
                     <button>Delete</button>
                 </div>
 
-            </div> 
+            </div>
 
+<!--******************************************** Upadte Personal Details *************************************************-->
             <div class="Details deactive" id="Edit_info">
 
                 <h1>Upadte Personal Info</h1>
+                <form action="">
                 <div class="box1">
-    
+
                     <div class="uploadImg">
                         <label class="imgLable">Upload Image</label>
                         <div class="upload-button-container">
@@ -159,7 +161,8 @@
                             </li>
                             <li>
                                 <label for="email">Email:</label>
-                                <input type="email" id="email" value="sandeepmahawat@gmail.com">
+                                <!-- <input type="email" id="email" value="sandeepmahawat@gmail.com"> -->
+                                 <p class="data cursor_none">Sandeep_Thymeleaf@gmail.com</p>
                             </li>
                         </ul>
                     </div>
@@ -174,7 +177,7 @@
                                 <label for="state">State:</label>
 
                                 <select id="state" class="demo">
-                                <option value=""></option>
+                                    <option value=""></option>
 
                                 </select>
 
@@ -186,26 +189,38 @@
                         </ul>
                     </div>
                 </div>
-                <div class="btns">
+                <!-- <div class="btns">
                     <button>Save</button>
                     <button onclick="activeEditDetail('Back')">Back</button>
-                </div>
-            
+                </div> -->
+            </form>
+
+
+<!-- ****************************** Update Office Detail  ************************************-->
+
                 <h1>Update Office Info</h1>
                 <div class="box1">
                     <div class="txt">
                         <ul>
                             <li>
                                 <label for="eid">EID:</label>
-                                <input type="text" id="eid" value="EMP17705">
+                                <!-- <input type="text" id="eid" value="EMP17705"> -->
+                                 <p class="data cursor_none">EMP17705</p>
                             </li>
                             <li>
                                 <label for="doj">DOJ:</label>
-                                <input type="date" id="doj" value="2024-08-27">
+                                <!-- <input type="date" id="doj" value="2024-08-27"> -->
+                                <p class="data cursor_none">27-08-2024</p>
                             </li>
                             <li>
                                 <label for="role">Role:</label>
-                                <input type="text" id="role" value="Junior Developer">
+                                <select name="" onclick="chaneRole()">
+                                    <option value="Thymeeaf" id="role_jd">Thymeleaf</option>
+                                    <option value="junior Devloper">junior Devloper</option>
+                                    <option value="Senior Devloper">Senior Devloper</option>
+                                    <option value="Team Leder">Team leder</option>
+                                    <option value="Manager">Manager</option>
+                                </select>
                             </li>
                         </ul>
                     </div>
@@ -213,15 +228,40 @@
                         <ul>
                             <li>
                                 <label for="techType">Technology Type:</label>
-                                <input type="text" id="techType" value="Backend">
+                                <select name="" id="techType" onchange="changeTechnology()">
+                                    <option value="Thymeleaf">Thymeeaf</option>
+                                    <option value="Frontend">Frontend</option>
+                                    <option value="Backend">Backend</option>
+                                </select>
                             </li>
                             <li>
                                 <label for="tech">Technology:</label>
-                                <input type="text" id="tech" value="Spring Boot">
+
+                                <!-- Alrady Selected by Technology -->
+                                 <select name="" id="user_tech">
+                                    <option value="Thymeeaf">Thymeeaf</option>
+                                 </select>
+
+                                <!-- Select Forntend Technology -->
+                                <select name="" id="Tech_F" class="deactive">
+                                    <option value="React">React</option>
+                                    <option value="Vue js">Vue JS</option>
+                                    <option value="Tailwent/Bootstrap">Tailwent/Bootstrap</option>
+                                    <option value="Angular">Angular</option>
+                                </select>
+
+                                <!-- Select Backend Technology -->
+                                <select name="" id="Tech_B" class="deactive">
+                                    <option value="Spring-Boot">Spring-Boot</option>
+                                    <option value="MERN/MEAN Stack">MERN/MEAN Stack</option>
+                                    <option value="Django">Django</option>
+                                    <option value=".NET">.NET</option>
+                                </select>
+
                             </li>
                             <li>
                                 <label for="project">Current Project:</label>
-                                <input type="text" id="project" value="CLASA">
+                                <p class="data cursor_none">CLASA</p>
                             </li>
                         </ul>
                     </div>
@@ -230,9 +270,9 @@
                     <button>Save</button>
                     <button onclick="activeEditDetail('Back')">Back</button>
                 </div>
-            
+
             </div>
-            
+
 
 
 

@@ -79,33 +79,8 @@ function home()
 
 }
 
-function  change()
-{
-    
-    let data=document.getElementById("cat").value
-   document.getElementById("lab").classList.remove("deactive")
 
-
-    switch (data) 
-    {
-        case "NONE":
-   document.getElementById("frontend").classList.add("deactive")
-   document.getElementById("backend").classList.add("deactive")
-   document.getElementById("lab").classList.add("deactive")
-            break;
-
-        case "FOR1":
-   document.getElementById("frontend").classList.remove("deactive")
-   document.getElementById("backend").classList.add("deactive")
-            break;
-
-        case "BACK1":
-   document.getElementById("backend").classList.remove("deactive")
-   document.getElementById("frontend").classList.add("deactive")
-            break;
-    
-    }
-}
+/*********************************EMP Detail JS **********************************/
 
 function activeEditDetail(param)
 {
@@ -115,6 +90,7 @@ function activeEditDetail(param)
             document.getElementById("Edit_info").classList.remove("deactive");
             document.getElementById("Info").classList.add("deactive");
             addStates()
+           
             break;
     
         case "Back":
@@ -150,3 +126,38 @@ function addStates()
     });
 }
 
+function changeTechnology()
+{
+    const value = document.getElementById("techType").value;
+    console.log(value);
+
+    document.getElementById("Tech_B").classList.add("deactive")
+    document.getElementById("Tech_F").classList.add("deactive")
+    document.getElementById("user_tech").classList.add("deactive")
+
+
+
+    
+
+    switch (value) 
+    {
+        case 'Frontend':
+           document.getElementById("Tech_B").classList.add("deactive")
+           document.getElementById("Tech_F").classList.remove("deactive")
+            break;
+
+        case 'Backend':
+            document.getElementById("Tech_F").classList.add("deactive")
+           document.getElementById("Tech_B").classList.remove("deactive")
+            break;
+
+        default :
+            document.getElementById("user_tech").classList.remove("deactive")
+        break;
+    }
+}
+
+function chaneRole() 
+{
+    document.getElementById("role_jd").classList.add("deactive")
+}

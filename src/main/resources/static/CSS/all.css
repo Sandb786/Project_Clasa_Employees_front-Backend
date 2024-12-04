@@ -679,14 +679,26 @@ main
     color: #2c3e50;
 }
 
-.Details .box1 .txt input,select {
+.Details .box1 .txt input,select,.data {
     width: 90%;
-    padding: 0.5rem;
+    padding: 0.6rem;
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
     background: #f9f9f9;
     transition: all 0.3s ease-in-out;
+}
+
+.cursor_none{cursor:not-allowed;
+             margin: 0rem;} 
+
+select{width: 94%; cursor: pointer;}
+select:focus
+{
+    border-color: #357abd;
+    background: #eef5fb;
+    outline: none;
+    box-shadow: 0 0 4px rgba(53, 122, 189, 0.5);
 }
 
 .Details .box1 .txt input:focus {
