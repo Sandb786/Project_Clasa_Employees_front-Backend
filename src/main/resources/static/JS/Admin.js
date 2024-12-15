@@ -84,18 +84,28 @@ function home()
 
 function activeEditDetail(param)
 {
+    document.getElementById("Info").classList.add("deactive");
+    document.getElementById("Edit_info").classList.remove("deactive");
+
+
     switch (param) 
     {
-        case "Form":
-            document.getElementById("Edit_info").classList.remove("deactive");
-            document.getElementById("Info").classList.add("deactive");
+        case "Personal":
+
+            document.getElementById("Personal_Details").classList.remove("deactive");
+            document.getElementById("Office_Details").classList.add("deactive");
             addStates()
            
             break;
     
+        case "Office":
+            document.getElementById("Office_Details").classList.remove("deactive");
+            document.getElementById("Personal_Details").classList.add("deactive");
+            break;
+
         case "Back":
-            document.getElementById("Edit_info").classList.add("deactive");
             document.getElementById("Info").classList.remove("deactive");
+            document.getElementById("Edit_info").classList.add("deactive");
             break;
     }
     

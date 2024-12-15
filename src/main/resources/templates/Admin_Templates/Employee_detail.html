@@ -127,20 +127,38 @@
                         </ul>
                     </div>
                 </div>
-
                 <div class="btns">
-                    <button onclick="activeEditDetail('Form')">Edit</button>
+                    <button popovertarget="pop" >Edit</button>
                     <button>Delete</button>
                 </div>
 
             </div>
 
+<!--******************************************** Upadte Details Popover *************************************************-->
+           
+            <div class="popover-container" popover id="pop">
+            
+                <div class="popover-content" >
+                    <h2>Update Details</h2>                
+                    <p>What detail do you want to update?</p>
+                    <!-- <a th:href="@{/Edit_Employee_Detail/{name}   (name=${'Personal'})}"><button>Personal</button></a>
+                    <a th:href="@{/Edit_Employee_Detail/{name} (name=${'Office'}) }"><button>Office</button> </a> -->
+
+                    <button onclick="activeEditDetail('Personal')">Personal</button>
+                    <button onclick="activeEditDetail('Office')">Office</button>
+                </div>
+            </div>
+
+
 <!--******************************************** Upadte Personal Details *************************************************-->
             <div class="Details deactive" id="Edit_info">
 
+        <span id="Personal_Details">
+
                 <h1>Upadte Personal Info</h1>
-                <form action="">
-                <div class="box1">
+            <form th:action= "@{/Edit_Employee_Detail}" method="post" th:object="${Per_obj}">
+                
+                <div class="box1" id="Personal_Details">
 
                     <div class="uploadImg">
                         <label class="imgLable">Upload Image</label>
@@ -152,17 +170,18 @@
                     <div class="txt">
                         <ul>
                             <li>
+                                <!-- Not Editable -->
                                 <label for="name">Name:</label>
-                                <input type="text" id="name" value="Sandeep Mahawat">
+                                <p class="data cursor_none" th:text="${person.name+' '+person.surname}"></p>
                             </li>
                             <li>
                                 <label for="mob">Mob No:</label>
-                                <input type="text" id="mob" value="7879245294">
+                                <input type="text" id="mob" th:field="*{mobile}">
                             </li>
                             <li>
                                 <label for="email">Email:</label>
-                                <!-- <input type="email" id="email" value="sandeepmahawat@gmail.com"> -->
-                                 <p class="data cursor_none">Sandeep_Thymeleaf@gmail.com</p>
+                                <!-- Not Editable -->
+                                 <p class="data cursor_none" th:text="${person.email}"></p>
                             </li>
                         </ul>
                     </div>
@@ -171,13 +190,13 @@
                         <ul>
                             <li>
                                 <label for="city">City:</label>
-                                <input type="text" id="city" value="Indore">
+                                <input type="text" id="city" th:field="*{city}">
                             </li>
                             <li>
                                 <label for="state">State:</label>
 
-                                <select id="state" class="demo">
-                                    <option value=""></option>
+                                <select id="state" class="demo" th:field="*{state}">
+                                    <option value="${person.state}" th:text="${person.state}"></option>
 
                                 </select>
 
@@ -189,16 +208,20 @@
                         </ul>
                     </div>
                 </div>
-                <!-- <div class="btns">
-                    <button>Save</button>
-                    <button onclick="activeEditDetail('Back')">Back</button>
-                </div> -->
+                
+                <div class="btns">
+                    <button type="submit">Save</button> 
+                    <button type="reset" onclick="activeEditDetail('Back')">Back</button>
+                </div>
             </form>
 
+        </span>
 
 <!-- ****************************** Update Office Detail  ************************************-->
 
+        <span id="Office_Details">
                 <h1>Update Office Info</h1>
+            <form action="">
                 <div class="box1">
                     <div class="txt">
                         <ul>
@@ -267,11 +290,16 @@
                     </div>
                 </div>
                 <div class="btns">
-                    <button>Save</button>
-                    <button onclick="activeEditDetail('Back')">Back</button>
+                    <button type="submit">Save</button> 
+                    <button type="reset" onclick="activeEditDetail('Back')">Back</button>
                 </div>
+            </form>
+        </span>
 
-            </div>
+
+
+
+        </div>
 
 
 

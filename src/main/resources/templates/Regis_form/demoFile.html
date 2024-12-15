@@ -3,17 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<style>
-  
+    <title>Popover Example</title>
+    <style>
+       
 
-</style>
+        .popover-container 
+        {
+           
+
+        .popover-content {
+            background-color: #f8f9fa;
+            border: 1px solid #bbbdc0;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            width: 400px;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .popover-content h2 
+        {
+            margin-top: 0;
+            font-size: 2rem;
+            color: #343a40;
+        }
+
+        .popover-content p {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            color: #6c757d;
+        }
+
+        .popover-content button {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 14px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+
+        .popover-content button:hover 
+        {
+            background-color: #349060;
+            transform: translateY(-10%);
+           
+        }
+        .popover-content button:active
+        {
+            transform: translateY(5%);
+
+        }
+        }
+       
+    </style>
+</head>
 <body>
     
+        <div class="popover-container">
+
+            <div class="popover-content"  id="pop">
+
+               
+                <h2>Update Details</h2>
+                
+
+                <p>What detail do you want to update?</p>
+                <button>Personal</button>
+                <button>Office</button>
+
+            </div>
+        </div>
    
-      
-        
-      
 </body>
 </html>

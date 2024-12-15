@@ -310,6 +310,10 @@ public class Admin_Controler
    
 /***************************************** Employee Handler ****************************************/
 
+ // Temp Veriable for Holding Current Employee Id..
+    String tempEid;
+
+  // Show Employee Detail page.... 
    @GetMapping("/Employee_detail/{id}")
    public String employeeDtailPage(@PathVariable String id, Model model) 
    {
@@ -319,11 +323,42 @@ public class Admin_Controler
 
     model.addAttribute("employee",emp);
     model.addAttribute("person",per);
+
+    // Edit Employee details
+    model.addAttribute("Per_obj", per);
+
+
+    // Set Id into Temp veriable
+       tempEid=id;
     
 
     return "/Admin_Templates/Employee_detail";
    }
-   
+
+
+   // Edit Employee Detail
+   @GetMapping("/Edit_Employee_Detail")
+   public String editEmployeeDetail(Model model)
+   {
+
+    Employee emp=employee_Service.findByID(tempEid);
+    Person per=person_Service.findByid(emp.getPersonId());
+
+      switch ("g") 
+      {
+        case "Personal":
+          model.addAttribute("Per_obj", per);
+          model.addAttribute("hide",false);
+          break;
+
+        case "Office":
+        
+          
+          break;
+      }
+
+      return "/Admin_Templates/Employee_detail";
+    }
 
    
 
